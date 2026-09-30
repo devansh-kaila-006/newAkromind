@@ -1,16 +1,60 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import FaqAccordion from '../components/FaqAccordion';
-import { Compass, Palmtree, MapPin, Calendar, DollarSign, Award, Plane, Users, Map, Globe } from 'lucide-react';
+import { motion } from 'motion/react';
+import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
+import EditorialVisual from '../components/EditorialVisual';
+import { Compass, Palmtree, MapPin, Calendar, DollarSign, Award, Plane, Users, Map, Globe, Check, Shield } from 'lucide-react';
 
-const faqs = [
-  { q: 'What destinations do you cover?', a: 'We cover domestic destinations across all Indian states and union territories. Internationally, we cover 25+ countries across Southeast Asia, Middle East, Europe, and popular Asian destinations.' },
-  { q: 'Do you offer customized travel packages?', a: 'Yes, all our packages are customizable based on your preferences, budget, duration, and group size.' },
-  { q: 'What is included in your travel packages?', a: 'Our packages typically include accommodation, transportation (flights/trains/ground), specified meals, sightseeing, and local guides. Specific inclusions vary by package.' },
-  { q: 'Do you offer travel insurance?', a: 'Yes, we facilitate travel insurance through our partners. It\'s optional for domestic travel and recommended for international trips.' },
-  { q: 'What is your cancellation policy?', a: 'Cancellation and reservation details are highly flexible. You can request changes or reschedules to your itineraries up to 15 days before your departure with zero penalty.' },
-  { q: 'Do you support large-group custom plans?', a: 'Yes! For groups of 6 or more, we design curated custom group activities, private sightseeing vehicles, and aligned resort blocks.' },
-  { q: 'How do you handle emergencies during trips?', a: 'We provide 24/7 support during trips, coordinate with local authorities and services, and facilitate emergency assistance including medical support if needed.' }
+const holidayFaqs: FAQItem[] = [
+  {
+    category: 'Destinations & Planning',
+    q: 'What domestic and international destinations does AkroHolidays cover?',
+    a: 'Domestically, we operate across all premier Indian circuits including Himachal Pradesh (Manali, Shimla, Spiti), Leh Ladakh, Goa, Kerala backwaters, Royal Rajasthan (Udaipur, Jaipur, Jaisalmer), Kashmir valley, and Northeast circuits (Sikkim, Meghalaya). Internationally, we curate bespoke tracks across 25+ countries, including Switzerland, Bali, Dubai & UAE, Vietnam, Thailand, Singapore, Maldives, Sri Lanka, and France.'
+  },
+  {
+    category: 'Customization & Groups',
+    q: 'Can itineraries be customized for specific family needs, kids, or elderly travelers?',
+    a: 'Yes, 100% of our journeys are bespoke. We do not herd travelers onto rigid tour buses. We adapt pacing, ensure wheelchair-accessible vehicles and ground-floor hotel suites for elderly family members, arrange child-friendly activities and resorts with baby amenities, and curate relaxed schedules that allow you to savor each destination without exhausting travel rushes.'
+  },
+  {
+    category: 'Pricing & Inclusions',
+    q: 'What is typically included in an AkroHolidays travel package?',
+    a: 'Our quotes are comprehensive and transparent with zero surprise on-ground expenses. Inclusions typically cover handpicked 4-star or luxury boutique hotel accommodations, private air-conditioned vehicles with verified chauffeurs, daily gourmet breakfasts and select curated regional dinners, pre-arranged monument entrance passes, private local guides, and 24/7 on-ground concierge support.'
+  },
+  {
+    category: 'Visas & Documentation',
+    q: 'Do you provide visa application assistance and passport guidance?',
+    a: 'Yes. Our international travel desk provides end-to-end visa facilitation assistance, including appointment scheduling, documentation auditing, flight itinerary proofs, hotel reservation vouchers, and cover letter templates for Schengen, UAE, Southeast Asian, and UK visas.'
+  },
+  {
+    category: 'Safety & Insurance',
+    q: 'How do you handle medical emergencies or unexpected trip interruptions?',
+    a: 'Every traveler’s safety is our top priority. We coordinate comprehensive international and domestic travel medical insurance through licensed partners covering emergency medical care, baggage delays, and trip interruptions. On the ground, our 24/7 Emergency Operations Center maintains direct communication with local hospital networks and embassy helplines.'
+  },
+  {
+    category: 'Explorer Loyalty Engine',
+    q: 'How does the AkroHolidays Explorer Loyalty Points system work?',
+    a: 'The Explorer Loyalty Engine connects your travel rewards with the entire New Akromind ecosystem. You earn points when booking vacations, but also when enrolling in AkroTution semester tracks or completing AkroPlacement programs. Every 1,000 points equals ₹1,000 in direct redemption credits towards hotel upgrades, private yacht charters, or tour discounts.'
+  },
+  {
+    category: 'Food & Dietary Needs',
+    q: 'Can you accommodate strict vegetarian, vegan, or Jain dietary requirements?',
+    a: 'Yes. Having catered to diverse Indian and international families for years, we coordinate strictly with our partner hotels and regional specialty restaurants to guarantee authentic vegetarian, pure Jain (no root vegetables/onion/garlic), vegan, and halal dining options across both domestic and international destinations.'
+  },
+  {
+    category: 'Cancellations & Rescheduling',
+    q: 'What is your cancellation and date rescheduling policy?',
+    a: 'We understand that unexpected family or corporate events arise. For most standard itineraries, date modifications requested at least 21 days before departure are processed with minimal administrative airline fees and zero AkroHolidays penalty. Unused hotel deposits are credited towards future travel bookings valid for 12 months.'
+  },
+  {
+    category: 'Flights & Transit',
+    q: 'Are international and domestic flights included in your package quotes?',
+    a: 'We offer packages both with flights included (Land + Air) and land-only packages (for travelers who prefer utilizing personal frequent-flyer credit card points). When booking airfare through us, we secure bulk-rate airline tickets and provide live flight monitoring to handle transit delays.'
+  },
+  {
+    category: 'Corporate & Retreats',
+    q: 'Do you arrange corporate offsites, executive retreats, and school educational trips?',
+    a: 'Yes. We design high-impact corporate offsites, executive leadership retreats, and student educational excursions. These include private villa bookings, conference AV setups, team-building adventure challenges, and curated gala dinners with regional artists.'
+  }
 ];
 
 const destinationsPool = {
@@ -18,63 +62,69 @@ const destinationsPool = {
     {
       id: 'manali',
       name: 'Shimla & Himachal Splendid',
+      regionTag: 'North India Alpine Circuit',
       highlightsCount: 8,
       days: {
-        '3': ['Day 1: Arrival & Mall Road Stroll', 'Day 2: Solang Valley Paragliding', 'Day 3: Hidimba Temple & Departure'],
-        '5': ['Day 1: Arrival in Shimla', 'Day 2: Kufri Snow Viewpoint', 'Day 3: Transfer to Manali', 'Day 4: Solang Adventure Activities', 'Day 5: Local Markets & Departure'],
-        '7': ['Day 1: Shimla Arrival', 'Day 2: Toy Train & Mall Road', 'Day 3: Kinnaur Valley Gateway', 'Day 4: Manali Local Explorations', 'Day 5: Rohtang Pass High Altitude', 'Day 6: Kasol Riverside Retreat', 'Day 7: Souvenir shopping & Flight back']
+        '3': ['Day 1: Arrival in Shimla & heritage Mall Road sunset stroll', 'Day 2: Kufri snowy pass & cedar forest nature trail', 'Day 3: Viceregal Lodge colonial tour & airport departure'],
+        '5': ['Day 1: Arrival in Shimla & colonial town walk', 'Day 2: Kufri nature park & apple orchard drive', 'Day 3: Scenic transfer through Kullu Valley to Manali', 'Day 4: Solang Valley adventure sports & paragliding', 'Day 5: Old Manali cafes, Hidimba Temple & departure transfer'],
+        '7': ['Day 1: Arrival in Shimla & check-in at heritage estate', 'Day 2: UNESCO Toy Train ride & Mall Road cafe hopping', 'Day 3: Kinnaur Valley gateway & Jalori Pass scenic route', 'Day 4: Transfer to Manali & riverside sunset tea in Kasol', 'Day 5: Rohtang Pass high altitude glacier adventure', 'Day 6: Naggar Castle heritage visit & artisanal shawl shopping', 'Day 7: Private luxury transfer to Chandigarh airport for flight home']
       }
     },
     {
       id: 'ladakh',
-      name: 'Leh Ladakh Bike & Car Safari',
+      name: 'Leh Ladakh High Pass Safari',
+      regionTag: 'Himalayan Trans-Valley',
       highlightsCount: 12,
       days: {
-        '3': ['Day 1: Leh Accclimatisation Walk', 'Day 2: Pangong Tso Lake Sunset', 'Day 3: Shanti Stupa & Departure'],
-        '5': ['Day 1: Leh Arrival', 'Day 2: Magnetic Hill & Hall of Fame', 'Day 3: Khardung La High Pass to Nubra', 'Day 4: Nubra Sand Dunes to Pangong', 'Day 5: Return to Leh & Departure'],
-        '7': ['Day 1: Leh Arrival & rest', 'Day 2: Confluence of Indus & Zanskar', 'Day 3: Nubra Valley via Khardung La', 'Day 4: Diskit Monastery & Quad biking', 'Day 5: Pangong Lake via Shyok River', 'Day 6: Shanti Stupa & local Ladakhi dinner', 'Day 7: Fly back with souvenirs']
+        '3': ['Day 1: Leh airport arrival & mandatory altitude acclimatization', 'Day 2: Pangong Tso azure lake sunset excursion', 'Day 3: Shanti Stupa morning prayers & airport departure'],
+        '5': ['Day 1: Arrival in Leh & restful acclimatization walk', 'Day 2: Hall of Fame, Magnetic Hill & Indus-Zanskar confluence', 'Day 3: Cross Khardung La (17,982 ft) into Nubra Valley dunes', 'Day 4: Double-humped camel safari & Shyok river transfer to Pangong', 'Day 5: Morning lake photography, return to Leh & flight out'],
+        '7': ['Day 1: Arrival in Leh & rest in traditional heated boutique suite', 'Day 2: Confluence of Indus & Zanskar rivers & Pathar Sahib Gurudwara', 'Day 3: Khardung La high pass ascent & Diskit Monastery giant Buddha', 'Day 4: Hunder white sand dunes ATV ride & stargazing camp in Nubra', 'Day 5: Dramatic off-road route via Shyok River to Pangong Tso Lake', 'Day 6: Return to Leh via Chang La Pass & traditional Ladakhi dinner', 'Day 7: Souvenir shopping in Leh Tibetan market & airport departure']
       }
     },
     {
       id: 'goa',
-      name: 'Goa Coastal Sundowner',
+      name: 'Goa Coastal & Heritage Trails',
+      regionTag: 'Konkan Coastline',
       highlightsCount: 6,
       days: {
-        '3': ['Day 1: North Goa Beaches & Sunset', 'Day 2: Watercraft Sports & Shacks', 'Day 3: Old Goa Churches & Depart'],
-        '5': ['Day 1: North Goa Beach stroll', 'Day 2: Calangute Scuba & Jetskiing', 'Day 3: Panaji Mandovi cruise', 'Day 4: South Goa peaceful beaches', 'Day 5: Anjuna local flea markets & Flight out'],
-        '7': ['Day 1: Arrival / Resort check-in', 'Day 2: Candolim Water activities', 'Day 3: Salim Ali Bird Sanctuary', 'Day 4: Dudhsagar Waterfalls trek', 'Day 5: South Goa Palolem beaches', 'Day 6: Authentic Portuguese estate lunch', 'Day 7: Spa & Departure']
+        '3': ['Day 1: North Goa beachfront check-in & private sundowner yacht', 'Day 2: Watercraft adventure, scuba diving & sunset shacks', 'Day 3: Old Goa Portuguese cathedrals & airport departure'],
+        '5': ['Day 1: Arrival & check-in at South Goa 5-star private beach resort', 'Day 2: Calangute & Baga water sports, parasailing & jet-skiing', 'Day 3: Panaji Latin Quarter (Fontainhas) architectural walking tour', 'Day 4: Palolem & Agonda tranquil beaches with authentic seafood lunch', 'Day 5: Anjuna artisanal flea market, beach spa & airport transfer'],
+        '7': ['Day 1: Arrival in Goa & luxury beachfront resort welcome drink', 'Day 2: Private speedboat excursion & dolphin spotting safari', 'Day 3: Salim Ali Bird Sanctuary mangrove kayaking in Chorao Island', 'Day 4: Jeep safari trek to Dudhsagar multi-tiered waterfalls', 'Day 5: Peaceful South Goa beach club day & candlelit coastal dinner', 'Day 6: 400-year-old Portuguese spice plantation tour with organic feast', 'Day 7: Final beach yoga session, souvenir shopping & departure transfer']
       }
     }
   ],
   international: [
     {
       id: 'bali',
-      name: 'Tropical Bali Paradiso',
+      name: 'Tropical Bali Island Paradiso',
+      regionTag: 'Indonesia Heritage & Nature',
       highlightsCount: 14,
       days: {
-        '3': ['Day 1: Ubud Monkey Forest & Swing', 'Day 2: Nusa Penida Coast ride', 'Day 3: Tanah Lot Sunset & Departure'],
-        '5': ['Day 1: Ubud Art Markets & Temple', 'Day 2: Kintamani Volcano Brunch', 'Day 3: Nusa Penida T-Rex Cliff', 'Day 4: Uluwatu Fire Dance', 'Day 5: Seminyak Beach walk & Depart'],
-        '7': ['Day 1: Flight & Seminyak resort check-in', 'Day 2: Ubud Waterfall trails', 'Day 3: Mount Batur Sunrise Trek', 'Day 4: Nusa Penida Island Speedboat tour', 'Day 5: Bedugul Lake Temple scenery', 'Day 6: Beach club lounging & sunset fire dance', 'Day 7: Souvenir market & flight home']
+        '3': ['Day 1: Ubud private pool villa check-in & Sacred Monkey Forest', 'Day 2: Nusa Penida speedboat tour & Kelingking T-Rex cliff hike', 'Day 3: Tanah Lot ocean temple sunset & airport departure transfer'],
+        '5': ['Day 1: Arrival in Denpasar, transfer to Ubud luxury jungle resort', 'Day 2: Tegalalang rice terraces, jungle swing & Kintamani volcano lunch', 'Day 3: Speedboat day tour to Nusa Penida island & Broken Beach', 'Day 4: Transfer to Seminyak beachfront, Uluwatu Kecak fire dance at sunset', 'Day 5: Beach club lounging, Balinese massage & airport transfer'],
+        '7': ['Day 1: Arrival in Bali & private transfer to rainforest pool villa in Ubud', 'Day 2: Tirta Empul holy spring water cleansing & hidden waterfall trek', 'Day 3: Mount Batur sunrise volcanic jeep trek with mountain-view brunch', 'Day 4: Full-day private cruise to Nusa Penida & snorkeling with manta rays', 'Day 5: Ulun Danu Beratan lake temple & Handara iconic gate photo tour', 'Day 6: Luxury day at beach club in Canggu & sunset seafood BBQ in Jimbaran', 'Day 7: Ubud artisanal craft market shopping & private transfer to airport']
       }
     },
     {
       id: 'switzerland',
-      name: 'Swiss Alps & Scenic Lakes',
+      name: 'Swiss Alps & Scenic Lake Rails',
+      regionTag: 'Central European Alpine',
       highlightsCount: 16,
       days: {
-        '3': ['Day 1: Zurich Lake & Old Town', 'Day 2: Lucerne & Mount Pilatus Railway', 'Day 3: Interlaken Paraglide & Flight out'],
-        '5': ['Day 1: Zurich Arrival', 'Day 2: Lucerne Chapel Bridge', 'Day 3: Interlaken Lake Thun Cruise', 'Day 4: Jungfraujoch Top of Europe Train', 'Day 5: Swiss Chocolate tasting & Departure'],
-        '7': ['Day 1: Zurich Arrival & Lake cruise', 'Day 2: Lucerne Chapel Bridge & Mount Rigi', 'Day 3: Interlaken scenic cogwheel railway', 'Day 4: Jungfraujoch snowy peak adventure', 'Day 5: Zermatt Matterhorn mountain views', 'Day 6: Glacier Express scenic route', 'Day 7: Geneva lakeside departure']
+        '3': ['Day 1: Zurich Old Town promenade & Lake Zurich scenic boat cruise', 'Day 2: Lucerne Chapel Bridge & Mount Pilatus world-steepest cogwheel train', 'Day 3: Interlaken paragliding view of Swiss peaks & airport transfer out'],
+        '5': ['Day 1: Arrival at Zurich airport & 1st class Swiss Rail transfer to Lucerne', 'Day 2: Mount Rigi panorama & paddle steamer cruise on Lake Lucerne', 'Day 3: Scenic GoldenPass train to Interlaken & Lake Brienz turquoise cruise', 'Day 4: Jungfraujoch Top of Europe glacier train & Ice Palace exploration', 'Day 5: Traditional Swiss fondue tasting in Bern & Zurich departure flight'],
+        '7': ['Day 1: Arrival in Zurich, private limousine transfer to Lucerne luxury lake hotel', 'Day 2: Mount Pilatus golden round-trip with panoramic cable cars & boat', 'Day 3: Scenic train to Interlaken, valley of 72 waterfalls in Lauterbrunnen', 'Day 4: Jungfraujoch excursion to Europe’s highest railway station (11,333 ft)', 'Day 5: Scenic rail route to Zermatt & view of the iconic Matterhorn mountain', 'Day 6: Glacier Express panoramic train journey through dramatic Rhine gorge', 'Day 7: Geneva lakeside stroll, luxury Swiss watch shopping & departure flight']
       }
     },
     {
       id: 'dubai',
-      name: 'Dubai Luxury Desert Oasis',
+      name: 'Dubai & Arabian Luxury Desert',
+      regionTag: 'UAE Modern Luxury & Desert',
       highlightsCount: 10,
       days: {
-        '3': ['Day 1: Burj Khalifa & Mall Fountain', 'Day 2: Desert Safari & Dune Quad Bike', 'Day 3: Dubai Frame & departure'],
-        '5': ['Day 1: Burj Khalifa & Frame', 'Day 2: Red Sand Desert Safari & bellydance', 'Day 3: Atlantis Waterpark', 'Day 4: Marina Yacht Ride', 'Day 5: Gold Souk Shopping & Airport out'],
-        '7': ['Day 1: Dubai Mall & Burj walk', 'Day 2: Desert Dunes Safari & Quad biking', 'Day 3: Palm Jumeirah & Atlantis adventure', 'Day 4: Abu Dhabi Sheikh Zayed Mosque day trip', 'Day 5: Museum of the Future', 'Day 6: Private Yacht evening cruise', 'Day 7: Last-minute souk shopping & departure']
+        '3': ['Day 1: Downtown Dubai, Burj Khalifa 148th floor & Dubai Fountain show', 'Day 2: Red dunes luxury desert safari with quad biking & Bedouin dinner', 'Day 3: Dubai Frame, Museum of the Future & airport transfer'],
+        '5': ['Day 1: Arrival in Dubai & private chauffeur transfer to Marina 5-star hotel', 'Day 2: Burj Khalifa At The Top, Dubai Mall & Dubai Aquarium underwater zoo', 'Day 3: Premium desert safari with dune bashing, camel trek & live fire show', 'Day 4: Palm Jumeirah monorail, Atlantis Aquaventure waterpark & beach club', 'Day 5: Deira Gold & Spice souks cultural abra boat ride & airport transfer'],
+        '7': ['Day 1: Arrival & check-in at luxury hotel on Palm Jumeirah', 'Day 2: Burj Khalifa VIP lounge access & Dubai Mall private shopping assistance', 'Day 3: VIP Red Sand desert safari with private sunset majlis & barbecue dinner', 'Day 4: Day trip to Abu Dhabi: Sheikh Zayed Grand Mosque & Louvre Abu Dhabi', 'Day 5: Museum of the Future tour & private sunset yacht cruise from Dubai Marina', 'Day 6: Miracle Garden floral walk & Global Village international pavilions', 'Day 7: Traditional gold souk shopping, Arabic perfumery tour & airport departure']
       }
     }
   ]
@@ -105,7 +155,7 @@ export default function AkroholidaysPage() {
   };
 
   const getLoyaltyCredits = () => {
-    return Math.floor(calculateHighlights() * 15);
+    return Math.floor(calculateHighlights() * 20);
   };
 
   const activeDaysItinerary = activeDest.days[duration as '3' | '5' | '7'] || [];
@@ -117,280 +167,311 @@ export default function AkroholidaysPage() {
       transition={{ duration: 0.5 }}
       className="max-w-6xl mx-auto px-4 py-20 space-y-24 font-sans bg-warm-cream"
     >
-          <header className="text-center space-y-4 max-w-3xl mx-auto">
-              <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AkroHolidays</span>
-              <h1 className="text-4xl md:text-6xl font-black tracking-tight text-warm-charcoal font-sans leading-none">
-                Bespoke Journeys. <span className="font-serif italic font-normal text-terracotta">Uncharted Routes.</span>
-              </h1>
-              <p className="text-[#5C524D] font-serif text-lg leading-relaxed pt-2">
-                Curated leisure tours, customized regional holiday packages, loyalty explorer point rewards, and exciting luxury adventure escapes.
-              </p>
-          </header>
-  
-          {/* Destination footprint */}
-          <section className="space-y-16">
-            <div className="text-center space-y-2">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#7D7067]">Exclusive Footprint</span>
-              <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal font-normal">Our Destination Footprint</h2>
-            </div>
+      <header className="text-center space-y-4 max-w-3xl mx-auto">
+        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AkroHolidays</span>
+        <h1 className="text-4xl md:text-6xl font-black tracking-tight text-warm-charcoal font-sans leading-none">
+          Bespoke Journeys. <span className="font-serif italic font-normal text-terracotta">Uncharted Routes.</span>
+        </h1>
+        <p className="text-[#5C524D] font-serif text-lg leading-relaxed pt-2">
+          Curated domestic expeditions, luxury international circuits, verified boutique properties, and an integrated Explorer Loyalty Point rewards engine.
+        </p>
+      </header>
 
-            <div className="grid md:grid-cols-2 gap-8 font-sans">
-                {[
-                    {
-                        region: 'Domestic Wonders',
-                        destinations: ['North India: Manali, Shimla, Dharamshala, Spiti Valley, Leh Ladakh', 'South India: Munnar, Alleppey (Houseboats), Coorg, Mysore, Ooty', 'West India: Goa Beaches, Gir National Wildlife Reservation, Ranthambore Safari', 'East & Northeast: Gangtok, Darjeeling, Shillong, Cherrapunji Root Bridges']
-                    },
-                    {
-                        region: 'International Getaways',
-                        destinations: ['Southeast Asia: Bali (Indonesia), Phuket/Krabi (Thailand), Singapore, Vietnam', 'Middle East: Dubai, Abu Dhabi, Desert Safari Highlights', 'Europe Landmarks: Swiss Alps, Paris Wonders, Venice canals, Amalfi coastal lines', 'Exotic Escapes: Maldives Overwater Villas, Sri Lanka cultural trails, Japan blossoms']
-                    }
-                ].map(c => (
-                    <div 
-                      key={c.region} 
-                      className="p-8 bg-[#FCFAF7] border border-[#E5E0D5] hover:border-terracotta transition-colors duration-300 rounded-sm space-y-4"
-                    >
-                        <h4 className="text-lg font-bold text-warm-charcoal font-sans">{c.region}</h4>
-                        <ul className="space-y-3.5 text-xs text-stone-605 font-serif italic leading-relaxed">
-                            {c.destinations.map(d => (
-                              <li key={d} className="flex items-start">
-                                <span className="text-terracotta font-sans mr-2 font-bold">—</span>
-                                <span>{d}</span>
-                              </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-          </section>
+      {/* Visual Showcase */}
+      <EditorialVisual 
+        type="akroholidays"
+        aspectRatio="21:9"
+        badge="Voyage Atelier"
+        title="Curated World Expeditions & Slow Living"
+        caption="From pristine Swiss alpine summits to tranquil Konkan coastline sundowners"
+      />
 
-          {/* Interactive Holiday Planner & Itinerary Tool */}
-          <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-12">
-            <div className="text-center space-y-3 max-w-xl mx-auto font-sans">
-              <span className="text-[10px] font-sans uppercase tracking-widest text-[#7D7067] font-bold font-mono">Interactive Tool</span>
-              <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal">Interactive Holiday & Itinerary Planner</h2>
-              <p className="text-stone-600 text-xs leading-relaxed">Select a travel zone, filter exact destinations, adjust durations, and view simulated Day-by-Day sightseeing routes instantly.</p>
-            </div>
+      {/* Trust Stats Bar */}
+      <section className="grid grid-cols-2 md:grid-cols-4 border-y border-[#E5E0D5] divide-x divide-[#E5E0D5] py-8 bg-[#FCFAF7] border-x border-[#E5E0D5]">
+        {[
+          { num: '50+', label: 'Curated Destinations', detail: 'Across India & 25+ countries' },
+          { num: '100%', label: 'Verified Boutique Stays', detail: 'Audited for safety & hygiene' },
+          { num: '24/7', label: 'On-Ground Concierge', detail: 'Dedicated traveler emergency desk' },
+          { num: '10K+', label: 'Explorer Points', detail: 'Earnable on every confirmed tour' }
+        ].map((s, idx) => (
+          <div key={idx} className="px-6 space-y-1 text-center md:text-left">
+            <div className="text-3xl md:text-4xl font-serif italic font-bold text-terracotta tabular-nums">{s.num}</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-warm-charcoal">{s.label}</div>
+            <div className="text-[10px] text-stone-500 font-serif italic">{s.detail}</div>
+          </div>
+        ))}
+      </section>
 
-            <div className="grid lg:grid-cols-12 gap-8 items-start">
-              {/* Controls */}
-              <div className="lg:col-span-6 space-y-6">
-                {/* Region Selector */}
-                <div className="space-y-3 font-sans">
-                  <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">1/ Select Target Travel Zone</label>
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => handleRegionChange('domestic')}
-                      className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 ${
-                        regionType === 'domestic'
-                          ? 'bg-warm-charcoal text-white border-warm-charcoal'
-                          : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
-                      }`}
-                    >
-                      <Map className={`w-4 h-4 ${regionType === 'domestic' ? 'text-white' : 'text-terracotta'}`} />
-                      <span>Domestic India</span>
-                    </button>
-                    <button
-                      onClick={() => handleRegionChange('international')}
-                      className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 ${
-                        regionType === 'international'
-                          ? 'bg-warm-charcoal text-white border-warm-charcoal'
-                          : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
-                      }`}
-                    >
-                      <Globe className={`w-4 h-4 ${regionType === 'international' ? 'text-white' : 'text-terracotta'}`} />
-                      <span>International</span>
-                    </button>
-                  </div>
-                </div>
+      {/* Destination Footprint Breakdown */}
+      <section className="space-y-16">
+        <div className="text-center space-y-2 max-w-2xl mx-auto">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-[#7D7067]">Global Footprint</span>
+          <h2 className="text-3xl md:text-4xl font-serif italic text-warm-charcoal font-normal">Our Curated Travel Circuits</h2>
+          <p className="text-xs text-stone-600 font-serif leading-relaxed">
+            Every itinerary is personally surveyed by our team to guarantee authentic encounters, reliable chauffeurs, and zero commercial tourist traps.
+          </p>
+        </div>
 
-                {/* Specific Spots */}
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">2/ Custom Dedicated Spots</label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {pool.map(dest => (
-                      <button
-                        key={dest.id}
-                        onClick={() => setSelectedDestId(dest.id)}
-                        className={`p-3 rounded-sm border cursor-pointer text-center text-[10px] font-bold uppercase tracking-wider transition ${
-                          selectedDestId === dest.id
-                            ? 'border-terracotta bg-warm-cream/50 text-[#1C1816]'
-                            : 'border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta/50 text-[#7D7067]'
-                        }`}
-                      >
-                        {dest.name.split(' ')[0]}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Duration & Group Size */}
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">3/ Duration Length</label>
-                    <div className="flex gap-2">
-                      {['3', '5', '7'].map(d => (
-                        <button
-                          key={d}
-                          onClick={() => setDuration(d as '3' | '5' | '7')}
-                          className={`flex-1 py-2 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 ${
-                            duration === d
-                              ? 'bg-warm-charcoal text-white border-warm-charcoal font-bold'
-                              : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
-                          }`}
-                        >
-                          {d} Days
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">4/ Group Size Standing</label>
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => setPeople(Math.max(1, people - 1))}
-                        className="w-10 h-10 bg-[#FCFAF7] hover:bg-warm-cream border border-[#E5E0D5] rounded-sm font-bold text-stone-700 cursor-pointer"
-                      >
-                        -
-                      </button>
-                      <span className="font-bold text-warm-charcoal text-[11px] uppercase tracking-wider shrink-0 w-8 text-center">{people} Pax</span>
-                      <button
-                        onClick={() => setPeople(people + 1)}
-                        className="w-10 h-10 bg-[#FCFAF7] hover:bg-warm-cream border border-[#E5E0D5] rounded-sm font-bold text-stone-700 cursor-pointer"
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-                </div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Domestic Circuit */}
+          <div className="p-8 bg-[#FCFAF7] border border-[#E5E0D5] hover:border-terracotta transition-colors rounded-sm space-y-5">
+            <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-3">
+              <div>
+                <span className="text-[10px] font-mono text-terracotta font-bold">CIRCUIT 01</span>
+                <h4 className="text-xl font-bold text-warm-charcoal">Domestic Indian Expeditions</h4>
               </div>
+              <span className="text-xs font-mono text-stone-400">INDIA</span>
+            </div>
+            <p className="text-stone-600 text-xs leading-relaxed font-serif">
+              From the snow-crowned passes of Himachal and Ladakh to the tranquil emerald backwaters of Kerala and golden dunes of Rajasthan.
+            </p>
+            <ul className="space-y-3 text-xs text-stone-700 font-sans">
+              <li className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                <span><strong>Himalayan Odysseys:</strong> Manali cedar forests, Solang paragliding, Spiti trans-Himalayan monasteries, and Leh Ladakh high-altitude safaris.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                <span><strong>Southern Serenity:</strong> Munnar misty tea gardens, private eco-houseboat cruises on Lake Vembanad, and Coorg coffee plantation stays.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                <span><strong>Konkan Coastal Trails:</strong> South Goa tranquil sands, Latin Quarter heritage villas in Fontainhas, and dolphin estuary cruises.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                <span><strong>Royal Heritage:</strong> Udaipur lake palace boat rides, Jodhpur Mehrangarh fort walks, and Jaisalmer desert glamping under starry skies.</span>
+              </li>
+            </ul>
+          </div>
 
-              {/* Day-by-Day View panel */}
-              <div className="lg:col-span-6 bg-[#1C1816] text-warm-cream p-8 border border-[#2D2623] rounded-sm space-y-6">
-                <div className="flex justify-between items-start gap-4 border-b border-stone-850 pb-5">
-                  <div className="space-y-1">
-                    <span className="text-[9px] uppercase font-bold text-terracotta tracking-wider">Estimated Sightseeing Stops</span>
-                    <div className="text-3xl font-serif italic font-extrabold text-white tracking-tight">
-                      {calculateHighlights()}<span className="text-xs text-stone-400 font-sans font-medium"> Points</span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[9px] uppercase font-bold text-[#BFB7A3] tracking-widest block">Loyalty Points</span>
-                    <span className="text-xs font-bold text-[#BFB7A3] flex items-center justify-end gap-1 font-mono mt-1">
-                      <Award className="w-3.5 h-3.5 text-terracotta" /> +{getLoyaltyCredits()} pts
-                    </span>
-                  </div>
-                </div>
+          {/* International Circuit */}
+          <div className="p-8 bg-[#FCFAF7] border border-[#E5E0D5] hover:border-terracotta transition-colors rounded-sm space-y-5">
+            <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-3">
+              <div>
+                <span className="text-[10px] font-mono text-terracotta font-bold">CIRCUIT 02</span>
+                <h4 className="text-xl font-bold text-warm-charcoal">International Curated Gateways</h4>
+              </div>
+              <span className="text-xs font-mono text-stone-400">GLOBAL</span>
+            </div>
+            <p className="text-stone-600 text-xs leading-relaxed font-serif">
+              Bespoke international itineraries connecting you with the finest cultural sanctuaries, alpine railways, and exotic coastal hideaways across the globe.
+            </p>
+            <ul className="space-y-3 text-xs text-stone-700 font-sans">
+              <li className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                <span><strong>Swiss Alpine Splendor:</strong> Glacier Express panoramic trains, Lake Lucerne paddle steamers, and Jungfraujoch Top of Europe summits.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                <span><strong>Tropical Bali Paradiso:</strong> Private Ubud rainforest villas, Tegalalang rice terraces, Nusa Penida T-Rex cliffs, and Kecak fire dances.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                <span><strong>Arabian Luxury & Desert:</strong> VIP Burj Khalifa 148th-floor access, red sand dune bashing, and Abu Dhabi Sheikh Zayed Mosque visits.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                <span><strong>Vietnam & Halong Bay:</strong> Luxury overnight cruises through limestone karst towers and lantern boat rides in ancient Hoi An.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-                {/* Day-by-day sightseeing track */}
-                <div className="space-y-4">
-                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#7D7067] flex items-center gap-2">
-                    <Map className="w-3.5 h-3.5 text-terracotta" /> Planned {duration}-Day Curated Route
-                  </h4>
-                  <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1 scrollbar-thin">
-                    {activeDaysItinerary.map((it, idx) => (
-                      <div key={idx} className="flex gap-3 text-xs bg-stone-900 border border-stone-850 p-3.5 rounded-sm">
-                        <span className="text-terracotta font-sans font-bold shrink-0">{idx + 1}/</span>
-                        <p className="text-stone-300 font-serif italic leading-relaxed">{it}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+      {/* Interactive Holiday Planner & Itinerary Tool */}
+      <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-12">
+        <div className="text-center space-y-3 max-w-xl mx-auto">
+          <span className="text-[10px] font-sans uppercase tracking-widest text-[#7D7067] font-bold font-mono">Interactive Tool</span>
+          <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal">Simulate Your Custom Holiday Itinerary</h2>
+          <p className="text-stone-600 text-xs leading-relaxed">Choose a geographic zone, select your target spot, adjust duration and traveler count to preview your day-by-day sightseeing track and earnable loyalty points.</p>
+        </div>
 
-                <div className="pt-4">
-                  <a
-                    href="/contact"
-                    className="w-full bg-warm-charcoal border border-stone-700 text-white text-center py-3 px-4 rounded-sm flex items-center justify-center gap-2 font-bold text-[10px] tracking-widest uppercase cursor-pointer hover:bg-terracotta hover:border-terracotta transition-all"
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-6 space-y-6">
+            {/* Region Selector */}
+            <div className="space-y-3">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">1/ Travel Zone</label>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => handleRegionChange('domestic')}
+                  className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 ${
+                    regionType === 'domestic'
+                      ? 'bg-warm-charcoal text-white border-warm-charcoal'
+                      : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
+                  }`}
+                >
+                  <Map className={`w-4 h-4 ${regionType === 'domestic' ? 'text-white' : 'text-terracotta'}`} />
+                  <span>Domestic India</span>
+                </button>
+                <button
+                  onClick={() => handleRegionChange('international')}
+                  className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 ${
+                    regionType === 'international'
+                      ? 'bg-warm-charcoal text-white border-warm-charcoal'
+                      : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
+                  }`}
+                >
+                  <Globe className={`w-4 h-4 ${regionType === 'international' ? 'text-white' : 'text-terracotta'}`} />
+                  <span>International</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Destination Selector */}
+            <div className="space-y-3">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">2/ Target Curated Destination</label>
+              <div className="grid grid-cols-3 gap-2">
+                {pool.map(dest => (
+                  <button
+                    key={dest.id}
+                    onClick={() => setSelectedDestId(dest.id)}
+                    className={`p-3 rounded-sm border cursor-pointer text-center text-[10px] font-bold uppercase tracking-wider transition ${
+                      selectedDestId === dest.id
+                        ? 'border-terracotta bg-warm-cream/50 text-[#1C1816]'
+                        : 'border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta/50 text-[#7D7067]'
+                    }`}
                   >
-                    <Compass className="w-3.5 h-3.5 animate-spin-slow" />
-                    <span>Request Custom Quote &rarr;</span>
-                  </a>
+                    {dest.name.split(' ')[0]}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[11px] text-stone-500 font-serif italic pt-1">{activeDest.name} · {activeDest.regionTag}</p>
+            </div>
+
+            {/* Duration & Group Size */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">3/ Tour Duration</label>
+                <div className="flex gap-2">
+                  {['3', '5', '7'].map(d => (
+                    <button
+                      key={d}
+                      onClick={() => setDuration(d as '3' | '5' | '7')}
+                      className={`flex-1 py-2.5 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 ${
+                        duration === d
+                          ? 'bg-warm-charcoal text-white border-warm-charcoal'
+                          : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
+                      }`}
+                    >
+                      {d} Days
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">4/ Travel Party Size</label>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setPeople(Math.max(1, people - 1))}
+                    className="w-10 h-10 bg-[#FCFAF7] hover:bg-warm-cream border border-[#E5E0D5] rounded-sm font-bold text-stone-700 cursor-pointer"
+                  >
+                    -
+                  </button>
+                  <span className="font-bold text-warm-charcoal text-xs uppercase tracking-wider shrink-0 w-12 text-center font-mono">{people} Pax</span>
+                  <button
+                    onClick={() => setPeople(people + 1)}
+                    className="w-10 h-10 bg-[#FCFAF7] hover:bg-warm-cream border border-[#E5E0D5] rounded-sm font-bold text-stone-700 cursor-pointer"
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
 
-          {/* Travel Curation Types */}
-          <section className="space-y-16">
-            <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal text-center font-normal">Travel Curation Types</h2>
-            <div className="grid md:grid-cols-3 gap-6 font-sans">
-                {[
-                    { title: 'Leisure & Family Vacations', desc: 'Slower paced, deeply comfortable, family-focused bookings containing kids interactive zones and private sightseeing guides.' },
-                    { title: 'High Adventure Safaris', desc: 'For dedicated thrill seekers: white-water rafting, mountaineering guides, deep-sea scuba dive schedules, and off-road safaris.' },
-                    { title: 'Cultural & Pilgrimage Circuits', desc: 'Immersive regional heritage pathways, temple exploration loops, local gastronomic pathways, and art workshops.' }
-                ].map(t => (
-                    <div key={t.title} className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta transition-colors duration-300 rounded-sm space-y-3">
-                        <h4 className="font-bold text-sm text-warm-charcoal font-sans">{t.title}</h4>
-                        <p className="text-stone-605 text-xs font-serif italic leading-relaxed">{t.desc}</p>
-                    </div>
-                ))}
-            </div>
-          </section>
-
-          {/* Seasonal deals */}
-          <section className="bg-[#1C1816] text-warm-cream p-8 md:p-12 border border-[#2D2623] rounded-sm space-y-10">
-            <div className="space-y-2 text-center">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-terracotta">Exclusive Tracks</span>
-              <h3 className="text-2xl md:text-3xl font-serif italic text-white font-normal">Seasonal Curation & Travel Rewards</h3>
-            </div>
-            
-            <div className="grid md:grid-cols-4 gap-6 text-center">
-                {[
-                    { title: 'Early Bird Curation', detail: 'Secure curated luxury stays and expert local guides by confirming itineraries 90+ days in advance.' },
-                    { title: 'Group Reductions', detail: 'Aligned multi-suite private villa bookings and bespoke regional menus for groups of 6+.' },
-                    { title: 'Explorer Elevate Perk', detail: 'Enjoy priority lounge transfers and complimentary room level upgrades starting from your second trip.' },
-                    { title: 'Referral Credits', detail: 'Earn 10,000 premium loyalty points for each verified friend you refer to our routes.' }
-                ].map(p => (
-                    <div key={p.title} className="bg-[#241F1D] p-6 border border-stone-800 rounded-sm space-y-3">
-                        <h4 className="font-bold text-xs uppercase tracking-wider text-terracotta">{p.title}</h4>
-                        <p className="text-stone-300 text-[11px] leading-relaxed font-serif italic">{p.detail}</p>
-                    </div>
-                ))}
-            </div>
-          </section>
-          
-          {/* Full Cycle Service */}
-          <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-8 font-sans">
-              <h3 className="text-2xl font-serif italic text-center text-warm-charcoal">Symmetrical Service Integration</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                  {[
-                    { name: 'Pre-Trip Strategy', desc: 'Secure visa coordination assistance, comprehensive baggage checklist audits, and customized sightseeing pre-meetings.' },
-                    { name: 'During-Trip Care', desc: '24/7 active coordinator support, professional regional guides, and local check-in updates.' },
-                    { name: 'Post-Trip Feedback', desc: 'Itinerary evaluation logs, explorer loyalty credit allocations, and custom memory photo compilations.' }
-                  ].map(s => (
-                    <div key={s.name} className="p-6 bg-warm-cream/35 border border-[#E5E0D5] rounded-sm space-y-2">
-                      <h4 className="font-bold text-warm-charcoal text-xs uppercase tracking-wider">{s.name}</h4>
-                      <p className="text-stone-600 text-xs font-serif italic leading-relaxed">{s.desc}</p>
-                    </div>
-                  ))}
+          {/* Day-by-Day View panel */}
+          <div className="lg:col-span-6 bg-[#1C1816] text-warm-cream p-8 border border-[#2D2623] rounded-sm space-y-6">
+            <div className="flex justify-between items-start gap-4 border-b border-stone-800 pb-5">
+              <div className="space-y-1">
+                <span className="text-[9px] uppercase font-bold text-terracotta tracking-wider">Sightseeing Highlights</span>
+                <div className="text-3xl font-serif italic font-extrabold text-white tracking-tight tabular-nums">
+                  {calculateHighlights()}<span className="text-xs text-stone-400 font-sans font-medium"> Stops</span>
+                </div>
               </div>
-          </section>
-  
-          {/* Symmetrical assurance */}
-          <section className="grid md:grid-cols-2 gap-8 font-sans">
-            <div className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] rounded-sm space-y-6">
-                <h3 className="text-lg font-bold text-warm-charcoal">AkroHolidays Guarantee</h3>
-                <ul className="space-y-3.5 text-xs text-stone-600 font-serif italic">
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Access to verified premium properties across 25+ countries and regional routes.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Handpicked veteran local guide guides maintaining outstanding security review ratings.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Dynamic, transparent itinerary options fully custom-tailored to your pacing.</li>
-                </ul>
+              <div className="text-right">
+                <span className="text-[9px] uppercase font-bold text-stone-400 tracking-widest block">Earnable Explorer Points</span>
+                <span className="text-xs font-bold text-terracotta flex items-center justify-end gap-1 font-mono mt-1">
+                  <Award className="w-3.5 h-3.5 text-terracotta" /> +{getLoyaltyCredits()} pts
+                </span>
+              </div>
             </div>
-            <div className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] rounded-sm space-y-6">
-                <h3 className="text-lg font-bold text-warm-charcoal">Target Travelers</h3>
-                <ul className="space-y-3.5 text-xs text-stone-650 font-serif italic">
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Multi-generational families seeking slow and comfort-led regional holidays.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Professional cohorts looking to coordinate active mid-season workation getaways.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Solo travelers aiming for completely self-contained custom schedules.</li>
-                </ul>
-            </div>
-          </section>
 
-          {/* FAQS */}
-          <section className="space-y-12">
-              <h2 className="text-2xl md:text-3xl font-serif italic text-center text-warm-charcoal">Frequently Asked Questions</h2>
-              <FaqAccordion items={faqs} />
-          </section>
-      </motion.div>
+            <div className="space-y-4">
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#7D7067] flex items-center gap-2">
+                <Map className="w-3.5 h-3.5 text-terracotta" /> Simulated {duration}-Day Curated Route
+              </h4>
+              <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1 scrollbar-thin">
+                {activeDaysItinerary.map((it, idx) => (
+                  <div key={idx} className="flex gap-3 text-xs bg-stone-900 border border-stone-800 p-3.5 rounded-sm">
+                    <span className="text-terracotta font-mono font-bold shrink-0">{idx + 1}/</span>
+                    <p className="text-stone-300 font-serif italic leading-relaxed">{it}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <a
+                href="/contact"
+                className="w-full bg-warm-charcoal border border-stone-700 text-white text-center py-3.5 px-4 rounded-sm flex items-center justify-center gap-2 font-bold text-[10px] tracking-widest uppercase cursor-pointer hover:bg-terracotta hover:border-terracotta transition-all"
+              >
+                <Compass className="w-3.5 h-3.5" />
+                <span>Request Custom Quote & Itinerary &rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Symmetrical Assurance & Inclusions */}
+      <section className="grid md:grid-cols-2 gap-8">
+        <div className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] rounded-sm space-y-6">
+          <h3 className="text-lg font-bold text-warm-charcoal">The AkroHolidays Guarantee</h3>
+          <ul className="space-y-3.5 text-xs text-stone-700 font-sans">
+            <li className="flex items-start gap-2">
+              <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+              <span><strong>Zero Commercial Detours:</strong> We never waste your vacation time dragging you to mandatory commercial souvenir stores or overpriced gem factories.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+              <span><strong>Verified Chauffeurs & Luxury Vehicles:</strong> Clean, air-conditioned, licensed tourist transport with courteous veteran mountain and city drivers.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+              <span><strong>Transparent Cost Inclusions:</strong> Tolls, state taxes, parking permits, and driver allowances are always included upfront.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] rounded-sm space-y-6">
+          <h3 className="text-lg font-bold text-warm-charcoal">Tailored Traveler Profiles</h3>
+          <ul className="space-y-3.5 text-xs text-stone-700 font-sans">
+            <li className="flex items-start gap-2">
+              <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+              <span><strong>Multi-Generational Families:</strong> Relaxed pacing with wheelchair-friendly suites, pure vegetarian/Jain cuisine, and spacious private vans.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+              <span><strong>Corporate Retreats & Offsites:</strong> Team adventure safaris, private villa takeovers, AV setups, and curated networking dinners.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+              <span><strong>Couples & Honeymooners:</strong> Private pool villas, candlelit coastal dining, sunset catamaran cruises, and luxury spa sessions.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Comprehensive FAQs for AkroHolidays */}
+      <section className="space-y-8">
+        <FaqAccordion 
+          items={holidayFaqs}
+          title="AkroHolidays Frequently Asked Questions"
+          subtitle="Everything you need to know about our destinations, bookings, visas, and reward points"
+        />
+      </section>
+    </motion.div>
   );
 }

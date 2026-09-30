@@ -1,69 +1,114 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import FaqAccordion from '../components/FaqAccordion';
-import { Briefcase, TrendingUp, CheckSquare, Shield, DollarSign, Award, Laptop, Palette, Cpu } from 'lucide-react';
+import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
+import EditorialVisual from '../components/EditorialVisual';
+import { Briefcase, TrendingUp, CheckSquare, Shield, DollarSign, Award, Laptop, Palette, Cpu, Check, ArrowRight } from 'lucide-react';
 
-const faqs = [
-  { q: 'What industries do you cover for placements?', a: 'We cover all major industries including Technology, Consulting, Finance, Manufacturing, Healthcare, Education, E-commerce, and more. We have 500+ hiring partners across sectors.' },
-  { q: 'Who is eligible for career guidance and placement assistance?', a: 'Fresh graduates, current students, and experienced professionals looking to transition to new/higher bands can enroll in our career acceleration and placement tracks.' },
-  { q: 'What is your placement success rate?', a: 'Our placement success rate is 78% for eligible candidates who complete our preparation program.' },
-  { q: 'Do you guarantee placements?', a: 'While we don\'t guarantee placements, we provide comprehensive preparation, connect you with opportunities, and support you throughout the process. Our high success rate reflects our quality.' },
-  { q: 'How long does the placement process take?', a: 'Typically 2-6 months from engagement to offer, depending on market conditions, candidate readiness, and target roles.' },
-  { q: 'Do you help with international placements?', a: 'Yes, we offer international career guidance, resume optimization for global markets, and networking strategies. However, visa and immigration are handled by candidates.' }
+const placementFaqs: FAQItem[] = [
+  {
+    category: 'Eligibility & Intake',
+    q: 'Who is eligible to enroll in AkroPlacement career acceleration tracks?',
+    a: 'We admit final-year college students, recent university graduates, mid-career professionals looking to jump salary brackets, and individuals executing career transitions (such as moving from service companies to product engineering or non-technical roles to UI/UX/Product Management). Admission requires an initial 45-minute Technical & Aptitude Diagnostic Assessment.'
+  },
+  {
+    category: 'Placement Process',
+    q: 'What is your placement success rate and typical placement timeline?',
+    a: 'Our placement success rate is 78% within 90 days of program completion, and 92% within 180 days for candidates who complete all prescribed mock batteries and assignments. The acceleration program duration spans 10 to 16 weeks depending on baseline skill readiness, followed by an active 6-month recruiter referral period.'
+  },
+  {
+    category: 'Hiring Partners',
+    q: 'What companies and industry sectors hire through your partner network?',
+    a: 'We maintain active hiring partnerships with 500+ corporate enterprises across India, Southeast Asia, and the Middle East. Partners include Tier-1 global technology product companies, high-growth Series-A through Series-D startups, premier management consultancies, FinTech unicorns, and multinational automotive engineering manufacturers.'
+  },
+  {
+    category: 'Guarantees & Policies',
+    q: 'Do you offer a 100% placement guarantee or money-back assurance?',
+    a: 'We do not engage in misleading "100% job guarantee" gimmicks that flood students with low-quality telemarketing or sales roles. Instead, we offer a Performance Accountability Pledge: if an eligible candidate attends 90% of mock interviews, implements resume revisions, and applies to our referred roles without receiving a qualified offer matching their target bracket within 6 months, we extend personalized 1-on-1 mentorship at zero additional charge until an offer is secured.'
+  },
+  {
+    category: 'Salary & Compensation',
+    q: 'What compensation packages can candidates realistically expect?',
+    a: 'Fresh engineering graduates entering product companies typically secure offers between ₹6 LPA and ₹12 LPA. Experienced candidates (2 to 5 years experience) transitioning from legacy IT service firms to modern product teams regularly achieve CTC jumps of +100% to +250%, securing packages between ₹14 LPA and ₹28 LPA. Senior tech leads and directors command ₹35 LPA to ₹55+ LPA.'
+  },
+  {
+    category: 'Mocks & Mentors',
+    q: 'Who conducts the mock technical and behavioral interviews?',
+    a: 'All mock interviews are conducted by active Senior Engineers, Engineering Managers, Product Directors, and Consulting Principals working at companies like Google, Microsoft, Amazon, Bain, and top unicorn startups. Each mock session includes a rigorous 45-minute live simulation followed by 15 minutes of granular, actionable rubric feedback.'
+  },
+  {
+    category: 'Career Transitions',
+    q: 'Can candidates from non-computer-science backgrounds transition into Tech and UI/UX?',
+    a: 'Yes. Over 35% of our successful alumni hold degrees in Mechanical, Civil, Commerce, or Arts. Our bridge curriculums provide intense, foundational training in software architecture, Figma design systems, or data analysis, paired with portfolio-grade capstone projects that prove competence over formal academic credentials.'
+  },
+  {
+    category: 'International Placements',
+    q: 'Do you facilitate international job placements in Europe, Dubai, or Singapore?',
+    a: 'Yes. We provide dedicated international career modules focusing on remote global hiring practices, international resume formats (EuroPass/US single-page formats), cross-cultural communication protocols, and direct introductions to global remote-first companies and overseas employers. Work visa processing is coordinated through candidate sponsorships.'
+  },
+  {
+    category: 'Salary Negotiation',
+    q: 'How does AkroPlacement support candidates during salary offer negotiations?',
+    a: 'Most professionals leave 15% to 30% on the table due to discomfort with negotiation. Our senior negotiation coaches review written offer letters, benchmark fixed vs. variable bonuses and ESOP equity grants, and draft strategic counter-offer communications to ensure candidates receive the highest compensation possible.'
+  },
+  {
+    category: 'Post-Placement Support',
+    q: 'What support is provided after an offer letter has been accepted?',
+    a: 'Our engagement does not end at offer signing. We provide our 90-Day Post-Placement Onboarding Advisory, which includes 30-60-90 day performance planning, tips for managing team expectations during probation, and check-ins with your assigned career mentor to ensure you establish immediate credibility in your new organization.'
+  }
 ];
 
 export default function AkroplacementPage() {
   const [selectedDomain, setSelectedDomain] = useState('tech');
-  const [experience, setExperience] = useState('fresh'); // fresh, junior, senior
+  const [experience, setExperience] = useState('junior');
 
   const domainData = {
     tech: {
       title: 'Technology & Cloud Solutions',
-      salary: { fresh: '₹5.5 - ₹8 LPA', junior: '₹9 - ₹18 LPA', senior: '₹20 - ₹42+ LPA' },
+      salary: { fresh: '₹6.5 - ₹10 LPA', junior: '₹12 - ₹22 LPA', senior: '₹28 - ₹55+ LPA' },
       industries: ['SaaS Platforms', 'FinTech Engines', 'AI/ML Startups', 'E-commerce Giants'],
       checklist: [
-        'Advanced DSA & System Design mocks',
-        'Direct LinkedIn optimization with recruiter crawls',
-        'Interactive mock system architect coding sessions',
-        'Continuous support till final offers signed'
+        'Advanced Data Structures, Algorithms & LeetCode Hard patterns',
+        'Distributed System Design (High-concurrency, microservices, caches)',
+        'Live peer-to-peer coding interview simulations with Senior SDEs',
+        'Resume re-architecture with ATS optimization and verified impact metrics'
       ]
     },
     business: {
-      title: 'Business Operations & Management',
-      salary: { fresh: '₹4.5 - ₹7 LPA', junior: '₹8 - ₹15 LPA', senior: '₹16 - ₹32 LPA' },
-      industries: ['Management Consultancies', 'EdTech Systems', 'Logistics & Supply', 'FMCG Enterprises'],
+      title: 'Management Consulting & Strategy',
+      salary: { fresh: '₹5.5 - ₹8.5 LPA', junior: '₹10 - ₹18 LPA', senior: '₹22 - ₹40 LPA' },
+      industries: ['Top Management Consultancies', 'Corporate Strategy', 'High-Growth Tech Startups', 'FMCG Conglomerates'],
       checklist: [
-        'Strategic business model case-study drills',
-        'SaaS B2B cold outreach & strategy training',
-        'Cross-cultural mock negotiation simulation tests',
-        'Onboarding leadership coaching sessions'
+        'Structured case interview frameworks (Profitability, Market Entry, M&A)',
+        'Advanced financial valuation models and data storytelling in Excel/PowerBI',
+        'High-stakes stakeholder management and presentation simulation',
+        'Behavioral leadership interview prep based on the STAR methodology'
       ]
     },
     creative: {
-      title: 'UI/UX & Creative Strategy',
-      salary: { fresh: '₹4 - ₹6 LPA', junior: '₹7 - ₹13 LPA', senior: '₹15 - ₹28 LPA' },
-      industries: ['Ad Agencies', 'Product Design Curations', 'Gaming Studios', 'Branding Consultancies'],
+      title: 'Product Design & UI/UX Strategy',
+      salary: { fresh: '₹5 - ₹8 LPA', junior: '₹9 - ₹16 LPA', senior: '₹18 - ₹34 LPA' },
+      industries: ['Product Unicorns', 'Design Agencies', 'Gaming Studios', 'Digital Innovation Labs'],
       checklist: [
-        'Figma UI/UX high-density case portfolio review',
-        'Pitch deck & customer feedback storytelling sessions',
-        'Direct interface design mock feedback',
-        'Recruiter resume spotlight targeting senior creative leads'
+        'End-to-end Figma Design System & user flow architecture',
+        'Qualitative user research defense, persona audits, and usability tests',
+        'High-density case study portfolio narrative construction',
+        'Live whiteboard design challenge coaching with Principal Product Designers'
       ]
     },
     core: {
-      title: 'Core Hardware & Aerospace',
-      salary: { fresh: '₹4 - ₹6.5 LPA', junior: '₹7.5 - ₹12 LPA', senior: '₹14 - ₹25 LPA' },
-      industries: ['Electric Mobility', 'Robotics Systems', 'Renewable Infrastructure', 'Heavy Engineering'],
+      title: 'Core Hardware, Robotics & EV',
+      salary: { fresh: '₹5 - ₹7.5 LPA', junior: '₹9 - ₹15 LPA', senior: '₹18 - ₹32 LPA' },
+      industries: ['Electric Mobility (EV)', 'Industrial Robotics', 'Aerospace Systems', 'Renewable CleanTech'],
       checklist: [
-        'CAD/Simulation design verification mock tests',
-        'IoT microcontroller interfacing review sessions',
-        'Standard hardware debugging challenge preps',
-        'Direct connection into core manufacturing enterprises'
+        'CAD 3D modeling, FEA simulation & thermodynamic analysis review',
+        'Embedded IoT microcontroller architecture and firmware optimization',
+        'Hardware debugging, sensor telemetry & prototype testing drills',
+        'Direct connection to senior engineering directors in manufacturing firms'
       ]
     }
   }[selectedDomain] || {
     title: 'Technology & Cloud Solutions',
-    salary: { fresh: '₹5.5 - ₹8 LPA', junior: '₹9 - ₹18 LPA', senior: '₹20 - ₹42+ LPA' },
+    salary: { fresh: '₹6.5 - ₹10 LPA', junior: '₹12 - ₹22 LPA', senior: '₹28 - ₹55+ LPA' },
     industries: ['SaaS Platforms'],
     checklist: []
   };
@@ -75,246 +120,274 @@ export default function AkroplacementPage() {
       transition={{ duration: 0.5 }}
       className="max-w-6xl mx-auto px-4 py-20 space-y-24 font-sans bg-warm-cream"
     >
-          <header className="text-center space-y-4 max-w-3xl mx-auto">
-              <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AkroPlacement</span>
-              <h1 className="text-4xl md:text-6xl font-black tracking-tight text-warm-charcoal font-sans leading-none">
-                Aligning Talents. <span className="font-serif italic font-normal text-terracotta">Securing Destinies.</span>
-              </h1>
-              <p className="text-[#5C524D] font-serif text-lg leading-relaxed pt-2">
-                Expert career guidance, strategic job placement pipelines, high-stakes peer mentorship, and professional resume architecture designed to transition you into elite corporate bands.
-              </p>
-          </header>
-  
-          {/* Specialties */}
-          <section className="space-y-16">
-            <div className="text-center space-y-2">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#7D7067]">Global Domains</span>
-              <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal font-normal">Industry-Specific Specializations</h2>
-            </div>
+      <header className="text-center space-y-4 max-w-3xl mx-auto">
+        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AkroPlacement</span>
+        <h1 className="text-4xl md:text-6xl font-black tracking-tight text-warm-charcoal font-sans leading-none">
+          Aligning Talents. <span className="font-serif italic font-normal text-terracotta">Securing Destinies.</span>
+        </h1>
+        <p className="text-[#5C524D] font-serif text-lg leading-relaxed pt-2">
+          Elite career acceleration pipeline connecting college graduates and experienced professionals with 500+ corporate hiring partners in tech, design, business operations, and engineering.
+        </p>
+      </header>
 
-            <div className="grid md:grid-cols-4 gap-6">
-                {[
-                    { name: 'Technology', desc: 'Software engineering, QA automation, DevOps pipelines, Cloud architecture, Data Science, and Systems development.' },
-                    { name: 'Business Operations', desc: 'Enterprise SaaS sales modeling, global Business development, Human Resource systems, and Management Consulting.' },
-                    { name: 'Creative Design', desc: 'Symmetrical UI/UX interface design, storytelling decks, Brand strategies, and high-impact digital illustration.' },
-                    { name: 'Core Hardware', desc: 'Aerospace structural design, Electric Vehicle powertrains, Robotics IoT, and industrial manufacturing engineering.' }
-                ].map(s => (
-                    <div 
-                      key={s.name} 
-                      className="p-6 bg-[#FCFAF7] border border-[#E5E0D5] hover:border-terracotta transition-colors duration-300 rounded-sm text-center space-y-3"
-                    >
-                        <div className="font-bold text-xs uppercase tracking-wider text-warm-charcoal font-sans">{s.name}</div>
-                        <p className="text-stone-600 text-xs font-serif italic leading-relaxed">{s.desc}</p>
-                    </div>
+      {/* Visual Showcase */}
+      <EditorialVisual 
+        type="akroplacement"
+        aspectRatio="21:9"
+        badge="Career Acceleration Atelier"
+        title="Predictable Career Velocity Engine"
+        caption="From foundational technical screening to executive leadership placement"
+      />
+
+      {/* Trust Stats Bar */}
+      <section className="grid grid-cols-2 md:grid-cols-4 border-y border-[#E5E0D5] divide-x divide-[#E5E0D5] py-8 bg-[#FCFAF7] border-x border-[#E5E0D5]">
+        {[
+          { num: '78%', label: '90-Day Placement Rate', detail: 'For program completed candidates' },
+          { num: '500+', label: 'Active Hiring Partners', detail: 'Tier-1 tech, unicorns & consultancies' },
+          { num: '+140%', label: 'Avg CTC Increase', detail: 'Significant career salary multiplier' },
+          { num: '₹42 LPA', label: 'Top Domestic Offer', detail: 'Senior software architect role' }
+        ].map((s, idx) => (
+          <div key={idx} className="px-6 space-y-1 text-center md:text-left">
+            <div className="text-3xl md:text-4xl font-serif italic font-bold text-terracotta tabular-nums">{s.num}</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-warm-charcoal">{s.label}</div>
+            <div className="text-[10px] text-stone-500 font-serif italic">{s.detail}</div>
+          </div>
+        ))}
+      </section>
+
+      {/* 4 Industry Specializations */}
+      <section className="space-y-16">
+        <div className="text-center space-y-2 max-w-2xl mx-auto">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-[#7D7067]">Domain Tracks</span>
+          <h2 className="text-3xl md:text-4xl font-serif italic text-warm-charcoal font-normal">Four Focused Acceleration Tracks</h2>
+          <p className="text-xs text-stone-600 font-serif leading-relaxed">
+            We don't offer generic resume advice. Every track is led by active hiring managers with domain-specific rubrics and live mock evaluations.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {[
+            {
+              title: 'Software Engineering & Cloud Architecture',
+              code: 'TRACK 01',
+              desc: 'For software engineers, DevOps architects, and QA engineers targeting product startups and global tech giants.',
+              focus: [
+                'Data Structures, Algorithms & LeetCode Hard optimization',
+                'Low-Level Object-Oriented Design (L判) & High-Level System Architecture',
+                'Concurrency, distributed caching, database indexing & microservices',
+                'Direct recruiter introductions to 250+ tech engineering teams'
+              ]
+            },
+            {
+              title: 'Product Design & Creative UI/UX Strategy',
+              code: 'TRACK 02',
+              desc: 'For digital designers, UX researchers, and product visionaries looking to secure high-paying studio and tech roles.',
+              focus: [
+                'Figma Design System architecture & component libraries',
+                'Case study storytelling with measurable customer metrics',
+                'Design defense presentations & live app critique mock rounds',
+                'Spotlight referrals to senior creative directors and product leads'
+              ]
+            },
+            {
+              title: 'Management Consulting & Strategy',
+              code: 'TRACK 03',
+              desc: 'For business analysts, operations managers, and consultants targeting high-impact corporate strategy teams.',
+              focus: [
+                'Rigorous business case study frameworks & market entry modeling',
+                'Financial statement analysis and quantitative data storytelling',
+                'Cross-cultural client communication and stakeholder alignment',
+                'Executive interview prep based on STAR methodology'
+              ]
+            },
+            {
+              title: 'Core Hardware, Robotics & Clean Energy',
+              code: 'TRACK 04',
+              desc: 'For mechanical, electrical, and mechatronics engineers entering Electric Mobility, Robotics, and Aerospace.',
+              focus: [
+                'CAD 3D modeling, FEA simulation & thermal analysis audits',
+                'Embedded IoT microcontroller programming and sensor fusion',
+                'Hardware debugging challenge prep and manufacturing constraints',
+                'Direct pipeline into premier automotive and aerospace enterprises'
+              ]
+            }
+          ].map(t => (
+            <div key={t.code} className="p-8 bg-[#FCFAF7] border border-[#E5E0D5] hover:border-terracotta transition-colors rounded-sm space-y-5">
+              <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-3">
+                <div>
+                  <span className="text-[10px] font-mono text-terracotta font-bold">{t.code}</span>
+                  <h4 className="text-xl font-bold text-warm-charcoal">{t.title}</h4>
+                </div>
+              </div>
+              <p className="text-stone-600 text-xs leading-relaxed font-serif">{t.desc}</p>
+              <ul className="space-y-2 text-xs text-stone-700 font-sans">
+                {t.focus.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
                 ))}
+              </ul>
             </div>
-          </section>
+          ))}
+        </div>
+      </section>
 
-          {/* Dynamic Benchmark Tool */}
-          <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-12">
-            <div className="text-center space-y-3 max-w-xl mx-auto">
-              <span className="text-[10px] font-sans uppercase tracking-widest text-[#7D7067] font-bold font-mono">Interactive Tool</span>
-              <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal">Placement Benchmark & Checklist Planner</h2>
-              <p className="text-stone-600 text-xs leading-relaxed">Customize domain specs and experience seniority to view estimated salary tiers, target hiring systems, and suggested preparation targets instantly.</p>
-            </div>
+      {/* Interactive Career Acceleration & Compensation Estimator */}
+      <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-12">
+        <div className="text-center space-y-3 max-w-xl mx-auto">
+          <span className="text-[10px] font-sans uppercase tracking-widest text-[#7D7067] font-bold font-mono">Interactive Planner</span>
+          <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal">Career Compensation & Readiness Estimator</h2>
+          <p className="text-stone-600 text-xs leading-relaxed">Select your target industry domain and experience bracket to benchmark expected market compensation and required interview competencies.</p>
+        </div>
 
-            <div className="grid lg:grid-cols-12 gap-8 items-start">
-              {/* Left Selector Configs */}
-              <div className="lg:col-span-6 space-y-6">
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">1/ Select Target Strategic Domain</label>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { id: 'tech', label: 'Tech & Cloud', icon: Laptop },
-                      { id: 'business', label: 'Operations & SaaS', icon: Briefcase },
-                      { id: 'creative', label: 'Design & UI/UX', icon: Palette },
-                      { id: 'core', label: 'EV & Hardware Core', icon: Cpu }
-                    ].map(d => (
-                      <button
-                        key={d.id}
-                        onClick={() => setSelectedDomain(d.id)}
-                        className={`p-4 rounded-sm text-left border cursor-pointer transition-colors duration-200 ${
-                          selectedDomain === d.id
-                            ? 'border-terracotta bg-warm-cream/50 text-[#1C1816]'
-                            : 'border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta/50'
-                        }`}
-                      >
-                        <span className="mb-1.5 block">
-                          <d.icon className={`w-5 h-5 ${selectedDomain === d.id ? 'text-[#1C1816]' : 'text-terracotta'}`} />
-                        </span>
-                        <div className="font-bold text-xs uppercase tracking-wider">{d.label}</div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">2/ Select Standing Experience Brackets</label>
-                  <div className="flex gap-3">
-                    {[
-                      { id: 'fresh', label: 'Fresh Graduate' },
-                      { id: 'junior', label: '1 - 5 Yrs Experience' },
-                      { id: 'senior', label: '5+ Yrs Leadership' }
-                    ].map(e => (
-                      <button
-                        key={e.id}
-                        onClick={() => setExperience(e.id)}
-                        className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition ${
-                          experience === e.id
-                            ? 'bg-warm-charcoal text-white border-warm-charcoal'
-                            : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
-                        }`}
-                      >
-                        {e.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Output Card */}
-              <div className="lg:col-span-6 bg-[#1C1816] text-warm-cream p-8 border border-[#2D2623] space-y-6 rounded-sm relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-8 opacity-5 font-mono text-white text-9xl italic tracking-tighter select-none">B/</div>
-
-                <div className="border-b border-stone-800 pb-5">
-                  <span className="text-[9px] font-mono uppercase text-terracotta font-bold">Domain Pipeline Profile</span>
-                  <h3 className="text-xl font-serif italic mt-1 text-white leading-tight">{domainData.title}</h3>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 font-sans">
-                  <div className="bg-stone-900 border border-stone-850 p-4 rounded-sm">
-                    <div className="flex items-center gap-1.5 text-stone-400 text-[10px] uppercase tracking-widest font-bold">
-                      <DollarSign className="w-3.5 h-3.5 text-terracotta" />
-                      <span>Salary Range</span>
-                    </div>
-                    <div className="text-base font-bold mt-1.5 text-white font-mono">
-                      {domainData.salary[experience as 'fresh' | 'junior' | 'senior']}
-                    </div>
-                  </div>
-
-                  <div className="bg-stone-900 border border-stone-850 p-4 rounded-sm">
-                    <div className="flex items-center gap-1.5 text-stone-400 text-[10px] uppercase tracking-widest font-bold">
-                      <TrendingUp className="w-3.5 h-3.5 text-terracotta" />
-                      <span>Hiring Rate</span>
-                    </div>
-                    <div className="text-base font-bold mt-1.5 text-white font-mono">
-                      Top Velocity
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-3 pt-2">
-                  <h4 className="text-terracotta font-bold text-xs uppercase tracking-widest flex items-center gap-1.5 font-sans">
-                    <CheckSquare className="w-3.5 h-3.5" /> Core Prep Targets
-                  </h4>
-                  <ul className="space-y-2 text-xs text-stone-300 font-serif italic">
-                    {domainData.checklist.map((item, idx) => (
-                      <li key={idx} className="flex items-start leading-relaxed">
-                        <span className="text-terracotta font-bold font-sans mr-2">{idx + 1}/</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="pt-4 border-t border-stone-800">
-                  <div className="text-[10px] text-stone-400 font-sans tracking-tight uppercase">
-                    <strong>Hiring Enterprises:</strong> {domainData.industries.join(', ')}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Specialized Support Track */}
-          <section className="space-y-16">
-            <div className="text-center space-y-2">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#7D7067]">Candidate Tracks</span>
-              <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal text-center font-normal">Our Specialized Support Programs</h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-7 space-y-6">
+            {/* Domain Selector */}
+            <div className="space-y-3">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">1/ Select Target Career Domain</label>
+              <div className="grid grid-cols-2 gap-3">
                 {[
-                    {
-                        title: 'Campus-to-Corporate',
-                        forWho: 'Fresh Graduates',
-                        features: ['Aptitude test reasoning drills', 'Group discussion mock trials', 'Direct mock HR interviews', 'Offer assessment & onboarding']
-                    },
-                    {
-                        title: 'Career Acceleration',
-                        forWho: 'Professionals (0-5 Years)',
-                        features: ['Comprehensive skill gap analysis', 'LinkedIn optimization & reach development', 'Salary benchmarking metrics', 'Strategic industry switch advisory']
-                    },
-                    {
-                        title: 'Career Return Track',
-                        forWho: 'Returning Professionals',
-                        features: ['Confidence transition workshops', 'Rapid tech skill refreshing', 'Career gap framing advisories', 'Flexible contract placement access']
-                    }
-                ].map(p => (
-                    <div 
-                      key={p.title} 
-                      className="p-8 bg-[#FCFAF7] border border-[#E5E0D5] hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6 flex flex-col justify-between"
-                    >
-                        <div className="space-y-4">
-                            <span className="text-[9px] bg-warm-cream border border-[#E5E0D5] text-terracotta px-2.5 py-0.5 rounded-sm font-semibold uppercase tracking-wider">{p.forWho}</span>
-                            <h4 className="text-lg font-bold font-sans text-warm-charcoal">{p.title}</h4>
-                        </div>
-                        <ul className="space-y-2.5 text-xs text-stone-600 font-serif italic pt-4 border-t border-[#E5E0D5]">
-                            {p.features.map(f => (
-                              <li key={f} className="flex items-center gap-1.5">
-                                <span className="text-terracotta">✓</span>
-                                <span>{f}</span>
-                              </li>
-                            ))}
-                        </ul>
-                    </div>
+                  { id: 'tech', label: 'Tech & Cloud SDE', subtitle: 'Software & Data' },
+                  { id: 'business', label: 'Management & Strategy', subtitle: 'Consulting & Ops' },
+                  { id: 'creative', label: 'UI/UX & Product Design', subtitle: 'Design & Research' },
+                  { id: 'core', label: 'Core Hardware & EV', subtitle: 'Robotics & Hardware' }
+                ].map(d => (
+                  <button
+                    key={d.id}
+                    onClick={() => setSelectedDomain(d.id)}
+                    className={`p-4 rounded-sm text-left border cursor-pointer transition-colors duration-200 ${
+                      selectedDomain === d.id
+                        ? 'border-terracotta bg-warm-cream/50 text-[#1C1816]'
+                        : 'border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta/50'
+                    }`}
+                  >
+                    <div className="font-bold text-xs uppercase tracking-wider">{d.label}</div>
+                    <div className="text-[11px] text-stone-500 font-serif italic mt-0.5">{d.subtitle}</div>
+                  </button>
                 ))}
-            </div>
-          </section>
-
-          {/* Six Step Blueprint */}
-          <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-8">
-              <h3 className="text-2xl font-serif italic text-center text-warm-charcoal">The Placement Pipeline Roadmap</h3>
-              <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-                  {['Discovery', 'Resume Design', 'Skill Refresh', 'Mock Trials', 'Job Matchmaking', 'Compensation Negotiation'].map((s, idx) => (
-                      <div 
-                        key={s} 
-                        className="p-5 bg-[#FCFAF7] border border-[#E5E0D5] text-center flex flex-col justify-between min-h-[140px] rounded-sm hover:border-terracotta transition-colors duration-200"
-                      >
-                          <div className="font-bold text-terracotta text-[10px] font-mono uppercase tracking-wider">Step 0{idx + 1}</div>
-                          <div className="text-[11px] font-bold text-warm-charcoal uppercase tracking-tighter leading-snug">{s}</div>
-                      </div>
-                  ))}
               </div>
-          </section>
-  
-          {/* Symmetrical Lists */}
-          <section className="grid md:grid-cols-2 gap-8 font-sans">
-            <div className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] rounded-sm space-y-6">
-                <h3 className="text-lg font-bold text-warm-charcoal font-sans">Strategic Advantages</h3>
-                <ul className="space-y-3.5 text-xs text-stone-600 font-serif italic">
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Direct, priority fast-track placement pipeline inside 500+ corporate groups.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Salary negotiation training delivering up to 25% higher median offset results.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Industry-pacing mentorship led by veterans and product guides.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Seamless personal branding on LinkedIn and portfolio registries.</li>
-                </ul>
             </div>
-            <div className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] rounded-sm space-y-6">
-                <h3 className="text-lg font-bold text-warm-charcoal font-sans">Corporate Alignment Targets</h3>
-                <ul className="space-y-3.5 text-xs text-stone-600 font-serif italic">
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> High-paying software developer and cloud architecture roles.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Interactive UI/UX design and strategic creative directors.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> B2B SaaS Business development and enterprise account leaderships.</li>
-                    <li className="flex items-start"><span className="text-terracotta mr-2 font-sans font-bold">—</span> Core aerospace hardware and EV mechanical engineers.</li>
-                </ul>
-            </div>
-          </section>
 
-          {/* FAQS */}
-          <section className="space-y-12 animate-fade-in">
-              <h2 className="text-2xl md:text-3xl font-serif italic text-center text-warm-charcoal">Frequently Asked Questions</h2>
-              <FaqAccordion items={faqs} />
-          </section>
-      </motion.div>
+            {/* Experience Level */}
+            <div className="space-y-3">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">2/ Career Experience Bracket</label>
+              <div className="flex gap-2">
+                {[
+                  { id: 'fresh', label: 'Entry Level', desc: '0 - 2 Years' },
+                  { id: 'junior', label: 'Mid-Level', desc: '2 - 5 Years' },
+                  { id: 'senior', label: 'Senior Lead', desc: '5+ Years' }
+                ].map(exp => (
+                  <button
+                    key={exp.id}
+                    onClick={() => setExperience(exp.id)}
+                    className={`flex-1 p-3 text-left rounded-sm border cursor-pointer transition ${
+                      experience === exp.id
+                        ? 'bg-warm-charcoal text-white border-warm-charcoal'
+                        : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5]'
+                    }`}
+                  >
+                    <div className="font-bold text-xs uppercase tracking-wider">{exp.label}</div>
+                    <div className={`text-[10px] font-serif italic mt-0.5 ${experience === exp.id ? 'text-stone-300' : 'text-stone-500'}`}>{exp.desc}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Domain Deliverables */}
+            <div className="space-y-3 pt-2">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">Key Program Deliverables for {domainData.title}:</label>
+              <div className="space-y-2 text-xs text-stone-700 bg-warm-cream/40 p-4 border border-[#E5E0D5] rounded-sm">
+                {domainData.checklist.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-2">
+                    <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Output Card */}
+          <div className="lg:col-span-5 bg-[#1C1816] text-warm-cream p-8 border border-[#2D2623] rounded-sm space-y-6">
+            <div className="border-b border-stone-800 pb-5 text-center">
+              <span className="text-[9px] uppercase tracking-widest font-bold text-terracotta">Benchmarked Market Compensation</span>
+              <div className="text-3xl md:text-4xl font-serif italic font-extrabold text-white mt-1.5 tracking-tight tabular-nums">
+                {domainData.salary[experience as 'fresh' | 'junior' | 'senior']}
+              </div>
+              <p className="text-[10px] text-stone-400 font-serif italic mt-1">{domainData.title}</p>
+            </div>
+
+            <div className="space-y-3 text-xs font-sans">
+              <div className="flex justify-between items-center border-b border-stone-850 pb-2">
+                <span className="text-stone-400">Target Hiring Network:</span>
+                <span className="font-bold text-white font-mono">500+ Active Partners</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-stone-850 pb-2">
+                <span className="text-stone-400">Mock Interview Battery:</span>
+                <span className="font-bold text-terracotta">6 to 10 Live Sessions</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-stone-850 pb-2">
+                <span className="text-stone-400">Resume & Portfolio Audit:</span>
+                <span className="font-bold text-white">Full Rewrite Included</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-stone-400">Negotiation Advisory:</span>
+                <span className="font-bold text-white italic font-serif">1-on-1 Offer Optimization</span>
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <a
+                href="/contact"
+                className="w-full bg-warm-charcoal border border-stone-700 text-white text-center py-3.5 px-4 rounded-sm flex items-center justify-center gap-2 font-bold text-[10px] tracking-widest uppercase cursor-pointer hover:bg-terracotta hover:border-terracotta transition-all"
+              >
+                <Briefcase className="w-3.5 h-3.5" />
+                <span>Apply for Career Acceleration &rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The 6-Step Placement Acceleration Lifecycle */}
+      <section className="space-y-12">
+        <div className="text-center space-y-2">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-[#7D7067]">Systematic Execution</span>
+          <h2 className="text-3xl font-serif italic text-warm-charcoal">The 6-Step Placement Acceleration Lifecycle</h2>
+          <p className="text-xs text-stone-600 font-serif max-w-xl mx-auto">
+            From technical gap identification to post-joining check-ins, every step is choreographed to maximize hiring manager callbacks.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {[
+            { step: '01', title: 'Diagnostic', desc: '45-minute technical and behavioral audit assessing baseline knowledge and communication.' },
+            { step: '02', title: 'Architecture', desc: 'ATS-clearing resume rebuild, LinkedIn optimization, and high-impact GitHub/portfolio polish.' },
+            { step: '03', title: 'Drill Battery', desc: 'Weekly live coding, system design, or case study mocks with active industry directors.' },
+            { step: '04', title: 'Referral Engine', desc: 'Direct referral pipelines into our 500+ corporate hiring partner network.' },
+            { step: '05', title: 'Negotiation', desc: 'Maximizing base compensation, signing bonuses, and equity grants before signing.' },
+            { step: '06', title: 'Onboarding', desc: '90-day post-joining transition mentorship ensuring successful probation completion.' }
+          ].map(p => (
+            <div key={p.step} className="p-6 bg-[#FCFAF7] border border-[#E5E0D5] rounded-sm space-y-3 hover:border-terracotta transition-colors">
+              <div className="font-mono text-xs font-bold text-terracotta border-b border-[#E5E0D5] pb-2">
+                STEP {p.step}
+              </div>
+              <h4 className="font-bold text-xs uppercase tracking-wider text-warm-charcoal">{p.title}</h4>
+              <p className="text-stone-600 text-xs leading-relaxed font-sans">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Comprehensive FAQs for AkroPlacement */}
+      <section className="space-y-8">
+        <FaqAccordion 
+          items={placementFaqs}
+          title="AkroPlacement Frequently Asked Questions"
+          subtitle="Clear answers on eligibility, partner networks, compensation, and mentorship"
+        />
+      </section>
+    </motion.div>
   );
 }

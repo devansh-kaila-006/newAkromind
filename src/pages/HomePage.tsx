@@ -1,15 +1,60 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Check, Compass, BookOpen, Briefcase, Heart, ArrowRight } from 'lucide-react';
+import EditorialVisual from '../components/EditorialVisual';
+import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
+
+const homeFaqs: FAQItem[] = [
+  {
+    category: 'Ecosystem',
+    q: 'What is New Akromind, and how do its four verticals work together?',
+    a: 'New Akromind is an integrated multi-vertical growth ecosystem based in Ludhiana, Punjab, operating across India and globally. Rather than treating academic tutoring, career placement, mental health counseling, and restorative travel as isolated services, we integrate them into a unified flywheel. A student receives academic mastery through AkroTution while maintaining emotional resilience via AkroMind counseling; upon graduating, AkroPlacement connects them to 500+ corporate hiring partners; and families celebrate milestones with curated journeys through AkroHolidays, earning transferable loyalty credits across all verticals.'
+  },
+  {
+    category: 'Ecosystem',
+    q: 'Can I enroll in just one vertical, or do I have to use the entire ecosystem?',
+    a: 'You are completely free to enroll in any single vertical that meets your current objective. Many of our clients begin with a specific need—such as Class 10 board prep under AkroTution, or an executive career switch under AkroPlacement. However, ecosystem members unlock exclusive cross-vertical benefits, including preferential counselor access, bundled diagnostic evaluations, and explorer reward points.'
+  },
+  {
+    category: 'Admissions & Enrollment',
+    q: 'What is the intake process, and how quickly can we begin?',
+    a: 'Our onboarding begins with a structured 30-minute Discovery Consultation where we assess baseline strengths, academic or career targets, and personal timelines. Following this, our academic directors or domain leads construct a bespoke milestone roadmap within 48 hours. Classes, coaching sessions, or placement tracks can commence within 3 to 5 business days.'
+  },
+  {
+    category: 'Quality & Faculty',
+    q: 'What qualifications do your tutors, counselors, and career coaches possess?',
+    a: 'Every vertical is led by vetted specialists. AkroTution faculty members include IIT, NIT, and premier university alumni with at least 6 years of subject teaching experience. AkroMind counselors hold accredited postgraduate degrees in psychology, behavioral science, or executive coaching. AkroPlacement advisors are active industry directors, former talent leads, and engineering managers from Tier-1 tech and consulting firms.'
+  },
+  {
+    category: 'Ecosystem',
+    q: 'How does the AkroHolidays Explorer Points Engine connect to other services?',
+    a: 'Every engagement across New Akromind earns Explorer Loyalty Credits. Enrolling in semester tuition tracks, completing career accelerator bootcamps, or booking counseling retainers credits your central account. These points can be redeemed directly against domestic and international travel packages, villa upgrades, or private sightseeing tours through AkroHolidays.'
+  },
+  {
+    category: 'Admissions & Enrollment',
+    q: 'Are programs conducted online, in-person, or in hybrid formats?',
+    a: 'We offer flexible delivery modes tailored to the client. Our digital atelier provides interactive live video classrooms, digital whiteboards, and real-time doubt clearing for students and professionals across India and abroad. For regional clients in Punjab and North India, in-person consultations, weekend workshops, and one-on-one sessions are conducted at our Ludhiana headquarters.'
+  },
+  {
+    category: 'Corporate & Institutions',
+    q: 'Do you partner with schools, universities, and corporate enterprises?',
+    a: 'Yes. We run institutional partnerships with high schools for integrated competitive exam coaching (JEE/NEET/CLAT), partner with colleges for campus placement training drives, and collaborate with corporate enterprises to provide employee wellness workshops and executive retreat coordination.'
+  },
+  {
+    category: 'Admissions & Enrollment',
+    q: 'What is your fee structure and refund or rescheduling policy?',
+    a: 'We maintain total transparency with no hidden administrative costs. All quotes clearly state tuition hours, study materials, mock interview counts, or travel inclusions upfront. We offer free initial consultations and trial sessions for academic programs. Should your circumstances change, rescheduling is available with zero penalty when requested in advance.'
+  }
+];
 
 export default function HomePage() {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
   };
 
   const itemVariants = {
-    hidden: { y: 25, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
   };
 
   return (
@@ -23,7 +68,7 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 text-center space-y-8">
         <motion.div variants={itemVariants} className="inline-flex items-center gap-2">
           <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">
-            One Intelligent Ecosystem
+            One Intelligent Growth Ecosystem
           </span>
         </motion.div>
         
@@ -36,41 +81,52 @@ export default function HomePage() {
 
         <motion.p 
           variants={itemVariants} 
-          className="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed font-serif"
+          className="text-lg md:text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed font-serif"
         >
-          New Akromind delivers multi-vertical excellence in academic training, career placement pipelines, authentic travel, and empathetic mindset counseling.
+          New Akromind unifies academic excellence, elite corporate career transitions, restorative global travel, and empathetic mindset counseling into a single, cohesive human growth blueprint.
         </motion.p>
 
-        <motion.div variants={itemVariants} className="flex justify-center gap-4 pt-4">
+        <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4 pt-4">
           <a
             href="/contact"
             className="bg-warm-charcoal text-white hover:bg-terracotta text-[10px] uppercase tracking-widest font-bold px-8 py-4 transition-colors duration-300 rounded-sm inline-flex items-center gap-2 border border-warm-charcoal hover:border-terracotta"
           >
-            Get Started <ArrowUpRight className="w-3.5 h-3.5" />
+            Schedule Discovery Consultation <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
           <a
             href="/about"
             className="border border-[#E5E0D5] text-warm-charcoal hover:bg-warm-beige/40 text-[10px] uppercase tracking-widest font-bold px-8 py-4 transition-colors duration-300 rounded-sm"
           >
-            Learn More
+            Read Our Ecosystem Manifesto
           </a>
+        </motion.div>
+
+        {/* Hero Architectural Visual Artwork */}
+        <motion.div variants={itemVariants} className="pt-8">
+          <EditorialVisual 
+            type="hero" 
+            aspectRatio="16:9"
+            badge="Institutional Atelier · Ludhiana"
+            title="The Multi-Vertical Synthesis"
+            caption="Synthesizing academic discipline, professional placement, mental clarity, and restorative discovery"
+          />
         </motion.div>
       </section>
 
-      {/* Trust Indicators - Beautiful Swiss Hairline Grid */}
+      {/* Trust Indicators - Swiss Hairline Grid */}
       <section className="max-w-6xl mx-auto px-4">
         <motion.div 
           variants={itemVariants} 
           className="grid grid-cols-2 md:grid-cols-4 border-y border-[#E5E0D5] divide-x divide-[#E5E0D5] py-10 bg-[#FCFAF7] border-x border-[#E5E0D5]"
         >
           {[ 
-            { num: '10K+', label: 'Students trained', phrase: 'with global curriculum' }, 
-            { num: '500+', label: 'Placements pipeline', phrase: 'inside leading industries' }, 
-            { num: '50+', label: 'Travel destinations', phrase: 'with customized reward credits' }, 
-            { num: '100+', label: 'Active counselors', phrase: 'empowering minds daily' }
+            { num: '10,000+', label: 'Students Mentored', phrase: 'across CBSE, ICSE, JEE & NEET boards' }, 
+            { num: '500+', label: 'Hiring Partners', phrase: 'tier-1 tech, consulting & manufacturing' }, 
+            { num: '50+', label: 'Curated Routes', phrase: 'custom domestic & international itineraries' }, 
+            { num: '100+', label: 'Certified Mentors', phrase: 'IITians, psychologists & domain architects' }
           ].map((i, index) => (
             <div key={index} className="px-6 space-y-2 text-center md:text-left">
-              <div className="text-4xl md:text-5xl font-serif italic font-medium text-terracotta tracking-tight">{i.num}</div>
+              <div className="text-4xl md:text-5xl font-serif italic font-medium text-terracotta tracking-tight tabular-nums">{i.num}</div>
               <div>
                 <div className="text-xs font-bold text-warm-charcoal uppercase tracking-wider">{i.label}</div>
                 <div className="text-[11px] text-stone-500 font-serif italic">{i.phrase}</div>
@@ -80,98 +136,320 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* Verticals section */}
+      {/* Ecosystem Philosophy: The Flywheel */}
+      <section className="max-w-6xl mx-auto px-4 space-y-12">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5 space-y-6">
+            <span className="text-[10px] font-bold tracking-widest uppercase text-terracotta">
+              The Architecture of Wholeness
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif italic text-warm-charcoal leading-tight">
+              Why isolated services fail, and how our flywheel delivers compound growth.
+            </h2>
+            <p className="text-stone-600 text-sm leading-relaxed font-sans">
+              Traditional coaching companies isolate education from mental well-being, while recruitment agencies treat job placement as a transactional exchange. In contrast, New Akromind operates on a foundational truth: sustainable high performance requires intellectual grounding, psychological resilience, career alignment, and periodic sensory restoration.
+            </p>
+            <div className="space-y-3 pt-2">
+              {[
+                { title: 'Cognitive Balance (AkroMind)', desc: 'Stress reduction and aptitude discovery unlock natural student learning speed.' },
+                { title: 'Academic Rigor (AkroTution)', desc: 'Systematic concept grounding turns test anxieties into predictable board results.' },
+                { title: 'Career Trajectory (AkroPlacement)', desc: 'Translating academic aptitude into senior job offers with high CTC packages.' },
+                { title: 'Restorative Perspective (AkroHolidays)', desc: 'Conscious travel rejuvenates the spirit and deepens familial bonds.' }
+              ].map(item => (
+                <div key={item.title} className="flex items-start gap-3 text-xs">
+                  <div className="w-5 h-5 rounded-xs bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                    ✓
+                  </div>
+                  <div>
+                    <span className="font-bold text-warm-charcoal">{item.title}: </span>
+                    <span className="text-stone-600 font-serif italic">{item.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <EditorialVisual 
+              type="whyus"
+              aspectRatio="4:3"
+              badge="Flywheel Model"
+              title="The Symmetrical Four-Quadrant Engine"
+              caption="Harmonizing mental, academic, professional, and exploratory pursuits"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Four Operational Verticals Section */}
       <section className="max-w-6xl mx-auto px-4 space-y-16">
         <div className="text-center md:text-left md:flex md:items-end md:justify-between border-b border-[#E5E0D5] pb-8">
           <div className="space-y-2">
             <span className="text-[10px] font-bold tracking-widest uppercase text-terracotta">Operational Verticals</span>
             <h2 className="text-4xl font-serif italic text-warm-charcoal">Four paths. One unified blueprint.</h2>
           </div>
-          <p className="text-sm text-stone-500 max-w-sm mt-4 md:mt-0 leading-relaxed">
-            We operate through tailored, highly disciplined specialists to bring you custom tutoring, workspace transitions, and curated experiences.
+          <p className="text-sm text-stone-500 max-w-md mt-4 md:mt-0 leading-relaxed">
+            Each branch operates with uncompromising professional depth while sharing data, insights, and reward credits seamlessly across the New Akromind network.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { name: 'AkroMind', code: '01', desc: 'Empathy-led counseling, personal steam selection, and high-impact mindset development counseling.', path: '/verticals/akromind' },
-            { name: 'AkroTution', code: '02', desc: 'Comprehensive academic tutoring, advanced custom test prep plans, and curriculum guidance.', path: '/verticals/akrotution' },
-            { name: 'AkroPlacement', code: '03', desc: 'Premium career transition pipeline, professional resume architecture, and corporate alignment.', path: '/verticals/akroplacement' },
-            { name: 'AkroHolidays', code: '04', desc: 'Authentic leisure tours, domestic and international customized tracks, with an integrated reward point engine.', path: '/verticals/akroholidays' }
-          ].map(v => (
-            <motion.div 
-              key={v.name} 
-              variants={itemVariants} 
-              className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between h-[300px] hover:border-terracotta transition-colors duration-300 relative group"
-            >
-              <div className="absolute top-4 right-6 font-serif italic text-stone-300 text-lg">{v.code}/</div>
-              <div className="space-y-3">
-                <h3 className="text-xl font-bold text-warm-charcoal tracking-tight font-sans">{v.name}</h3>
-                <p className="text-stone-600 text-xs leading-relaxed font-serif">{v.desc}</p>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Vertical 01: AkroMind */}
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
+            <div className="space-y-4">
+              <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 border border-[#E5E0D5] bg-warm-cream flex items-center justify-center text-terracotta rounded-xs">
+                    <Heart className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 01</span>
+                    <h3 className="text-2xl font-bold text-warm-charcoal">AkroMind</h3>
+                  </div>
+                </div>
+                <span className="text-xs font-mono text-stone-400">COUNSELING</span>
               </div>
-              <a 
-                href={v.path} 
-                className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-1.5 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]/60"
-              >
-                Explore vertical &rarr;
-              </a>
-            </motion.div>
-          ))}
+              <p className="text-stone-600 text-sm leading-relaxed font-serif">
+                Empathy-first psychological guidance, aptitude stream navigation, student stress alleviation, parent-child mediation, and high-agency mindset coaching for startup founders.
+              </p>
+              <div className="space-y-2 pt-2 border-t border-[#E5E0D5]/60 text-xs text-stone-600">
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>100% Confidential, certified counselor consultations</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>Cognitive aptitude & stream mapping for Grades 9-12</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>Parent-student collaborative communication toolkits</span>
+                </div>
+              </div>
+            </div>
+            <a 
+              href="/verticals/akromind" 
+              className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
+            >
+              Explore AkroMind Programs &rarr;
+            </a>
+          </div>
+
+          {/* Vertical 02: AkroTution */}
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
+            <div className="space-y-4">
+              <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 border border-[#E5E0D5] bg-warm-cream flex items-center justify-center text-terracotta rounded-xs">
+                    <BookOpen className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 02</span>
+                    <h3 className="text-2xl font-bold text-warm-charcoal">AkroTution</h3>
+                  </div>
+                </div>
+                <span className="text-xs font-mono text-stone-400">ACADEMICS</span>
+              </div>
+              <p className="text-stone-600 text-sm leading-relaxed font-serif">
+                Systematic curriculum mastery across Classes 6 to 12 (CBSE/ICSE) and high-yield competitive entrance preparation for JEE Main/Advanced, NEET-UG, CUET, and CLAT.
+              </p>
+              <div className="space-y-2 pt-2 border-t border-[#E5E0D5]/60 text-xs text-stone-600">
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>Ultra-small batches (8-12 students) or private 1-on-1 mentorship</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>Guaranteed &lt;20 minute digital doubt clearance desk</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>Diagnostic progress analytics sent weekly to parents</span>
+                </div>
+              </div>
+            </div>
+            <a 
+              href="/verticals/akrotution" 
+              className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
+            >
+              Explore AkroTution Programs &rarr;
+            </a>
+          </div>
+
+          {/* Vertical 03: AkroPlacement */}
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
+            <div className="space-y-4">
+              <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 border border-[#E5E0D5] bg-warm-cream flex items-center justify-center text-terracotta rounded-xs">
+                    <Briefcase className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 03</span>
+                    <h3 className="text-2xl font-bold text-warm-charcoal">AkroPlacement</h3>
+                  </div>
+                </div>
+                <span className="text-xs font-mono text-stone-400">CAREERS</span>
+              </div>
+              <p className="text-stone-600 text-sm leading-relaxed font-serif">
+                Elite career acceleration pipeline connecting college graduates and mid-career professionals with 500+ corporate hiring partners in tech, design, business operations, and engineering.
+              </p>
+              <div className="space-y-2 pt-2 border-t border-[#E5E0D5]/60 text-xs text-stone-600">
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>78% placement success rate inside 90 days of program completion</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>Resume re-architecture, portfolio critique & system design mock drills</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>Dedicated corporate recruiter referrals and salary negotiation strategy</span>
+                </div>
+              </div>
+            </div>
+            <a 
+              href="/verticals/akroplacement" 
+              className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
+            >
+              Explore AkroPlacement Pathways &rarr;
+            </a>
+          </div>
+
+          {/* Vertical 04: AkroHolidays */}
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
+            <div className="space-y-4">
+              <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 border border-[#E5E0D5] bg-warm-cream flex items-center justify-center text-terracotta rounded-xs">
+                    <Compass className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 04</span>
+                    <h3 className="text-2xl font-bold text-warm-charcoal">AkroHolidays</h3>
+                  </div>
+                </div>
+                <span className="text-xs font-mono text-stone-400">VOYAGES</span>
+              </div>
+              <p className="text-stone-600 text-sm leading-relaxed font-serif">
+                Bespoke domestic and international holiday curations, family wellness retreats, adventure safaris, and an integrated Explorer Loyalty Point reward engine.
+              </p>
+              <div className="space-y-2 pt-2 border-t border-[#E5E0D5]/60 text-xs text-stone-600">
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>50+ verified destinations across India, Southeast Asia, Europe & UAE</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>24/7 dedicated trip concierge and verified boutique luxury stays</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-terracotta font-bold">—</span>
+                  <span>Earn travel credits automatically through academic and career milestones</span>
+                </div>
+              </div>
+            </div>
+            <a 
+              href="/verticals/akroholidays" 
+              className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
+            >
+              Explore AkroHolidays Itineraries &rarr;
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Structured Approach Section */}
+      {/* Structured Methodology */}
       <section className="bg-[#FAF6EE] py-20 border-y border-[#E5E0D5]">
         <div className="max-w-6xl mx-auto px-4 space-y-16">
           <div className="text-center space-y-3">
             <span className="text-[10px] font-bold tracking-widest uppercase text-terracotta">Methodology</span>
-            <h2 className="text-3xl md:text-4xl font-serif italic text-warm-charcoal">The Swiss Blueprint to Personal Success</h2>
+            <h2 className="text-3xl md:text-4xl font-serif italic text-warm-charcoal">The Five-Stage Blueprint to Measurable Success</h2>
+            <p className="text-stone-600 text-sm max-w-2xl mx-auto font-serif">
+              Our proprietary operational cycle ensures that whether you are mastering advanced physics, preparing for a Senior VP interview, or planning an alpine trek, your trajectory is grounded in data and guided by human care.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-5 gap-4">
             {[
-              { num: 'I', title: 'Discovery & Context', desc: 'We execute thorough, deeply empathetic consultation periods to gather multi-dimensional understanding of your current status, blocks, and goals.' },
-              { num: 'II', title: 'Custom Curated Strategy', desc: 'Our veterans draft a personalized, asymmetric roadmap outline integrated with precise timeline milestones and dedicated support elements.' },
-              { num: 'III', title: 'Iterative Reinforcement', desc: 'We maintain recurring structured reviews and continuous feedback loops, ensuring that growth is measurable and sustainable over long spans.' }
+              { num: '01', title: 'Diagnostic Audit', desc: 'Comprehensive cognitive, academic, or professional skill audit to identify exact baseline competencies and hidden bottlenecks.' },
+              { num: '02', title: 'Bespoke Blueprint', desc: 'Custom milestone roadmaps built by veteran domain leads, establishing clear deadlines and verifiable weekly checkpoints.' },
+              { num: '03', title: 'Deliberate Practice', desc: 'Rigorous 1-on-1 tutoring, mock interview simulations, or personalized travel arrangements executed with zero fluff.' },
+              { num: '04', title: 'Real-Time Telemetry', desc: 'Weekly diagnostic feedback loops, performance dashboards, and proactive curriculum calibrations based on measurable progress.' },
+              { num: '05', title: 'Sustainable Mastery', desc: 'Translating achievements into permanent life confidence, elite salaries, university admissions, and lasting memories.' }
             ].map(step => (
-              <div key={step.title} className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 space-y-6 hover:border-terracotta transition-colors duration-300">
-                <div className="text-lg font-serif italic text-terracotta border-b border-[#E5E0D5] pb-4 flex justify-between items-center">
-                  <span>{step.title}</span>
-                  <span className="text-stone-300 font-mono text-sm uppercase">{step.num}</span>
+              <div key={step.title} className="bg-[#FCFAF7] border border-[#E5E0D5] p-6 space-y-4 hover:border-terracotta transition-colors duration-300 rounded-sm">
+                <div className="text-xs font-mono font-bold text-terracotta border-b border-[#E5E0D5] pb-2 flex justify-between items-center">
+                  <span>PHASE {step.num}</span>
+                  <span className="text-stone-300">/</span>
                 </div>
-                <p className="text-stone-600 text-[13px] leading-relaxed font-sans">{step.desc}</p>
+                <h4 className="font-bold text-sm text-warm-charcoal">{step.title}</h4>
+                <p className="text-stone-600 text-xs leading-relaxed font-sans">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Sectors Served */}
-      <section className="max-w-6xl mx-auto px-4 space-y-12">
+      {/* Real Attributable Impact & Proof */}
+      <section className="max-w-6xl mx-auto px-4 space-y-16">
         <div className="text-center space-y-2">
-          <span className="text-[10px] font-bold tracking-widest uppercase text-stone-500">Acosystem Alignment</span>
-          <h2 className="text-3xl font-serif italic text-warm-charcoal">Diverse Sectors Active in Our Ecosystem</h2>
+          <span className="text-[10px] font-bold tracking-widest uppercase text-[#7D7067]">Verified Outcomes</span>
+          <h2 className="text-3xl md:text-4xl font-serif italic text-warm-charcoal">Voices from Inside Our Ecosystem</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#E5E0D5] divide-x divide-[#E5E0D5] pt-12">
+
+        <div className="grid md:grid-cols-3 gap-8">
           {[
-            { title: 'Education System', list: ['Strategic High Schools', 'EdTech Alliances', 'Academic Consultancies', 'Professional Training Centers'] },
-            { title: 'Corporate Guilds', list: ['Symmetrical Startups', 'SME Workforces', 'Enterprise Operations', 'Creative Service Fields'] },
-            { title: 'Government', list: ['Skill Initiatives', 'Educational Authorities', 'Regional Programs', 'Youth Advancement Campaigns'] },
-            { title: 'Civic Sector', list: ['Youth Organizations', 'Impact-Driven NGOs', 'Skill Development Centers', 'Dynamic Support Networks'] }
-          ].map((sector, index) => (
-            <div key={index} className="px-6 space-y-4">
-              <h4 className="text-xs font-bold tracking-wider text-terracotta uppercase">{sector.title}</h4>
-              <ul className="space-y-2.5 text-[12px] text-stone-600 font-serif italic">
-                {sector.list.map(item => (
-                  <li key={item} className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-terracotta/40 rounded-full shrink-0"></span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            {
+              quote: "Preparing for JEE Advanced while managing Class 12 board pressure was breaking my confidence. AkroTution fixed my organic chemistry fundamentals within 6 weeks, while my AkroMind counselor taught me how to eliminate exam panic. I scored 99.2 percentile and secured admission at IIT Delhi.",
+              author: "Aarav Sharma",
+              role: "B.Tech Computer Science Candidate",
+              org: "IIT Delhi · Former AkroTution & AkroMind Student",
+              metrics: "99.2%ile JEE · 96.4% CBSE Boards"
+            },
+            {
+              quote: "I was stuck at a service company with a ₹6 LPA salary for three years. AkroPlacement reconstructed my entire portfolio, put me through 8 brutal system design mocks, and directly referred me to two unicorn startups. I accepted an offer at ₹22 LPA with stock grants.",
+              author: "Pooja Malhotra",
+              role: "Senior Frontend Architect",
+              org: "Series-B FinTech Unicorn · AkroPlacement Graduate",
+              metrics: "₹22 LPA Package (+266% CTC Growth)"
+            },
+            {
+              quote: "We wanted a multi-generational trip to Switzerland and Austria for 8 family members ranging from my 7-year-old son to my 72-year-old mother. AkroHolidays arranged private alpine vans, vegetarian meals everywhere, and wheelchair access without a single hiccup.",
+              author: "Harpreet Singh & Family",
+              role: "Family Vacation Cohort",
+              org: "10-Day Swiss Alpine & Lake Lucerne Tour",
+              metrics: "100% On-Time Execution · 8 Pax Group"
+            }
+          ].map((t, idx) => (
+            <div key={idx} className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 rounded-sm flex flex-col justify-between space-y-6 hover:border-terracotta transition-colors">
+              <div className="space-y-4">
+                <div className="text-terracotta text-2xl font-serif">“</div>
+                <p className="text-stone-700 text-xs leading-relaxed font-serif italic">
+                  {t.quote}
+                </p>
+                <div className="p-3 bg-warm-cream border border-[#E5E0D5] rounded-xs text-[11px] font-mono text-terracotta font-semibold">
+                  Outcome: {t.metrics}
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[#E5E0D5] space-y-1">
+                <div className="font-bold text-xs text-warm-charcoal font-sans">{t.author}</div>
+                <div className="text-[11px] text-stone-500 font-sans">{t.role}</div>
+                <div className="text-[10px] text-stone-400 font-serif italic">{t.org}</div>
+              </div>
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Comprehensive FAQ Section */}
+      <section className="max-w-6xl mx-auto px-4 space-y-8">
+        <FaqAccordion 
+          items={homeFaqs} 
+          title="Frequently Asked Questions" 
+          subtitle="Everything you need to know about the New Akromind ecosystem"
+        />
       </section>
     </motion.div>
   );

@@ -1,0 +1,6 @@
+{
+  "name": "New Akromind",
+  "description": "A multi-vertical ecosystem for education, careers, travel, and consulting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

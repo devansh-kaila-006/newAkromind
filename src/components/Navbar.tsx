@@ -2,12 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import logoImg from '../assets/logo.png';
 
 const verticals = [
-  { name: 'AkroMind', path: '/verticals/akromind', desc: 'Mindset & Dynamic Guidance' },
-  { name: 'AkroTution', path: '/verticals/akrotution', desc: 'Symmetrical Academy Learning' },
-  { name: 'AkroPlacement', path: '/verticals/akroplacement', desc: 'Elite Work & Career Transitions' },
-  { name: 'AkroHolidays', path: '/verticals/akroholidays', desc: 'Custom Curated Premium Journeys' },
+  { name: 'AKROMIND', path: '/verticals/akromind', desc: 'Mindset & Dynamic Guidance' },
+  { name: 'AKROTUTION', path: '/verticals/akrotution', desc: 'Symmetrical Academy Learning' },
+  { name: 'AKROPLACEMENT', path: '/verticals/akroplacement', desc: 'Elite Work & Career Transitions' },
+  { name: 'AKROHOLIDAYS', path: '/verticals/akroholidays', desc: 'Custom Journeys & Stranger Trips' },
 ];
 
 export default function Navbar() {
@@ -37,9 +38,16 @@ export default function Navbar() {
           <Link 
             to="/" 
             onClick={() => setIsOpen(false)}
-            className="text-2xl font-bold text-warm-charcoal tracking-tight flex items-center gap-3.5 group cursor-pointer"
+            className="text-2xl font-bold text-warm-charcoal tracking-tight flex items-center gap-3 group cursor-pointer"
           >
-            <span className="font-serif italic font-bold text-terracotta text-3xl">A.</span>
+            <img 
+              src={logoImg} 
+              alt="New Akromind Logo" 
+              className="w-10 h-10 object-contain rounded-xs shadow-xs group-hover:scale-105 transition-transform duration-200" 
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = '/logo.png';
+              }}
+            />
             <span className="font-sans font-extrabold tracking-tight text-lg uppercase text-warm-charcoal group-hover:text-terracotta transition duration-200">New Akromind</span>
           </Link>
           
@@ -145,7 +153,7 @@ export default function Navbar() {
                       className="block p-3 bg-[#FCFAF7] hover:bg-warm-beige/65 border border-[#E5E0D5] rounded-sm"
                     >
                       <div className="text-xs font-bold text-warm-charcoal">{v.name}</div>
-                      <div className="text-[9px] text-stone-500 font-medium select-none mt-0.5">{v.name === 'AkroMind' ? 'Counseling' : v.name === 'AkroTution' ? 'Education' : v.name === 'AkroPlacement' ? 'Career' : 'Travel'}</div>
+                      <div className="text-[9px] text-stone-500 font-medium select-none mt-0.5">{v.name === 'AKROMIND' ? 'Counseling' : v.name === 'AKROTUTION' ? 'Education' : v.name === 'AKROPLACEMENT' ? 'Career' : 'Travel'}</div>
                     </Link>
                   ))}
                 </div>

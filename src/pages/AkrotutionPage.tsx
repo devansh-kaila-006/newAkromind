@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
 import EditorialVisual from '../components/EditorialVisual';
@@ -7,12 +8,12 @@ import { BookOpen, Shield, User, Users, CheckCircle, Clock, Award, FileText, Che
 const tutionFaqs: FAQItem[] = [
   {
     category: 'Curriculum & Streams',
-    q: 'What classes and academic boards does AkroTution cover?',
+    q: 'What classes and academic boards does AKROTUTION cover?',
     a: 'We provide specialized tutoring for students from Class 6 through Class 12 across major national and international examination boards, including CBSE (Central Board of Secondary Education), ICSE/ISC (Indian Certificate of Secondary Education), State Boards, and Cambridge/IGCSE international tracks. Our curriculum is mapped chapter-by-chapter to official board learning outcomes.'
   },
   {
     category: 'Batches & Faculty',
-    q: 'What is the student-to-teacher ratio in AkroTution batches?',
+    q: 'What is the student-to-teacher ratio in AKROTUTION batches?',
     a: 'To guarantee meaningful individual attention, our group cohorts are strictly capped at 8 to 12 students per batch. For students requiring targeted catch-up support or hyper-accelerated competitive exam training, we also offer dedicated 1-on-1 private mentorship tracks with custom-tailored scheduling.'
   },
   {
@@ -38,7 +39,7 @@ const tutionFaqs: FAQItem[] = [
   {
     category: 'Materials & Delivery',
     q: 'What physical and digital study materials are provided upon enrollment?',
-    a: 'Enrolled students receive our comprehensive AkroTution Study Vault, which includes spiral-bound theory modules, chapter formula summary sheets, 500+ solved exemplars, past-10-year board paper archives, and high-yield question banks. Digitally, students get lifetime access to recorded classroom sessions, lecture slides, and interactive quizzes.'
+    a: 'Enrolled students receive our comprehensive AKROTUTION Study Vault, which includes spiral-bound theory modules, chapter formula summary sheets, 500+ solved exemplars, past-10-year board paper archives, and high-yield question banks. Digitally, students get lifetime access to recorded classroom sessions, lecture slides, and interactive quizzes.'
   },
   {
     category: 'Admissions & Trials',
@@ -57,8 +58,8 @@ const tutionFaqs: FAQItem[] = [
   },
   {
     category: 'Ecosystem',
-    q: 'How does AkroTution coordinate with AkroMind counseling for exam stress?',
-    a: 'Academic anxiety is the leading cause of examination underperformance. When an AkroTution student exhibits persistent test anxiety, cognitive fatigue, or declining motivation, our tutors immediately flag the profile to our in-house AkroMind counselors. The student receives personalized stress inoculation sessions and breathing protocols at no additional charge.'
+    q: 'How does AKROTUTION coordinate with AKROMIND counseling for exam stress?',
+    a: 'Academic anxiety is the leading cause of examination underperformance. When an AKROTUTION student exhibits persistent test anxiety, cognitive fatigue, or declining motivation, our tutors immediately flag the profile to our in-house AKROMIND counselors. The student receives personalized stress inoculation sessions and breathing protocols at no additional charge.'
   },
   {
     category: 'Fees & Policies',
@@ -92,7 +93,7 @@ export default function AkrotutionPage() {
       className="max-w-6xl mx-auto px-4 py-20 space-y-24 font-sans bg-warm-cream"
     >
       <header className="text-center space-y-4 max-w-3xl mx-auto">
-        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AkroTution</span>
+        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AKROTUTION</span>
         <h1 className="text-4xl md:text-6xl font-black tracking-tight text-warm-charcoal font-sans leading-none">
           Symmetrical Learning. <span className="font-serif italic font-normal text-terracotta">Predictable Mastery.</span>
         </h1>
@@ -196,7 +197,7 @@ export default function AkrotutionPage() {
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
-                <span><strong>Stream Selection Consultation:</strong> Integrated alignment with AkroMind to choose between Science, Commerce, or Arts.</span>
+                <span><strong>Stream Selection Consultation:</strong> Integrated alignment with AKROMIND to choose between Science, Commerce, or Arts.</span>
               </li>
             </ul>
           </div>
@@ -399,13 +400,13 @@ export default function AkrotutionPage() {
             </div>
 
             <div className="pt-4">
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="w-full bg-warm-charcoal border border-stone-700 text-white text-center py-3.5 px-4 rounded-sm flex items-center justify-center gap-2 font-bold text-[10px] tracking-widest uppercase cursor-pointer hover:bg-terracotta hover:border-terracotta transition-all"
               >
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>Book 2 Free Trial Classes &rarr;</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -440,11 +441,11 @@ export default function AkrotutionPage() {
         </div>
       </section>
 
-      {/* Comprehensive FAQs for AkroTution */}
+      {/* Comprehensive FAQs for AKROTUTION */}
       <section className="space-y-8">
         <FaqAccordion 
           items={tutionFaqs}
-          title="AkroTution Frequently Asked Questions"
+          title="AKROTUTION Frequently Asked Questions"
           subtitle="Clear answers on our curriculum, batches, faculty, tests, and enrollment"
         />
       </section>

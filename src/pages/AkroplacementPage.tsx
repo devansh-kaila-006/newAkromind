@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
 import EditorialVisual from '../components/EditorialVisual';
@@ -7,7 +8,7 @@ import { Briefcase, TrendingUp, CheckSquare, Shield, DollarSign, Award, Laptop, 
 const placementFaqs: FAQItem[] = [
   {
     category: 'Eligibility & Intake',
-    q: 'Who is eligible to enroll in AkroPlacement career acceleration tracks?',
+    q: 'Who is eligible to enroll in AKROPLACEMENT career acceleration tracks?',
     a: 'We admit final-year college students, recent university graduates, mid-career professionals looking to jump salary brackets, and individuals executing career transitions (such as moving from service companies to product engineering or non-technical roles to UI/UX/Product Management). Admission requires an initial 45-minute Technical & Aptitude Diagnostic Assessment.'
   },
   {
@@ -47,7 +48,7 @@ const placementFaqs: FAQItem[] = [
   },
   {
     category: 'Salary Negotiation',
-    q: 'How does AkroPlacement support candidates during salary offer negotiations?',
+    q: 'How does AKROPLACEMENT support candidates during salary offer negotiations?',
     a: 'Most professionals leave 15% to 30% on the table due to discomfort with negotiation. Our senior negotiation coaches review written offer letters, benchmark fixed vs. variable bonuses and ESOP equity grants, and draft strategic counter-offer communications to ensure candidates receive the highest compensation possible.'
   },
   {
@@ -121,7 +122,7 @@ export default function AkroplacementPage() {
       className="max-w-6xl mx-auto px-4 py-20 space-y-24 font-sans bg-warm-cream"
     >
       <header className="text-center space-y-4 max-w-3xl mx-auto">
-        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AkroPlacement</span>
+        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AKROPLACEMENT</span>
         <h1 className="text-4xl md:text-6xl font-black tracking-tight text-warm-charcoal font-sans leading-none">
           Aligning Talents. <span className="font-serif italic font-normal text-terracotta">Securing Destinies.</span>
         </h1>
@@ -338,13 +339,13 @@ export default function AkroplacementPage() {
             </div>
 
             <div className="pt-4">
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="w-full bg-warm-charcoal border border-stone-700 text-white text-center py-3.5 px-4 rounded-sm flex items-center justify-center gap-2 font-bold text-[10px] tracking-widest uppercase cursor-pointer hover:bg-terracotta hover:border-terracotta transition-all"
               >
                 <Briefcase className="w-3.5 h-3.5" />
                 <span>Apply for Career Acceleration &rarr;</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -380,11 +381,11 @@ export default function AkroplacementPage() {
         </div>
       </section>
 
-      {/* Comprehensive FAQs for AkroPlacement */}
+      {/* Comprehensive FAQs for AKROPLACEMENT */}
       <section className="space-y-8">
         <FaqAccordion 
           items={placementFaqs}
-          title="AkroPlacement Frequently Asked Questions"
+          title="AKROPLACEMENT Frequently Asked Questions"
           subtitle="Clear answers on eligibility, partner networks, compensation, and mentorship"
         />
       </section>

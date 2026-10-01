@@ -1,18 +1,36 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowUpRight, Check, Compass, BookOpen, Briefcase, Heart, ArrowRight } from 'lucide-react';
 import EditorialVisual from '../components/EditorialVisual';
 import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
+import VideoShowcase from '../components/VideoShowcase';
+import StrangerTripPlanner from '../components/StrangerTripPlanner';
 
 const homeFaqs: FAQItem[] = [
   {
     category: 'Ecosystem',
     q: 'What is New Akromind, and how do its four verticals work together?',
-    a: 'New Akromind is an integrated multi-vertical growth ecosystem based in Ludhiana, Punjab, operating across India and globally. Rather than treating academic tutoring, career placement, mental health counseling, and restorative travel as isolated services, we integrate them into a unified flywheel. A student receives academic mastery through AkroTution while maintaining emotional resilience via AkroMind counseling; upon graduating, AkroPlacement connects them to 500+ corporate hiring partners; and families celebrate milestones with curated journeys through AkroHolidays, earning transferable loyalty credits across all verticals.'
+    a: 'New Akromind is an integrated multi-vertical growth ecosystem based in Ludhiana, Punjab, operating across India and globally. Rather than treating academic tutoring, career placement, mental health counseling, and restorative travel as isolated services, we integrate them into a unified flywheel. A student receives academic mastery through AKROTUTION while maintaining emotional resilience via AKROMIND counseling; upon graduating, AKROPLACEMENT connects them to 500+ corporate hiring partners; and families celebrate milestones with curated journeys through AKROHOLIDAYS, earning transferable loyalty credits across all verticals.'
   },
   {
     category: 'Ecosystem',
     q: 'Can I enroll in just one vertical, or do I have to use the entire ecosystem?',
-    a: 'You are completely free to enroll in any single vertical that meets your current objective. Many of our clients begin with a specific need—such as Class 10 board prep under AkroTution, or an executive career switch under AkroPlacement. However, ecosystem members unlock exclusive cross-vertical benefits, including preferential counselor access, bundled diagnostic evaluations, and explorer reward points.'
+    a: 'You are completely free to enroll in any single vertical that meets your current objective. Many of our clients begin with a specific need (such as Class 10 board prep under AKROTUTION, or an executive career switch under AKROPLACEMENT). However, ecosystem members unlock exclusive cross-vertical benefits, including preferential counselor access, bundled diagnostic evaluations, and explorer reward points.'
+  },
+  {
+    category: 'Stranger Trips',
+    q: 'What is Stranger Trip Planning, and how does traveling with a curated group work?',
+    a: 'Stranger Trip Planning is designed for solo travelers who want to explore high mountain valleys without the frustration of coordinating with busy friends or traveling completely alone. AKROHOLIDAYS organizes small, curated pods of 8 to 12 travelers mainly focused towards Himachal Pradesh and Uttarakhand circuits, managing all transit, verified boutique stays, and on-ground logistics.'
+  },
+  {
+    category: 'Stranger Trips',
+    q: 'Is Stranger Trip Planning safe for solo female travelers?',
+    a: 'Safety and psychological comfort are our highest operational priorities. All applicants undergo mandatory government ID verification and mutual vetting before joining. We offer dedicated Solo-Female Friendly pods with verified accommodations, guaranteed same-gender twin sharing (or optional private room upgrades), and 24/7 on-ground emergency support.'
+  },
+  {
+    category: 'Stranger Trips',
+    q: 'What happens if I am introverted or need solo downtime during a Stranger Trip?',
+    a: 'We enforce a strict Zero Forced Agendas rule. While group dinners, bonfires, and guided treks are always scheduled, participation is entirely voluntary. You are encouraged to take a book to a cafe, wander scenic viewpoints alone, or recharge in your room whenever you wish.'
   },
   {
     category: 'Admissions & Enrollment',
@@ -22,12 +40,12 @@ const homeFaqs: FAQItem[] = [
   {
     category: 'Quality & Faculty',
     q: 'What qualifications do your tutors, counselors, and career coaches possess?',
-    a: 'Every vertical is led by vetted specialists. AkroTution faculty members include IIT, NIT, and premier university alumni with at least 6 years of subject teaching experience. AkroMind counselors hold accredited postgraduate degrees in psychology, behavioral science, or executive coaching. AkroPlacement advisors are active industry directors, former talent leads, and engineering managers from Tier-1 tech and consulting firms.'
+    a: 'Every vertical is led by vetted specialists. AKROTUTION faculty members include IIT, NIT, and premier university alumni with at least 6 years of subject teaching experience. AKROMIND counselors hold accredited postgraduate degrees in psychology, behavioral science, or executive coaching. AKROPLACEMENT advisors are active industry directors, former talent leads, and engineering managers from Tier-1 tech and consulting firms.'
   },
   {
     category: 'Ecosystem',
-    q: 'How does the AkroHolidays Explorer Points Engine connect to other services?',
-    a: 'Every engagement across New Akromind earns Explorer Loyalty Credits. Enrolling in semester tuition tracks, completing career accelerator bootcamps, or booking counseling retainers credits your central account. These points can be redeemed directly against domestic and international travel packages, villa upgrades, or private sightseeing tours through AkroHolidays.'
+    q: 'How does the AKROHOLIDAYS Explorer Points Engine connect to other services?',
+    a: 'Every engagement across New Akromind earns Explorer Loyalty Credits. Enrolling in semester tuition tracks, completing career accelerator bootcamps, or booking counseling retainers credits your central account. These points can be redeemed directly against domestic and international travel packages, villa upgrades, or private sightseeing tours through AKROHOLIDAYS.'
   },
   {
     category: 'Admissions & Enrollment',
@@ -87,18 +105,18 @@ export default function HomePage() {
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4 pt-4">
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="bg-warm-charcoal text-white hover:bg-terracotta text-[10px] uppercase tracking-widest font-bold px-8 py-4 transition-colors duration-300 rounded-sm inline-flex items-center gap-2 border border-warm-charcoal hover:border-terracotta"
           >
             Schedule Discovery Consultation <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-          <a
-            href="/about"
+          </Link>
+          <Link
+            to="/about"
             className="border border-[#E5E0D5] text-warm-charcoal hover:bg-warm-beige/40 text-[10px] uppercase tracking-widest font-bold px-8 py-4 transition-colors duration-300 rounded-sm"
           >
             Read Our Ecosystem Manifesto
-          </a>
+          </Link>
         </motion.div>
 
         {/* Hero Architectural Visual Artwork */}
@@ -136,6 +154,9 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* Cinematic Ecosystem Video Showcase */}
+      <VideoShowcase />
+
       {/* Ecosystem Philosophy: The Flywheel */}
       <section className="max-w-6xl mx-auto px-4 space-y-12">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -151,10 +172,10 @@ export default function HomePage() {
             </p>
             <div className="space-y-3 pt-2">
               {[
-                { title: 'Cognitive Balance (AkroMind)', desc: 'Stress reduction and aptitude discovery unlock natural student learning speed.' },
-                { title: 'Academic Rigor (AkroTution)', desc: 'Systematic concept grounding turns test anxieties into predictable board results.' },
-                { title: 'Career Trajectory (AkroPlacement)', desc: 'Translating academic aptitude into senior job offers with high CTC packages.' },
-                { title: 'Restorative Perspective (AkroHolidays)', desc: 'Conscious travel rejuvenates the spirit and deepens familial bonds.' }
+                { title: 'Cognitive Balance (AKROMIND)', desc: 'Stress reduction and aptitude discovery unlock natural student learning speed.' },
+                { title: 'Academic Rigor (AKROTUTION)', desc: 'Systematic concept grounding turns test anxieties into predictable board results.' },
+                { title: 'Career Trajectory (AKROPLACEMENT)', desc: 'Translating academic aptitude into senior job offers with high CTC packages.' },
+                { title: 'Restorative Perspective (AKROHOLIDAYS)', desc: 'Conscious travel rejuvenates the spirit and deepens familial bonds.' }
               ].map(item => (
                 <div key={item.title} className="flex items-start gap-3 text-xs">
                   <div className="w-5 h-5 rounded-xs bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0 mt-0.5 font-bold">
@@ -194,7 +215,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Vertical 01: AkroMind */}
+          {/* Vertical 01: AKROMIND */}
           <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
@@ -204,7 +225,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 01</span>
-                    <h3 className="text-2xl font-bold text-warm-charcoal">AkroMind</h3>
+                    <h3 className="text-2xl font-bold text-warm-charcoal">AKROMIND</h3>
                   </div>
                 </div>
                 <span className="text-xs font-mono text-stone-400">COUNSELING</span>
@@ -214,28 +235,28 @@ export default function HomePage() {
               </p>
               <div className="space-y-2 pt-2 border-t border-[#E5E0D5]/60 text-xs text-stone-600">
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>100% Confidential, certified counselor consultations</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
-                  <span>Cognitive aptitude & stream mapping for Grades 9-12</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
+                  <span>Cognitive aptitude & academic stream mapping for students</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>Parent-student collaborative communication toolkits</span>
                 </div>
               </div>
             </div>
-            <a 
-              href="/verticals/akromind" 
+            <Link 
+              to="/verticals/akromind" 
               className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
             >
-              Explore AkroMind Programs &rarr;
-            </a>
+              Explore AKROMIND Programs &rarr;
+            </Link>
           </div>
 
-          {/* Vertical 02: AkroTution */}
+          {/* Vertical 02: AKROTUTION */}
           <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
@@ -245,7 +266,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 02</span>
-                    <h3 className="text-2xl font-bold text-warm-charcoal">AkroTution</h3>
+                    <h3 className="text-2xl font-bold text-warm-charcoal">AKROTUTION</h3>
                   </div>
                 </div>
                 <span className="text-xs font-mono text-stone-400">ACADEMICS</span>
@@ -255,28 +276,28 @@ export default function HomePage() {
               </p>
               <div className="space-y-2 pt-2 border-t border-[#E5E0D5]/60 text-xs text-stone-600">
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>Ultra-small batches (8-12 students) or private 1-on-1 mentorship</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>Guaranteed &lt;20 minute digital doubt clearance desk</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>Diagnostic progress analytics sent weekly to parents</span>
                 </div>
               </div>
             </div>
-            <a 
-              href="/verticals/akrotution" 
+            <Link 
+              to="/verticals/akrotution" 
               className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
             >
-              Explore AkroTution Programs &rarr;
-            </a>
+              Explore AKROTUTION Programs &rarr;
+            </Link>
           </div>
 
-          {/* Vertical 03: AkroPlacement */}
+          {/* Vertical 03: AKROPLACEMENT */}
           <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
@@ -286,7 +307,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 03</span>
-                    <h3 className="text-2xl font-bold text-warm-charcoal">AkroPlacement</h3>
+                    <h3 className="text-2xl font-bold text-warm-charcoal">AKROPLACEMENT</h3>
                   </div>
                 </div>
                 <span className="text-xs font-mono text-stone-400">CAREERS</span>
@@ -296,28 +317,28 @@ export default function HomePage() {
               </p>
               <div className="space-y-2 pt-2 border-t border-[#E5E0D5]/60 text-xs text-stone-600">
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>78% placement success rate inside 90 days of program completion</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>Resume re-architecture, portfolio critique & system design mock drills</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>Dedicated corporate recruiter referrals and salary negotiation strategy</span>
                 </div>
               </div>
             </div>
-            <a 
-              href="/verticals/akroplacement" 
+            <Link 
+              to="/verticals/akroplacement" 
               className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
             >
-              Explore AkroPlacement Pathways &rarr;
-            </a>
+              Explore AKROPLACEMENT Pathways &rarr;
+            </Link>
           </div>
 
-          {/* Vertical 04: AkroHolidays */}
+          {/* Vertical 04: AKROHOLIDAYS */}
           <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
@@ -327,7 +348,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 04</span>
-                    <h3 className="text-2xl font-bold text-warm-charcoal">AkroHolidays</h3>
+                    <h3 className="text-2xl font-bold text-warm-charcoal">AKROHOLIDAYS</h3>
                   </div>
                 </div>
                 <span className="text-xs font-mono text-stone-400">VOYAGES</span>
@@ -337,27 +358,32 @@ export default function HomePage() {
               </p>
               <div className="space-y-2 pt-2 border-t border-[#E5E0D5]/60 text-xs text-stone-600">
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>50+ verified destinations across India, Southeast Asia, Europe & UAE</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>24/7 dedicated trip concierge and verified boutique luxury stays</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-terracotta font-bold">—</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-terracotta shrink-0" />
                   <span>Earn travel credits automatically through academic and career milestones</span>
                 </div>
               </div>
             </div>
-            <a 
-              href="/verticals/akroholidays" 
+            <Link 
+              to="/verticals/akroholidays" 
               className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
             >
-              Explore AkroHolidays Itineraries &rarr;
-            </a>
+              Explore AKROHOLIDAYS Itineraries &rarr;
+            </Link>
           </div>
         </div>
+      </section>
+
+      {/* Stranger Trip Planning Feature Showcase */}
+      <section className="max-w-6xl mx-auto px-4">
+        <StrangerTripPlanner />
       </section>
 
       {/* Structured Methodology */}
@@ -402,21 +428,21 @@ export default function HomePage() {
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              quote: "Preparing for JEE Advanced while managing Class 12 board pressure was breaking my confidence. AkroTution fixed my organic chemistry fundamentals within 6 weeks, while my AkroMind counselor taught me how to eliminate exam panic. I scored 99.2 percentile and secured admission at IIT Delhi.",
+              quote: "Preparing for JEE Advanced while managing Class 12 board pressure was breaking my confidence. AKROTUTION fixed my organic chemistry fundamentals within 6 weeks, while my AKROMIND counselor taught me how to eliminate exam panic. I scored 99.2 percentile and secured admission at IIT Delhi.",
               author: "Aarav Sharma",
               role: "B.Tech Computer Science Candidate",
-              org: "IIT Delhi · Former AkroTution & AkroMind Student",
+              org: "IIT Delhi · Former AKROTUTION & AKROMIND Student",
               metrics: "99.2%ile JEE · 96.4% CBSE Boards"
             },
             {
-              quote: "I was stuck at a service company with a ₹6 LPA salary for three years. AkroPlacement reconstructed my entire portfolio, put me through 8 brutal system design mocks, and directly referred me to two unicorn startups. I accepted an offer at ₹22 LPA with stock grants.",
+              quote: "I was stuck at a service company with a ₹6 LPA salary for three years. AKROPLACEMENT reconstructed my entire portfolio, put me through 8 brutal system design mocks, and directly referred me to two unicorn startups. I accepted an offer at ₹22 LPA with stock grants.",
               author: "Pooja Malhotra",
               role: "Senior Frontend Architect",
-              org: "Series-B FinTech Unicorn · AkroPlacement Graduate",
+              org: "Series-B FinTech Unicorn · AKROPLACEMENT Graduate",
               metrics: "₹22 LPA Package (+266% CTC Growth)"
             },
             {
-              quote: "We wanted a multi-generational trip to Switzerland and Austria for 8 family members ranging from my 7-year-old son to my 72-year-old mother. AkroHolidays arranged private alpine vans, vegetarian meals everywhere, and wheelchair access without a single hiccup.",
+              quote: "We wanted a multi-generational trip to Switzerland and Austria for 8 family members ranging from my 7-year-old son to my 72-year-old mother. AKROHOLIDAYS arranged private alpine vans, vegetarian meals everywhere, and wheelchair access without a single hiccup.",
               author: "Harpreet Singh & Family",
               role: "Family Vacation Cohort",
               org: "10-Day Swiss Alpine & Lake Lucerne Tour",

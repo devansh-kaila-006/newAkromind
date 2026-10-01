@@ -13,7 +13,7 @@ export default function PrivacyPage() {
         <section className="p-6 bg-[#FCFAF7] border border-[#E5E0D5] rounded-sm space-y-3">
           <h2 className="text-base font-bold text-warm-charcoal uppercase tracking-wider font-sans">1. Preamble & Scope</h2>
           <p>
-            New Akromind ("we", "our", or "the Ecosystem"), headquartered at 18, Kapoor Niwas, Dugri, Ludhiana, Punjab (141001), respects and safeguards your personal privacy. This Privacy Policy outlines the standards governing how we collect, process, store, and protect personal, academic, psychological, and transaction data across AkroMind, AkroTution, AkroPlacement, and AkroHolidays.
+            New Akromind ("we", "our", or "the Ecosystem"), headquartered at 18, Kapoor Niwas, Dugri, Ludhiana, Punjab (141001), respects and safeguards your personal privacy. This Privacy Policy outlines the standards governing how we collect, process, store, and protect personal, academic, psychological, and transaction data across AKROMIND, AKROTUTION, AKROPLACEMENT, and AKROHOLIDAYS.
           </p>
         </section>
 
@@ -21,10 +21,10 @@ export default function PrivacyPage() {
           <h2 className="text-base font-bold text-warm-charcoal uppercase tracking-wider font-sans">2. Information Collection Across Verticals</h2>
           <p>We collect information strictly necessary to provide tailored, high-integrity growth services:</p>
           <ul className="list-disc pl-5 space-y-2 text-xs text-stone-600">
-            <li><strong>AkroMind:</strong> Intake reflections, aptitude test responses, and communication notes. All counseling dialogue is protected under strict client-counselor privilege.</li>
-            <li><strong>AkroTution:</strong> Student contact records, academic marks, board targets, homework submissions, and diagnostic test analytics.</li>
-            <li><strong>AkroPlacement:</strong> Resumes, employment history, portfolios, mock interview recordings, and corporate compensation targets.</li>
-            <li><strong>AkroHolidays:</strong> Passport identification details, visa documentation proofs, dietary preferences, and travel party member records.</li>
+            <li><strong>AKROMIND:</strong> Intake reflections, aptitude test responses, and communication notes. All counseling dialogue is protected under strict client-counselor privilege.</li>
+            <li><strong>AKROTUTION:</strong> Student contact records, academic marks, board targets, homework submissions, and diagnostic test analytics.</li>
+            <li><strong>AKROPLACEMENT:</strong> Resumes, employment history, portfolios, mock interview recordings, and corporate compensation targets.</li>
+            <li><strong>AKROHOLIDAYS:</strong> Passport identification details, visa documentation proofs, dietary preferences, and travel party member records.</li>
           </ul>
         </section>
 

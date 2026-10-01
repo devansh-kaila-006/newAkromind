@@ -5,9 +5,19 @@ export default function Footer() {
     <footer className="bg-warm-cream border-t border-[#E5E0D5] py-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12">
         <div className="space-y-4">
-          <h3 className="text-2xl font-serif font-bold text-warm-charcoal tracking-tight">
-            New <span className="font-serif italic font-normal text-terracotta">Akromind</span>
-          </h3>
+          <div className="flex items-center gap-2.5">
+            <img 
+              src="/logo.png" 
+              alt="New Akromind Logo" 
+              className="w-8 h-8 object-contain rounded-xs" 
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+            <h3 className="text-2xl font-serif font-bold text-warm-charcoal tracking-tight">
+              New <span className="font-serif italic font-normal text-terracotta">Akromind</span>
+            </h3>
+          </div>
           <p className="text-stone-600 text-sm leading-relaxed">
             One intelligent ecosystem powering education, careers, travel, and personal innovation.
           </p>

@@ -1,13 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
 import EditorialVisual from '../components/EditorialVisual';
-import { Compass, Palmtree, MapPin, Calendar, DollarSign, Award, Plane, Users, Map, Globe, Check, Shield } from 'lucide-react';
+import StrangerTripPlanner from '../components/StrangerTripPlanner';
+import { Compass, Palmtree, MapPin, Calendar, DollarSign, Award, Plane, Users, Map, Globe, Check, Shield, Sparkles } from 'lucide-react';
 
 const holidayFaqs: FAQItem[] = [
   {
+    category: 'Stranger Trips',
+    q: 'What is a Stranger Trip, and how does rooming work for solo travelers?',
+    a: 'Stranger Trips are curated expeditions created for solo travelers who want to explore extraordinary Himalayan locations with a like-minded group. Cohorts are kept small (8 to 12 travelers), mainly focused towards Himachal Pradesh and Uttarakhand circuits with 24/7 on-ground logistical support. For accommodations, standard bookings include twin-sharing with a verified co-traveler of the same gender. Private single-room upgrades are also available for travelers who want solo space at night.'
+  },
+  {
+    category: 'Stranger Trips',
+    q: 'How are travelers vetted before joining a Stranger Trip?',
+    a: 'Every participant must submit government-issued identification and complete a short travel chemistry questionnaire before their spot is confirmed. This guarantees high community trust, respect, and mutual safety. We also maintain a strict zero-tolerance code of conduct on every departure.'
+  },
+  {
+    category: 'Stranger Trips',
+    q: 'What if a Stranger Trip does not meet the minimum cohort size?',
+    a: 'Our scheduled departures have guaranteed departure thresholds (minimum 4 to 6 travelers). In the rare scenario that a cohort does not meet minimum numbers 21 days prior to departure, travelers are offered 100% full refunds or free transfers to any alternative departure date or route with bonus Explorer Loyalty Credits.'
+  },
+  {
     category: 'Destinations & Planning',
-    q: 'What domestic and international destinations does AkroHolidays cover?',
+    q: 'What domestic and international destinations does AKROHOLIDAYS cover?',
     a: 'Domestically, we operate across all premier Indian circuits including Himachal Pradesh (Manali, Shimla, Spiti), Leh Ladakh, Goa, Kerala backwaters, Royal Rajasthan (Udaipur, Jaipur, Jaisalmer), Kashmir valley, and Northeast circuits (Sikkim, Meghalaya). Internationally, we curate bespoke tracks across 25+ countries, including Switzerland, Bali, Dubai & UAE, Vietnam, Thailand, Singapore, Maldives, Sri Lanka, and France.'
   },
   {
@@ -17,7 +34,7 @@ const holidayFaqs: FAQItem[] = [
   },
   {
     category: 'Pricing & Inclusions',
-    q: 'What is typically included in an AkroHolidays travel package?',
+    q: 'What is typically included in an AKROHOLIDAYS travel package?',
     a: 'Our quotes are comprehensive and transparent with zero surprise on-ground expenses. Inclusions typically cover handpicked 4-star or luxury boutique hotel accommodations, private air-conditioned vehicles with verified chauffeurs, daily gourmet breakfasts and select curated regional dinners, pre-arranged monument entrance passes, private local guides, and 24/7 on-ground concierge support.'
   },
   {
@@ -32,8 +49,8 @@ const holidayFaqs: FAQItem[] = [
   },
   {
     category: 'Explorer Loyalty Engine',
-    q: 'How does the AkroHolidays Explorer Loyalty Points system work?',
-    a: 'The Explorer Loyalty Engine connects your travel rewards with the entire New Akromind ecosystem. You earn points when booking vacations, but also when enrolling in AkroTution semester tracks or completing AkroPlacement programs. Every 1,000 points equals ₹1,000 in direct redemption credits towards hotel upgrades, private yacht charters, or tour discounts.'
+    q: 'How does the AKROHOLIDAYS Explorer Loyalty Points system work?',
+    a: 'The Explorer Loyalty Engine connects your travel rewards with the entire New Akromind ecosystem. You earn points when booking vacations, but also when enrolling in AKROTUTION semester tracks or completing AKROPLACEMENT programs. Every 1,000 points equals ₹1,000 in direct redemption credits towards hotel upgrades, private yacht charters, or tour discounts.'
   },
   {
     category: 'Food & Dietary Needs',
@@ -43,7 +60,7 @@ const holidayFaqs: FAQItem[] = [
   {
     category: 'Cancellations & Rescheduling',
     q: 'What is your cancellation and date rescheduling policy?',
-    a: 'We understand that unexpected family or corporate events arise. For most standard itineraries, date modifications requested at least 21 days before departure are processed with minimal administrative airline fees and zero AkroHolidays penalty. Unused hotel deposits are credited towards future travel bookings valid for 12 months.'
+    a: 'We understand that unexpected family or corporate events arise. For most standard itineraries, date modifications requested at least 21 days before departure are processed with minimal administrative airline fees and zero AKROHOLIDAYS penalty. Unused hotel deposits are credited towards future travel bookings valid for 12 months.'
   },
   {
     category: 'Flights & Transit',
@@ -130,7 +147,18 @@ const destinationsPool = {
   ]
 };
 
-export default function AkroholidaysPage() {
+export default function AkroholidaysPage({ defaultTab = 'all' }: { defaultTab?: 'all' | 'bespoke' | 'stranger-trips' }) {
+  const [planningMode, setPlanningMode] = useState<'all' | 'bespoke' | 'stranger-trips'>(defaultTab);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#stranger-trips') {
+      const el = document.getElementById('stranger-trips');
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 120);
+      }
+    }
+  }, []);
+
   const [regionType, setRegionType] = useState<'domestic' | 'international'>('domestic');
   const [selectedDestId, setSelectedDestId] = useState('goa');
   const [duration, setDuration] = useState<'3' | '5' | '7'>('5');
@@ -168,7 +196,7 @@ export default function AkroholidaysPage() {
       className="max-w-6xl mx-auto px-4 py-20 space-y-24 font-sans bg-warm-cream"
     >
       <header className="text-center space-y-4 max-w-3xl mx-auto">
-        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AkroHolidays</span>
+        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AKROHOLIDAYS</span>
         <h1 className="text-4xl md:text-6xl font-black tracking-tight text-warm-charcoal font-sans leading-none">
           Bespoke Journeys. <span className="font-serif italic font-normal text-terracotta">Uncharted Routes.</span>
         </h1>
@@ -279,156 +307,208 @@ export default function AkroholidaysPage() {
         </div>
       </section>
 
-      {/* Interactive Holiday Planner & Itinerary Tool */}
-      <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-12">
-        <div className="text-center space-y-3 max-w-xl mx-auto">
-          <span className="text-[10px] font-sans uppercase tracking-widest text-[#7D7067] font-bold font-mono">Interactive Tool</span>
-          <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal">Simulate Your Custom Holiday Itinerary</h2>
-          <p className="text-stone-600 text-xs leading-relaxed">Choose a geographic zone, select your target spot, adjust duration and traveler count to preview your day-by-day sightseeing track and earnable loyalty points.</p>
+      {/* Travel Architecture Mode Switcher */}
+      <section className="space-y-12">
+        <div className="flex flex-col items-center justify-center text-center space-y-4">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-terracotta">
+            Dual Exploration Engines Inside AKROHOLIDAYS
+          </span>
+          <div className="bg-[#FAF6EE] p-1.5 rounded-sm border border-[#E5E0D5] inline-flex flex-wrap justify-center gap-2">
+            <button
+              onClick={() => setPlanningMode('all')}
+              className={`px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xs cursor-pointer transition-all ${
+                planningMode === 'all'
+                  ? 'bg-warm-charcoal text-white shadow-xs'
+                  : 'text-stone-600 hover:text-warm-charcoal'
+              }`}
+            >
+              All Travel Modules
+            </button>
+            <button
+              onClick={() => setPlanningMode('bespoke')}
+              className={`px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xs cursor-pointer transition-all ${
+                planningMode === 'bespoke'
+                  ? 'bg-warm-charcoal text-white shadow-xs'
+                  : 'text-stone-600 hover:text-warm-charcoal'
+              }`}
+            >
+              Bespoke Family & Group Itineraries
+            </button>
+            <button
+              onClick={() => setPlanningMode('stranger-trips')}
+              className={`px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xs cursor-pointer transition-all flex items-center gap-2 ${
+                planningMode === 'stranger-trips'
+                  ? 'bg-terracotta text-white shadow-xs'
+                  : 'text-stone-600 hover:text-terracotta'
+              }`}
+            >
+              <Users className="w-3.5 h-3.5" />
+              <span>Stranger Trips: Solo Traveler Cohorts</span>
+              <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded-xs uppercase">Curated</span>
+            </button>
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-6 space-y-6">
-            {/* Region Selector */}
-            <div className="space-y-3">
-              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">1/ Travel Zone</label>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => handleRegionChange('domestic')}
-                  className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 ${
-                    regionType === 'domestic'
-                      ? 'bg-warm-charcoal text-white border-warm-charcoal'
-                      : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
-                  }`}
-                >
-                  <Map className={`w-4 h-4 ${regionType === 'domestic' ? 'text-white' : 'text-terracotta'}`} />
-                  <span>Domestic India</span>
-                </button>
-                <button
-                  onClick={() => handleRegionChange('international')}
-                  className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 ${
-                    regionType === 'international'
-                      ? 'bg-warm-charcoal text-white border-warm-charcoal'
-                      : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
-                  }`}
-                >
-                  <Globe className={`w-4 h-4 ${regionType === 'international' ? 'text-white' : 'text-terracotta'}`} />
-                  <span>International</span>
-                </button>
-              </div>
+        {/* Module 1: Interactive Holiday Planner & Itinerary Tool (Bespoke) */}
+        {(planningMode === 'all' || planningMode === 'bespoke') && (
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-12">
+            <div className="text-center space-y-3 max-w-xl mx-auto">
+              <span className="text-[10px] font-sans uppercase tracking-widest text-[#7D7067] font-bold font-mono">Module 01</span>
+              <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal">Simulate Your Custom Holiday Itinerary</h2>
+              <p className="text-stone-600 text-xs leading-relaxed">Choose a geographic zone, select your target spot, adjust duration and traveler count to preview your day-by-day sightseeing track and earnable loyalty points.</p>
             </div>
 
-            {/* Destination Selector */}
-            <div className="space-y-3">
-              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">2/ Target Curated Destination</label>
-              <div className="grid grid-cols-3 gap-2">
-                {pool.map(dest => (
-                  <button
-                    key={dest.id}
-                    onClick={() => setSelectedDestId(dest.id)}
-                    className={`p-3 rounded-sm border cursor-pointer text-center text-[10px] font-bold uppercase tracking-wider transition ${
-                      selectedDestId === dest.id
-                        ? 'border-terracotta bg-warm-cream/50 text-[#1C1816]'
-                        : 'border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta/50 text-[#7D7067]'
-                    }`}
-                  >
-                    {dest.name.split(' ')[0]}
-                  </button>
-                ))}
-              </div>
-              <p className="text-[11px] text-stone-500 font-serif italic pt-1">{activeDest.name} · {activeDest.regionTag}</p>
-            </div>
-
-            {/* Duration & Group Size */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">3/ Tour Duration</label>
-                <div className="flex gap-2">
-                  {['3', '5', '7'].map(d => (
+            <div className="grid lg:grid-cols-12 gap-8 items-start">
+              <div className="lg:col-span-6 space-y-6">
+                {/* Region Selector */}
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">1/ Travel Zone</label>
+                  <div className="flex gap-3">
                     <button
-                      key={d}
-                      onClick={() => setDuration(d as '3' | '5' | '7')}
-                      className={`flex-1 py-2.5 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 ${
-                        duration === d
+                      onClick={() => handleRegionChange('domestic')}
+                      className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 ${
+                        regionType === 'domestic'
                           ? 'bg-warm-charcoal text-white border-warm-charcoal'
                           : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
                       }`}
                     >
-                      {d} Days
+                      <Map className={`w-4 h-4 ${regionType === 'domestic' ? 'text-white' : 'text-terracotta'}`} />
+                      <span>Domestic India</span>
                     </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">4/ Travel Party Size</label>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setPeople(Math.max(1, people - 1))}
-                    className="w-10 h-10 bg-[#FCFAF7] hover:bg-warm-cream border border-[#E5E0D5] rounded-sm font-bold text-stone-700 cursor-pointer"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-warm-charcoal text-xs uppercase tracking-wider shrink-0 w-12 text-center font-mono">{people} Pax</span>
-                  <button
-                    onClick={() => setPeople(people + 1)}
-                    className="w-10 h-10 bg-[#FCFAF7] hover:bg-warm-cream border border-[#E5E0D5] rounded-sm font-bold text-stone-700 cursor-pointer"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Day-by-Day View panel */}
-          <div className="lg:col-span-6 bg-[#1C1816] text-warm-cream p-8 border border-[#2D2623] rounded-sm space-y-6">
-            <div className="flex justify-between items-start gap-4 border-b border-stone-800 pb-5">
-              <div className="space-y-1">
-                <span className="text-[9px] uppercase font-bold text-terracotta tracking-wider">Sightseeing Highlights</span>
-                <div className="text-3xl font-serif italic font-extrabold text-white tracking-tight tabular-nums">
-                  {calculateHighlights()}<span className="text-xs text-stone-400 font-sans font-medium"> Stops</span>
-                </div>
-              </div>
-              <div className="text-right">
-                <span className="text-[9px] uppercase font-bold text-stone-400 tracking-widest block">Earnable Explorer Points</span>
-                <span className="text-xs font-bold text-terracotta flex items-center justify-end gap-1 font-mono mt-1">
-                  <Award className="w-3.5 h-3.5 text-terracotta" /> +{getLoyaltyCredits()} pts
-                </span>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#7D7067] flex items-center gap-2">
-                <Map className="w-3.5 h-3.5 text-terracotta" /> Simulated {duration}-Day Curated Route
-              </h4>
-              <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1 scrollbar-thin">
-                {activeDaysItinerary.map((it, idx) => (
-                  <div key={idx} className="flex gap-3 text-xs bg-stone-900 border border-stone-800 p-3.5 rounded-sm">
-                    <span className="text-terracotta font-mono font-bold shrink-0">{idx + 1}/</span>
-                    <p className="text-stone-300 font-serif italic leading-relaxed">{it}</p>
+                    <button
+                      onClick={() => handleRegionChange('international')}
+                      className={`flex-1 py-3 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 ${
+                        regionType === 'international'
+                          ? 'bg-warm-charcoal text-white border-warm-charcoal'
+                          : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
+                      }`}
+                    >
+                      <Globe className={`w-4 h-4 ${regionType === 'international' ? 'text-white' : 'text-terracotta'}`} />
+                      <span>International</span>
+                    </button>
                   </div>
-                ))}
+                </div>
+
+                {/* Destination Selector */}
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">2/ Target Curated Destination</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {pool.map(dest => (
+                      <button
+                        key={dest.id}
+                        onClick={() => setSelectedDestId(dest.id)}
+                        className={`p-3 rounded-sm border cursor-pointer text-center text-[10px] font-bold uppercase tracking-wider transition ${
+                          selectedDestId === dest.id
+                            ? 'border-terracotta bg-warm-cream/50 text-[#1C1816]'
+                            : 'border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta/50 text-[#7D7067]'
+                        }`}
+                      >
+                        {dest.name.split(' ')[0]}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-[11px] text-stone-500 font-serif italic pt-1">{activeDest.name} · {activeDest.regionTag}</p>
+                </div>
+
+                {/* Duration & Group Size */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">3/ Tour Duration</label>
+                    <div className="flex gap-2">
+                      {['3', '5', '7'].map(d => (
+                        <button
+                          key={d}
+                          onClick={() => setDuration(d as '3' | '5' | '7')}
+                          className={`flex-1 py-2.5 text-xs uppercase tracking-widest font-bold rounded-sm border cursor-pointer transition-colors duration-200 ${
+                            duration === d
+                              ? 'bg-warm-charcoal text-white border-warm-charcoal'
+                              : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'
+                          }`}
+                        >
+                          {d} Days
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">4/ Travel Party Size</label>
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => setPeople(Math.max(1, people - 1))}
+                        className="w-10 h-10 bg-[#FCFAF7] hover:bg-warm-cream border border-[#E5E0D5] rounded-sm font-bold text-stone-700 cursor-pointer"
+                      >
+                        -
+                      </button>
+                      <span className="font-bold text-warm-charcoal text-xs uppercase tracking-wider shrink-0 w-12 text-center font-mono">{people} Pax</span>
+                      <button
+                        onClick={() => setPeople(people + 1)}
+                        className="w-10 h-10 bg-[#FCFAF7] hover:bg-warm-cream border border-[#E5E0D5] rounded-sm font-bold text-stone-700 cursor-pointer"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Day-by-Day View panel */}
+              <div className="lg:col-span-6 bg-[#1C1816] text-warm-cream p-8 border border-[#2D2623] rounded-sm space-y-6">
+                <div className="flex justify-between items-start gap-4 border-b border-stone-800 pb-5">
+                  <div className="space-y-1">
+                    <span className="text-[9px] uppercase font-bold text-terracotta tracking-wider">Sightseeing Highlights</span>
+                    <div className="text-3xl font-serif italic font-extrabold text-white tracking-tight tabular-nums">
+                      {calculateHighlights()}<span className="text-xs text-stone-400 font-sans font-medium"> Stops</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[9px] uppercase font-bold text-stone-400 tracking-widest block">Earnable Explorer Points</span>
+                    <span className="text-xs font-bold text-terracotta flex items-center justify-end gap-1 font-mono mt-1">
+                      <Award className="w-3.5 h-3.5 text-terracotta" /> +{getLoyaltyCredits()} pts
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#7D7067] flex items-center gap-2">
+                    <Map className="w-3.5 h-3.5 text-terracotta" /> Simulated {duration}-Day Curated Route
+                  </h4>
+                  <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1 scrollbar-thin">
+                    {activeDaysItinerary.map((it, idx) => (
+                      <div key={idx} className="flex gap-3 text-xs bg-stone-900 border border-stone-800 p-3.5 rounded-sm">
+                        <span className="text-terracotta font-mono font-bold shrink-0">{idx + 1}/</span>
+                        <p className="text-stone-300 font-serif italic leading-relaxed">{it}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <Link
+                    to="/contact"
+                    className="w-full bg-warm-charcoal border border-stone-700 text-white text-center py-3.5 px-4 rounded-sm flex items-center justify-center gap-2 font-bold text-[10px] tracking-widest uppercase cursor-pointer hover:bg-terracotta hover:border-terracotta transition-all"
+                  >
+                    <Compass className="w-3.5 h-3.5" />
+                    <span>Request Custom Quote & Itinerary &rarr;</span>
+                  </Link>
+                </div>
               </div>
             </div>
-
-            <div className="pt-4">
-              <a
-                href="/contact"
-                className="w-full bg-warm-charcoal border border-stone-700 text-white text-center py-3.5 px-4 rounded-sm flex items-center justify-center gap-2 font-bold text-[10px] tracking-widest uppercase cursor-pointer hover:bg-terracotta hover:border-terracotta transition-all"
-              >
-                <Compass className="w-3.5 h-3.5" />
-                <span>Request Custom Quote & Itinerary &rarr;</span>
-              </a>
-            </div>
           </div>
-        </div>
+        )}
+
+        {/* Module 2: Stranger Trip Planning (Solo Traveler Cohorts) */}
+        {(planningMode === 'all' || planningMode === 'stranger-trips') && (
+          <div id="stranger-trips" className="scroll-mt-28">
+            <StrangerTripPlanner />
+          </div>
+        )}
       </section>
 
       {/* Symmetrical Assurance & Inclusions */}
       <section className="grid md:grid-cols-2 gap-8">
         <div className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] rounded-sm space-y-6">
-          <h3 className="text-lg font-bold text-warm-charcoal">The AkroHolidays Guarantee</h3>
+          <h3 className="text-lg font-bold text-warm-charcoal">The AKROHOLIDAYS Guarantee</h3>
           <ul className="space-y-3.5 text-xs text-stone-700 font-sans">
             <li className="flex items-start gap-2">
               <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
@@ -464,11 +544,11 @@ export default function AkroholidaysPage() {
         </div>
       </section>
 
-      {/* Comprehensive FAQs for AkroHolidays */}
+      {/* Comprehensive FAQs for AKROHOLIDAYS */}
       <section className="space-y-8">
         <FaqAccordion 
           items={holidayFaqs}
-          title="AkroHolidays Frequently Asked Questions"
+          title="AKROHOLIDAYS Frequently Asked Questions"
           subtitle="Everything you need to know about our destinations, bookings, visas, and reward points"
         />
       </section>

@@ -6,7 +6,7 @@ const contactFaqs: FAQItem[] = [
   {
     category: 'Consultation & Scheduling',
     q: 'How does the initial Discovery Consultation work?',
-    a: 'When you reach out via email or phone, our coordinator responds within 2 hours to confirm your current focus area (AkroTution, AkroPlacement, AkroHolidays, or AkroMind). We then schedule a 30-minute one-on-one session with the relevant vertical director to evaluate your targets and build a preliminary milestone roadmap.'
+    a: 'When you reach out via email or phone, our coordinator responds within 2 hours to confirm your current focus area (AKROTUTION, AKROPLACEMENT, AKROHOLIDAYS, or AKROMIND). We then schedule a 30-minute one-on-one session with the relevant vertical director to evaluate your targets and build a preliminary milestone roadmap.'
   },
   {
     category: 'Consultation & Scheduling',
@@ -26,7 +26,7 @@ const contactFaqs: FAQItem[] = [
   {
     category: 'Emergency & Urgent Queries',
     q: 'How do you handle urgent travel support or emergency counseling needs?',
-    a: 'For travelers currently on an active AkroHolidays tour or students requiring urgent counseling de-escalation, our 24/7 Emergency Response Line is active around the clock with a guaranteed under-15-minute coordinator callback.'
+    a: 'For travelers currently on an active AKROHOLIDAYS tour or students requiring urgent counseling de-escalation, our 24/7 Emergency Response Line is active around the clock with a guaranteed under-15-minute coordinator callback.'
   }
 ];
 
@@ -46,7 +46,7 @@ export default function ContactPage() {
           Let’s start a <span className="font-serif italic font-normal text-terracotta">conversation.</span>
         </h1>
         <p className="text-[#5C524D] font-serif text-lg leading-relaxed pt-2">
-          Whether you’re seeking structured tutoring, an elite career transition, a bespoke journey, or empathetic counseling — our directors are active and ready to guide you.
+          Whether you’re seeking structured tutoring, an elite career transition, a bespoke journey, or empathetic counseling: our directors are active and ready to guide you.
         </p>
       </header>
 
@@ -134,7 +134,7 @@ export default function ContactPage() {
                 <span>How to Book Your Free 30-Min Discovery Call</span>
               </div>
               <p className="text-xs text-stone-400 font-serif italic leading-relaxed">
-                Send an email or message indicating your primary interest (AkroTution, AkroPlacement, AkroHolidays, or AkroMind) and your preferred consultation day/time. We match you with the appropriate vertical director within 2 hours.
+                Send an email or message indicating your primary interest (AKROTUTION, AKROPLACEMENT, AKROHOLIDAYS, or AKROMIND) and your preferred consultation day/time. We match you with the appropriate vertical director within 2 hours.
               </p>
             </div>
           </div>

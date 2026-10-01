@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
 import EditorialVisual from '../components/EditorialVisual';
@@ -7,7 +8,7 @@ import { GraduationCap, Home, Briefcase, Lightbulb, Shield, Heart, Check, Lock, 
 const mindFaqs: FAQItem[] = [
   {
     category: 'Confidentiality & Privacy',
-    q: 'Is counseling at AkroMind strictly confidential?',
+    q: 'Is counseling at AKROMIND strictly confidential?',
     a: 'Yes, 100%. We adhere to strict ethical standards established by national and international psychological associations. Every conversation, diagnostic note, session recording, and profile detail is encrypted and protected by strict non-disclosure. No information is ever shared with schools, employers, or third parties without explicit written consent.'
   },
   {
@@ -27,8 +28,8 @@ const mindFaqs: FAQItem[] = [
   },
   {
     category: 'Therapy vs Counseling',
-    q: 'What is the difference between AkroMind counseling and psychiatric treatment?',
-    a: 'AkroMind specializes in developmental counseling, stress management, academic performance anxiety, career transitions, and cognitive mindset coaching. We do not prescribe medication. If our counselors identify severe psychiatric conditions (such as severe clinical depression, psychosis, or active self-harm), we maintain a verified network of medical psychiatrists for seamless clinical referral.'
+    q: 'What is the difference between AKROMIND counseling and psychiatric treatment?',
+    a: 'AKROMIND specializes in developmental counseling, stress management, academic performance anxiety, career transitions, and cognitive mindset coaching. We do not prescribe medication. If our counselors identify severe psychiatric conditions (such as severe clinical depression, psychosis, or active self-harm), we maintain a verified network of medical psychiatrists for seamless clinical referral.'
   },
   {
     category: 'Format & Scheduling',
@@ -52,8 +53,8 @@ const mindFaqs: FAQItem[] = [
   },
   {
     category: 'Ecosystem Synergy',
-    q: 'How does AkroMind integrate with AkroTution and AkroPlacement?',
-    a: 'Academic performance and career advancement are fundamentally psychological. Students struggling in AkroTution receive targeted memory and test-anxiety support, while job seekers in AkroPlacement receive coaching on imposter syndrome, interview presence, and salary negotiation posture, creating a unified foundation of confidence.'
+    q: 'How does AKROMIND integrate with AKROTUTION and AKROPLACEMENT?',
+    a: 'Academic performance and career advancement are fundamentally psychological. Students struggling in AKROTUTION receive targeted memory and test-anxiety support, while job seekers in AKROPLACEMENT receive coaching on imposter syndrome, interview presence, and salary negotiation posture, creating a unified foundation of confidence.'
   }
 ];
 
@@ -124,7 +125,7 @@ export default function AkromindPage() {
       className="max-w-6xl mx-auto px-4 py-20 space-y-24 font-sans bg-warm-cream"
     >
       <header className="text-center space-y-4 max-w-3xl mx-auto">
-        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AkroMind</span>
+        <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">AKROMIND</span>
         <h1 className="text-4xl md:text-6xl font-black tracking-tight text-warm-charcoal font-sans leading-none">
           Guide. Inspire. <span className="font-serif italic font-normal text-terracotta">Remodel.</span>
         </h1>
@@ -200,7 +201,7 @@ export default function AkromindPage() {
                 'Deconstructing internal limiting beliefs and imposter narratives',
                 'Developing vocal gravitas and structured communication for boardrooms',
                 'Cognitive boundary defense preventing chronic corporate burnout',
-                'Strategic career milestone alignment paired with AkroPlacement'
+                'Strategic career milestone alignment paired with AKROPLACEMENT'
               ]
             },
             {
@@ -313,12 +314,12 @@ export default function AkromindPage() {
               <Lock className="w-3.5 h-3.5 text-terracotta" />
               <span>Strict Non-Disclosure Charter Enforced</span>
             </div>
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="bg-warm-cream text-warm-charcoal hover:bg-terracotta hover:text-white px-6 py-3 rounded-xs font-bold text-[10px] tracking-widest uppercase transition-colors"
             >
               Book 1-on-1 Confidential Consult &rarr;
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -328,7 +329,7 @@ export default function AkromindPage() {
         <div className="p-8 border border-[#E5E0D5] bg-[#FCFAF7] rounded-sm space-y-6">
           <div className="flex items-center gap-3">
             <Shield className="w-5 h-5 text-terracotta" />
-            <h3 className="text-lg font-bold text-warm-charcoal">The AkroMind Ethical Charter</h3>
+            <h3 className="text-lg font-bold text-warm-charcoal">The AKROMIND Ethical Charter</h3>
           </div>
           <ul className="space-y-3.5 text-xs text-stone-700 font-sans">
             <li className="flex items-start gap-2">
@@ -368,11 +369,11 @@ export default function AkromindPage() {
         </div>
       </section>
 
-      {/* Comprehensive FAQs for AkroMind */}
+      {/* Comprehensive FAQs for AKROMIND */}
       <section className="space-y-8">
         <FaqAccordion 
           items={mindFaqs}
-          title="AkroMind Frequently Asked Questions"
+          title="AKROMIND Frequently Asked Questions"
           subtitle="Everything you need to know about our counseling philosophy, privacy, and sessions"
         />
       </section>

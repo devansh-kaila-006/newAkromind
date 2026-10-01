@@ -105,7 +105,7 @@ export default function EditorialVisual({
               30°54'N · 75°51'E // LUDHIANA CORE // SYMMETRICAL GROWTH BLUEPRINT
             </text>
             <text x="1020" y="470" textAnchor="end" fontFamily="'JetBrains Mono', monospace" fontSize="10" fill="#B84E34" letterSpacing="0.1em">
-              SEC. 01 — MULTI-DIMENSIONAL
+              SEC. 01 : MULTI-DIMENSIONAL
             </text>
 
             {/* Modern Subtle Concentric Alignment Marks */}

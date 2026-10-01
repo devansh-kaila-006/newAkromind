@@ -27,7 +27,7 @@ const aboutFaqs: FAQItem[] = [
   {
     category: 'Community & CSR',
     q: 'Does New Akromind support students from underprivileged backgrounds?',
-    a: 'Yes. Through the Akromind Foundation Initiative, 10% of our academic batch seats in AkroTution and counseling quotas in AkroMind are reserved for deserving candidates from economically challenged backgrounds, provided on a full scholarship basis with all study materials and test access included.'
+    a: 'Yes. Through the Akromind Foundation Initiative, 10% of our academic batch seats in AKROTUTION and counseling quotas in AKROMIND are reserved for deserving candidates from economically challenged backgrounds, provided on a full scholarship basis with all study materials and test access included.'
   },
   {
     category: 'Vision & Roadmaps',
@@ -78,13 +78,13 @@ const milestones = [
   },
   {
     year: '2024',
-    title: 'Launch of AkroTution & AkroPlacement',
+    title: 'Launch of AKROTUTION & AKROPLACEMENT',
     desc: 'Expanded into academic STEM tutoring with IITian mentors, rapidly followed by an enterprise corporate career accelerator with 200+ inaugural hiring partner tie-ups.',
     icon: BookOpen
   },
   {
     year: '2025',
-    title: 'AkroHolidays & Explorer Loyalty Engine',
+    title: 'AKROHOLIDAYS & Explorer Loyalty Engine',
     desc: 'Introduced curated domestic and international travel circuits across 25+ countries, interconnecting the ecosystem through transferable Explorer reward points.',
     icon: Compass
   },

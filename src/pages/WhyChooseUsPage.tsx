@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ShieldCheck, Layers, Trophy, Lightbulb, Zap, HelpCircle, ArrowRight, ClipboardCheck, Check, X } from 'lucide-react';
 import EditorialVisual from '../components/EditorialVisual';
@@ -13,7 +14,7 @@ const whyUsFaqs: FAQItem[] = [
   {
     category: 'Ecosystem Advantages',
     q: 'Do I get bundled discounts or financial perks when using multiple verticals?',
-    a: 'Yes. Ecosystem members unlock significant cross-vertical benefits: students enrolled in AkroTution receive complimentary diagnostic consultations with AkroMind counselors, career acceleration candidates in AkroPlacement get preferential alumni hiring network access, and all fees earn Explorer Points redeemable for luxury AkroHolidays vacations.'
+    a: 'Yes. Ecosystem members unlock significant cross-vertical benefits: students enrolled in AKROTUTION receive complimentary diagnostic consultations with AKROMIND counselors, career acceleration candidates in AKROPLACEMENT get preferential alumni hiring network access, and all fees earn Explorer Points redeemable for luxury AKROHOLIDAYS vacations.'
   },
   {
     category: 'Accountability & Outcomes',
@@ -72,28 +73,28 @@ export default function WhyChooseUsPage() {
   const getAssessmentResult = () => {
     if (goalType === 'grades') {
       return {
-        priority: 'AkroTution & AkroMind Synergy Pack',
+        priority: 'AKROTUTION & AKROMIND Synergy Pack',
         reason: 'Improving board and competitive exam marks with zero student burnout requires pairing structured concept tutoring with cognitive stress relief protocols.',
         timeline: urgency === 'soon' ? 'Weekly diagnostic homework loops & <20m doubt desk' : 'Bi-weekly conceptual baseline checkpoints',
         credits: 'Eligible for 2 complimentary trial classes & academic audit'
       };
     } else if (goalType === 'salary') {
       return {
-        priority: 'AkroPlacement Strategic Accelerator',
+        priority: 'AKROPLACEMENT Strategic Accelerator',
         reason: 'Securing Tier-1 corporate roles commands deep ATS resume reconstruction, distributed system design mocks, and direct referrals to 500+ hiring partners.',
         timeline: urgency === 'soon' ? 'Immediate resume rebuild & mock battery in 14 days' : '12-week comprehensive placement track',
         credits: 'Eligible for priority recruiter referrals & negotiation advisory'
       };
     } else if (goalType === 'stress') {
       return {
-        priority: 'AkroMind Personal & Family Counseling',
+        priority: 'AKROMIND Personal & Family Counseling',
         reason: 'Navigating academic pressure, career burnout, or adolescent parent-student tension requires confidential, empathetic guidance by licensed psychologists.',
         timeline: urgency === 'soon' ? 'Immediate 1-on-1 advisor matching within 48 hours' : 'Bi-weekly structured alignment sessions',
         credits: 'Includes comprehensive cognitive aptitude mapping assessment'
       };
     } else {
       return {
-        priority: 'AkroHolidays Bespoke Itinerary Curation',
+        priority: 'AKROHOLIDAYS Bespoke Itinerary Curation',
         reason: 'Rejuvenating mind and family after high-pressure quarters is best achieved through verified boutique sanctuaries, private chauffeurs, and zero commercial rush.',
         timeline: urgency === 'soon' ? 'Customized flight-matched draft route in 24 hours' : 'Early-bird luxury villa & private guide allocation',
         credits: 'Earn double Explorer Loyalty Points on confirmed bookings'
@@ -171,7 +172,7 @@ export default function WhyChooseUsPage() {
             {
               dim: 'Mental Wellness & Stress',
               trad: 'Treated as weakness or ignored entirely until severe exam burnout occurs.',
-              akro: 'Integrated in-house AkroMind counseling desk with stress inoculation protocols included.'
+              akro: 'Integrated in-house AKROMIND counseling desk with stress inoculation protocols included.'
             },
             {
               dim: 'Corporate Job Referrals',
@@ -242,10 +243,10 @@ export default function WhyChooseUsPage() {
               When student mental wellness aligns with academic tutoring, and career coaching connects directly with corporate hiring, high-value outcomes happen predictably.
             </p>
           </div>
-          <a href="/contact" className="text-terracotta hover:text-white font-bold text-xs transition-colors mt-6 inline-flex items-center gap-1.5 uppercase tracking-wider font-sans">
+          <Link to="/contact" className="text-terracotta hover:text-white font-bold text-xs transition-colors mt-6 inline-flex items-center gap-1.5 uppercase tracking-wider font-sans">
             <span>Book Discovery Call</span>
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </motion.div>
       </section>
 
@@ -338,13 +339,13 @@ export default function WhyChooseUsPage() {
             </div>
 
             <div className="pt-4 z-10">
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="w-full bg-warm-charcoal border border-stone-700 text-white text-center py-3 px-4 rounded-sm flex items-center justify-center gap-2 font-bold text-[10px] tracking-widest uppercase cursor-pointer hover:bg-terracotta hover:border-terracotta transition-all"
               >
                 <HelpCircle className="w-4 h-4" />
                 <span>Claim Roadmap Priority Alignment &rarr;</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

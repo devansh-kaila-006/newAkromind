@@ -14,6 +14,7 @@ import AkrotutionPage from './pages/AkrotutionPage';
 import AkroplacementPage from './pages/AkroplacementPage';
 import AkroholidaysPage from './pages/AkroholidaysPage';
 import AkromindPage from './pages/AkromindPage';
+import AkrobooksPage from './pages/AkrobooksPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 
@@ -45,12 +46,16 @@ export default function App() {
           <Route path="verticals/akroplacement" element={<AkroplacementPage />} />
           <Route path="verticals/akroholidays" element={<AkroholidaysPage />} />
           <Route path="verticals/akromind" element={<AkromindPage />} />
+          <Route path="verticals/akrobooks" element={<AkrobooksPage />} />
 
           {/* Helpful Short URL Redirects for Direct Access & Marketing Links */}
           <Route path="akromind" element={<Navigate to="/verticals/akromind" replace />} />
           <Route path="akrotution" element={<Navigate to="/verticals/akrotution" replace />} />
           <Route path="akroplacement" element={<Navigate to="/verticals/akroplacement" replace />} />
           <Route path="akroholidays" element={<Navigate to="/verticals/akroholidays" replace />} />
+          <Route path="akrobooks" element={<Navigate to="/verticals/akrobooks" replace />} />
+          <Route path="books" element={<Navigate to="/verticals/akrobooks" replace />} />
+          <Route path="publishing" element={<Navigate to="/verticals/akrobooks" replace />} />
           <Route path="counseling" element={<Navigate to="/verticals/akromind" replace />} />
           <Route path="counselling" element={<Navigate to="/verticals/akromind" replace />} />
           <Route path="career-counselling" element={<Navigate to="/verticals/akromind" replace />} />

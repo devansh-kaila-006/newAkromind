@@ -13,7 +13,7 @@ export default function PrivacyPage() {
         <section className="p-6 bg-[#FCFAF7] border border-[#E5E0D5] rounded-sm space-y-3">
           <h2 className="text-base font-bold text-warm-charcoal uppercase tracking-wider font-sans">1. Preamble & Scope</h2>
           <p>
-            New Akromind ("we", "our", or "the Ecosystem"), headquartered at 18, Kapoor Niwas, Dugri, Ludhiana, Punjab (141001), respects and safeguards your personal privacy. This Privacy Policy outlines the standards governing how we collect, process, store, and protect personal, academic, psychological, and transaction data across AKROMIND, AKROTUTION, AKROPLACEMENT, and AKROHOLIDAYS.
+            New Akromind ("we", "our", or "the Ecosystem"), headquartered at 18, Kapoor Niwas, Dugri, Ludhiana, Punjab (141001), respects and safeguards your personal privacy. This Privacy Policy outlines the standards governing how we collect, process, store, and protect personal, academic, psychological, and transaction data across AKROMIND, AKROTUTION, AKROPLACEMENT, AKROHOLIDAYS, and AKROBOOKS.
           </p>
         </section>
 
@@ -25,6 +25,7 @@ export default function PrivacyPage() {
             <li><strong>AKROTUTION:</strong> Student contact records, academic marks, board targets, homework submissions, and diagnostic test analytics.</li>
             <li><strong>AKROPLACEMENT:</strong> Resumes, employment history, portfolios, mock interview recordings, and corporate compensation targets.</li>
             <li><strong>AKROHOLIDAYS:</strong> Passport identification details, visa documentation proofs, dietary preferences, and travel party member records.</li>
+            <li><strong>AKROBOOKS:</strong> Reader inquiry details, author manuscript proposals, shipping addresses, reader preferences, and digital license verification data.</li>
           </ul>
         </section>
 

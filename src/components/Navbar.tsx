@@ -9,6 +9,7 @@ const verticals = [
   { name: 'AKROTUTION', path: '/verticals/akrotution', desc: 'Symmetrical Academy Learning' },
   { name: 'AKROPLACEMENT', path: '/verticals/akroplacement', desc: 'Elite Work & Career Transitions' },
   { name: 'AKROHOLIDAYS', path: '/verticals/akroholidays', desc: 'Custom Journeys & Stranger Trips' },
+  { name: 'AKROBOOKS', path: '/verticals/akrobooks', desc: 'Thought Leadership & Literature Publishing' },
 ];
 
 export default function Navbar() {

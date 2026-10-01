@@ -13,21 +13,21 @@ export default function TermsPage() {
         <section className="p-6 bg-[#FCFAF7] border border-[#E5E0D5] rounded-sm space-y-3">
           <h2 className="text-base font-bold text-warm-charcoal uppercase tracking-wider font-sans">1. Acceptance of Terms</h2>
           <p>
-            By enrolling in any program, booking an advisory consultation, or retaining services across AKROMIND, AKROTUTION, AKROPLACEMENT, or AKROHOLIDAYS, you explicitly agree to these institutional Terms of Service and acknowledge the fiduciary standards of New Akromind.
+            By enrolling in any program, booking an advisory consultation, reserving literary pre-orders, or retaining services across AKROMIND, AKROTUTION, AKROPLACEMENT, AKROHOLIDAYS, or AKROBOOKS, you explicitly agree to these institutional Terms of Service and acknowledge the fiduciary standards of New Akromind.
           </p>
         </section>
 
         <section className="p-6 bg-[#FCFAF7] border border-[#E5E0D5] rounded-sm space-y-3">
           <h2 className="text-base font-bold text-warm-charcoal uppercase tracking-wider font-sans">2. Code of Conduct & Academic Integrity</h2>
           <p>
-            Enrolled students and candidates agree to uphold high standards of integrity. In AKROTUTION and AKROPLACEMENT, submitted diagnostic tests, mock assignments, and coding evaluations must reflect the candidate’s authentic individual work. Plagiarism or fraudulent credential representations result in immediate cancellation of referral privileges.
+            Enrolled students, authors, and candidates agree to uphold high standards of integrity. In AKROTUTION and AKROPLACEMENT, submitted diagnostic tests, mock assignments, and coding evaluations must reflect the candidate’s authentic individual work. In AKROBOOKS, submitted manuscripts must represent original intellectual creations free from copyright infringement or uncredited plagiarism.
           </p>
         </section>
 
         <section className="p-6 bg-[#FCFAF7] border border-[#E5E0D5] rounded-sm space-y-3">
           <h2 className="text-base font-bold text-warm-charcoal uppercase tracking-wider font-sans">3. Intellectual Property Rights</h2>
           <p>
-            All proprietary curriculum materials, algorithm notes, formula cheat sheets, interview casebooks, and travel itinerary structures provided by New Akromind remain the exclusive intellectual property of New Akromind. Distribution or unauthorized commercial reproduction is strictly prohibited under Indian Copyright Law.
+            All proprietary curriculum materials, algorithm notes, formula cheat sheets, interview casebooks, literary publications, book manuscripts, and travel itinerary structures provided by New Akromind remain the exclusive intellectual property of New Akromind. Distribution or unauthorized commercial reproduction is strictly prohibited under Indian Copyright Law.
           </p>
         </section>
 

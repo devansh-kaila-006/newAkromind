@@ -129,7 +129,7 @@ export default function AboutPage() {
           <div className="text-[10px] uppercase font-bold text-terracotta tracking-widest font-mono">Our Mandate</div>
           <h3 className="text-2xl font-serif italic text-warm-charcoal">The Mission</h3>
           <p className="text-stone-600 text-sm leading-relaxed font-sans">
-            To deliver world-class, integrated resources across academic tutoring, corporate career placement, empathetic counseling, and authentic global voyages, equipping every individual to design their life with total clarity, confidence, and peace of mind.
+            To deliver world-class, integrated resources across academic tutoring, corporate career placement, empathetic counseling, original thought leadership literature, and authentic global voyages, equipping every individual to design their life with total clarity, confidence, and peace of mind.
           </p>
           <div className="pt-2 text-xs text-stone-500 font-serif italic border-t border-[#E5E0D5]/60">
             Unifying high performance with mental serenity across every demographic.

@@ -134,7 +134,7 @@ export default function ContactPage() {
                 <span>How to Book Your Free 30-Min Discovery Call</span>
               </div>
               <p className="text-xs text-stone-400 font-serif italic leading-relaxed">
-                Send an email or message indicating your primary interest (AKROTUTION, AKROPLACEMENT, AKROHOLIDAYS, or AKROMIND) and your preferred consultation day/time. We match you with the appropriate vertical director within 2 hours.
+                Send an email or message indicating your primary interest (AKROTUTION, AKROPLACEMENT, AKROHOLIDAYS, AKROMIND, or AKROBOOKS) and your preferred consultation day/time. We match you with the appropriate vertical director within 2 hours.
               </p>
             </div>
           </div>

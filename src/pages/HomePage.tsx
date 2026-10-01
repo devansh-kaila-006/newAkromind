@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowUpRight, Check, Compass, BookOpen, Briefcase, Heart, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Check, Compass, BookOpen, Briefcase, Heart, ArrowRight, Library } from 'lucide-react';
 import EditorialVisual from '../components/EditorialVisual';
 import FaqAccordion, { FAQItem } from '../components/FaqAccordion';
 import VideoShowcase from '../components/VideoShowcase';
@@ -9,8 +9,13 @@ import StrangerTripPlanner from '../components/StrangerTripPlanner';
 const homeFaqs: FAQItem[] = [
   {
     category: 'Ecosystem',
-    q: 'What is New Akromind, and how do its four verticals work together?',
-    a: 'New Akromind is an integrated multi-vertical growth ecosystem based in Ludhiana, Punjab, operating across India and globally. Rather than treating academic tutoring, career placement, mental health counseling, and restorative travel as isolated services, we integrate them into a unified flywheel. A student receives academic mastery through AKROTUTION while maintaining emotional resilience via AKROMIND counseling; upon graduating, AKROPLACEMENT connects them to 500+ corporate hiring partners; and families celebrate milestones with curated journeys through AKROHOLIDAYS, earning transferable loyalty credits across all verticals.'
+    q: 'What is New Akromind, and how do its five verticals work together?',
+    a: 'New Akromind is an integrated multi-vertical growth ecosystem based in Ludhiana, Punjab, operating across India and globally. Rather than treating academic tutoring, career placement, mental health counseling, thought leadership publishing, and restorative travel as isolated services, we integrate them into a unified flywheel. A student receives academic mastery through AKROTUTION while maintaining emotional resilience via AKROMIND counseling; deepens self-awareness through AKROBOOKS publications; graduates into high-impact roles via AKROPLACEMENT; and celebrates milestones with curated journeys through AKROHOLIDAYS.'
+  },
+  {
+    category: 'Publishing',
+    q: 'What is AKROBOOKS, and what kind of literature do you publish?',
+    a: 'AKROBOOKS is our original publishing atelier releasing 17 upcoming titles across psychology, academic pedagogy, corporate career realpolitik, and adolescent emotional health. Every book is grounded in clinical transcripts and classroom pedagogy, including titles like Done With It, The Sex Compass, Education the Mind, The Couple Code, and एक विद्यार्थी.'
   },
   {
     category: 'Ecosystem',
@@ -174,6 +179,7 @@ export default function HomePage() {
               {[
                 { title: 'Cognitive Balance (AKROMIND)', desc: 'Stress reduction and aptitude discovery unlock natural student learning speed.' },
                 { title: 'Academic Rigor (AKROTUTION)', desc: 'Systematic concept grounding turns test anxieties into predictable board results.' },
+                { title: 'Intellectual Artifacts (AKROBOOKS)', desc: '17 clinical psychology and educational volumes bridging theory with daily reality.' },
                 { title: 'Career Trajectory (AKROPLACEMENT)', desc: 'Translating academic aptitude into senior job offers with high CTC packages.' },
                 { title: 'Restorative Perspective (AKROHOLIDAYS)', desc: 'Conscious travel rejuvenates the spirit and deepens familial bonds.' }
               ].map(item => (
@@ -195,19 +201,19 @@ export default function HomePage() {
               type="whyus"
               aspectRatio="4:3"
               badge="Flywheel Model"
-              title="The Symmetrical Four-Quadrant Engine"
-              caption="Harmonizing mental, academic, professional, and exploratory pursuits"
+              title="The Symmetrical Five-Pillar Engine"
+              caption="Harmonizing mental, academic, literary, professional, and exploratory pursuits"
             />
           </div>
         </div>
       </section>
 
-      {/* Four Operational Verticals Section */}
+      {/* Five Operational Verticals Section */}
       <section className="max-w-6xl mx-auto px-4 space-y-16">
         <div className="text-center md:text-left md:flex md:items-end md:justify-between border-b border-[#E5E0D5] pb-8">
           <div className="space-y-2">
             <span className="text-[10px] font-bold tracking-widest uppercase text-terracotta">Operational Verticals</span>
-            <h2 className="text-4xl font-serif italic text-warm-charcoal">Four paths. One unified blueprint.</h2>
+            <h2 className="text-4xl font-serif italic text-warm-charcoal">Five paths. One unified blueprint.</h2>
           </div>
           <p className="text-sm text-stone-500 max-w-md mt-4 md:mt-0 leading-relaxed">
             Each branch operates with uncompromising professional depth while sharing data, insights, and reward credits seamlessly across the New Akromind network.
@@ -376,6 +382,36 @@ export default function HomePage() {
               className="text-[11px] font-bold tracking-widest uppercase text-terracotta inline-flex items-center gap-2 hover:text-warm-charcoal transition-colors pt-4 border-t border-[#E5E0D5]"
             >
               Explore AKROHOLIDAYS Itineraries &rarr;
+            </Link>
+          </div>
+
+          {/* Vertical 05: AKROBOOKS */}
+          <div className="md:col-span-2 bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col md:flex-row justify-between items-start md:items-center hover:border-terracotta transition-colors duration-300 rounded-sm gap-6">
+            <div className="space-y-4 max-w-3xl">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 border border-[#E5E0D5] bg-warm-cream flex items-center justify-center text-terracotta rounded-xs">
+                  <Library className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 05 · New Vertical</span>
+                  <h3 className="text-2xl font-bold text-warm-charcoal">AKROBOOKS</h3>
+                </div>
+                <span className="text-xs font-mono text-stone-400 ml-auto hidden sm:inline">PUBLISHING ATELIER</span>
+              </div>
+              <p className="text-stone-600 text-sm leading-relaxed font-serif">
+                Original literature, evidence-based psychology, career blueprints, and student guides born from our counseling and academic cohorts. Releasing 17 landmark titles including <em>Done With It</em>, <em>The Sex Compass</em>, <em>Education the Mind</em>, <em>The Couple Code</em>, and <em>एक विद्यार्थी</em>.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1 text-xs text-stone-600">
+                <span className="px-2.5 py-1 bg-white border border-[#E5E0D5] rounded-xs font-mono text-[11px]">17 Upcoming Titles</span>
+                <span className="px-2.5 py-1 bg-white border border-[#E5E0D5] rounded-xs font-mono text-[11px]">Clinical Evidence Grounded</span>
+                <span className="px-2.5 py-1 bg-white border border-[#E5E0D5] rounded-xs font-mono text-[11px]">Original Literature Atelier</span>
+              </div>
+            </div>
+            <Link 
+              to="/verticals/akrobooks" 
+              className="px-6 py-3.5 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-mono uppercase tracking-wider font-bold rounded-xs transition-colors shrink-0 inline-flex items-center gap-2 shadow-xs"
+            >
+              <span>Explore AKROBOOKS Catalogue &rarr;</span>
             </Link>
           </div>
         </div>

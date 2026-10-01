@@ -222,7 +222,7 @@ export default function AkroholidaysPage({ defaultTab = 'all' }: { defaultTab?: 
           { num: '24/7', label: 'On-Ground Concierge', detail: 'Dedicated traveler emergency desk' },
           { num: '10K+', label: 'Explorer Points', detail: 'Earnable on every confirmed tour' }
         ].map((s, idx) => (
-          <div key={idx} className="px-6 space-y-1 text-center md:text-left">
+          <div key={idx} className="p-3.5 sm:px-6 space-y-1 text-center md:text-left">
             <div className="text-3xl md:text-4xl font-serif italic font-bold text-terracotta tabular-nums">{s.num}</div>
             <div className="text-xs font-bold uppercase tracking-wider text-warm-charcoal">{s.label}</div>
             <div className="text-[10px] text-stone-500 font-serif italic">{s.detail}</div>

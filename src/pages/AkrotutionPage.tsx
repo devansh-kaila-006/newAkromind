@@ -119,7 +119,7 @@ export default function AkrotutionPage() {
           { num: '95.4%', label: 'Board Distinction Rate', detail: 'Scored >85% in CBSE / ICSE' },
           { num: '100%', label: 'IITian & Expert Mentors', detail: 'Vetted minimum 6+ years experience' }
         ].map((s, idx) => (
-          <div key={idx} className="px-6 space-y-1 text-center md:text-left">
+          <div key={idx} className="p-3.5 sm:px-6 space-y-1 text-center md:text-left">
             <div className="text-3xl md:text-4xl font-serif italic font-bold text-terracotta tabular-nums">{s.num}</div>
             <div className="text-xs font-bold uppercase tracking-wider text-warm-charcoal">{s.label}</div>
             <div className="text-[10px] text-stone-500 font-serif italic">{s.detail}</div>

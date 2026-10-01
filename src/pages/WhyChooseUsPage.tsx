@@ -151,7 +151,8 @@ export default function WhyChooseUsPage() {
           </p>
         </div>
 
-        <div className="bg-[#FCFAF7] border border-[#E5E0D5] rounded-sm overflow-hidden">
+        {/* Desktop Table View */}
+        <div className="hidden md:block bg-[#FCFAF7] border border-[#E5E0D5] rounded-xs overflow-hidden">
           <div className="grid grid-cols-12 bg-warm-charcoal text-white text-xs font-bold uppercase tracking-wider py-4 px-6 border-b border-[#2D2623]">
             <div className="col-span-4">Evaluation Dimension</div>
             <div className="col-span-4 text-stone-400">Traditional Single Providers</div>
@@ -208,6 +209,66 @@ export default function WhyChooseUsPage() {
             </div>
           ))}
         </div>
+
+        {/* Mobile Card-Based Comparison View */}
+        <div className="md:hidden space-y-4">
+          {[
+            {
+              dim: 'Academic Class Size',
+              trad: 'Crowded mass halls of 60 to 120+ students; zero individual interaction.',
+              akro: 'Strictly capped at 8 to 12 students per cohort or dedicated 1-on-1 private atelier.'
+            },
+            {
+              dim: 'Doubt Resolution Support',
+              trad: 'Long weekly queues; students wait days for generic textbook answer keys.',
+              akro: 'Instant digital doubt desk with guaranteed <20 minute step-by-step video/handwritten SLA.'
+            },
+            {
+              dim: 'Mental Wellness & Stress',
+              trad: 'Treated as weakness or ignored entirely until severe exam burnout occurs.',
+              akro: 'Integrated in-house AKROMIND counseling desk with stress inoculation protocols included.'
+            },
+            {
+              dim: 'Corporate Job Referrals',
+              trad: 'Spamming public LinkedIn job boards with generic ATS-rejected templates.',
+              akro: 'Warm, direct introductions to senior hiring directors across 500+ active partner firms.'
+            },
+            {
+              dim: 'Travel & Holiday Curation',
+              trad: 'Rigid group bus packages with forced commercial souvenir store detours.',
+              akro: '100% bespoke private itineraries, verified boutique stays, and 24/7 on-ground concierge.'
+            },
+            {
+              dim: 'Cross-Vertical Rewards',
+              trad: 'Zero reciprocity; every dollar spent is trapped in a siloed transaction.',
+              akro: 'Unified Explorer Loyalty Points engine earnable and redeemable across all 4 verticals.'
+            }
+          ].map((row, idx) => (
+            <div key={idx} className="bg-[#FCFAF7] border border-[#E5E0D5] rounded-xs p-4 space-y-3">
+              <span className="text-xs font-bold text-warm-charcoal uppercase tracking-wider block border-b border-[#E5E0D5] pb-2 font-mono">
+                {row.dim}
+              </span>
+              
+              <div className="space-y-2 text-xs">
+                <div className="p-3 bg-stone-100/70 border border-stone-200 rounded-2xs text-stone-600 flex items-start gap-2">
+                  <X className="w-3.5 h-3.5 text-stone-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-[10px] uppercase font-mono block text-stone-500">Traditional Single Providers</span>
+                    <span className="text-[11px] leading-relaxed">{row.trad}</span>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-warm-cream border border-terracotta/30 rounded-2xs text-warm-charcoal flex items-start gap-2">
+                  <Check className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5 font-bold" />
+                  <div>
+                    <span className="font-bold text-[10px] uppercase font-mono block text-terracotta">New Akromind Ecosystem</span>
+                    <span className="text-[11px] font-medium leading-relaxed">{row.akro}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Grid Reasons Cards */}
@@ -251,19 +312,19 @@ export default function WhyChooseUsPage() {
       </section>
 
       {/* Suitability Interactive diagnostic advisor tool */}
-      <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 md:p-12 rounded-sm space-y-12">
+      <section className="bg-[#FCFAF7] border border-[#E5E0D5] p-5 sm:p-8 md:p-12 rounded-xs space-y-8 sm:space-y-12">
         <div className="text-center space-y-3 max-w-xl mx-auto">
           <span className="text-[10px] font-sans uppercase tracking-widest text-[#7D7067] font-bold font-mono">Interactive Tool</span>
           <h2 className="text-2xl md:text-3xl font-serif italic text-warm-charcoal">Ecosystem Suitability & Priority Advisor</h2>
           <p className="text-stone-600 text-xs leading-relaxed">Fill in your most critical immediate objective and urgency constraint to dynamically align our multiple verticals for your exact scenario.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-start">
           {/* Form parameters */}
-          <div className="bg-warm-cream/40 p-8 border border-[#E5E0D5] space-y-6 rounded-sm">
+          <div className="bg-warm-cream/40 p-5 sm:p-8 border border-[#E5E0D5] space-y-6 rounded-xs">
             <div className="space-y-3">
-              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">My immediate focus goal is to:</label>
-              <div className="grid grid-cols-2 gap-2">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block font-mono">1/ My immediate focus goal is to:</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {[
                   { id: 'grades', text: 'Boost School & Exam Grades' },
                   { id: 'salary', text: 'Accelerate Career Placement' },
@@ -273,7 +334,7 @@ export default function WhyChooseUsPage() {
                   <button
                     key={g.id}
                     onClick={() => setGoalType(g.id)}
-                    className={`p-3 text-xs font-bold text-left rounded-sm border cursor-pointer transition leading-tight ${
+                    className={`p-3 text-xs font-bold text-left rounded-xs border cursor-pointer transition leading-tight ${
                       goalType === g.id
                         ? 'border-terracotta bg-[#FCFAF7] text-terracotta ring-1 ring-terracotta/20 font-bold'
                         : 'border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta/40 text-stone-600 font-medium'
@@ -286,8 +347,8 @@ export default function WhyChooseUsPage() {
             </div>
 
             <div className="space-y-3">
-              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">Timeline Urgency Bracket:</label>
-              <div className="flex gap-2">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block font-mono">2/ Timeline Urgency Bracket:</label>
+              <div className="flex flex-col sm:flex-row gap-2">
                 {[
                   { id: 'soon', text: 'Immediate (<15 Days)' },
                   { id: 'tight', text: 'Mid-term (<2 Months)' },
@@ -296,7 +357,7 @@ export default function WhyChooseUsPage() {
                   <button
                     key={u.id}
                     onClick={() => setUrgency(u.id)}
-                    className={`flex-1 py-3 px-1 text-[11px] font-bold rounded-sm border cursor-pointer transition leading-tight text-center ${
+                    className={`flex-1 py-3 px-2 text-[11px] font-bold rounded-xs border cursor-pointer transition leading-tight text-center ${
                       urgency === u.id
                         ? 'bg-warm-charcoal text-white border-warm-charcoal'
                         : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5] text-stone-600'

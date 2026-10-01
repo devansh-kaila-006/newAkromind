@@ -148,7 +148,7 @@ export default function AkroplacementPage() {
           { num: '+140%', label: 'Avg CTC Increase', detail: 'Significant career salary multiplier' },
           { num: '₹42 LPA', label: 'Top Domestic Offer', detail: 'Senior software architect role' }
         ].map((s, idx) => (
-          <div key={idx} className="px-6 space-y-1 text-center md:text-left">
+          <div key={idx} className="p-3.5 sm:px-6 space-y-1 text-center md:text-left">
             <div className="text-3xl md:text-4xl font-serif italic font-bold text-terracotta tabular-nums">{s.num}</div>
             <div className="text-xs font-bold uppercase tracking-wider text-warm-charcoal">{s.label}</div>
             <div className="text-[10px] text-stone-500 font-serif italic">{s.detail}</div>
@@ -174,7 +174,7 @@ export default function AkroplacementPage() {
               desc: 'For software engineers, DevOps architects, and QA engineers targeting product startups and global tech giants.',
               focus: [
                 'Data Structures, Algorithms & LeetCode Hard optimization',
-                'Low-Level Object-Oriented Design (L判) & High-Level System Architecture',
+                'Low-Level Object-Oriented Design (LLD) & High-Level System Architecture',
                 'Concurrency, distributed caching, database indexing & microservices',
                 'Direct recruiter introductions to 250+ tech engineering teams'
               ]
@@ -246,8 +246,8 @@ export default function AkroplacementPage() {
           <div className="lg:col-span-7 space-y-6">
             {/* Domain Selector */}
             <div className="space-y-3">
-              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">1/ Select Target Career Domain</label>
-              <div className="grid grid-cols-2 gap-3">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block font-mono">1/ Select Target Career Domain</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { id: 'tech', label: 'Tech & Cloud SDE', subtitle: 'Software & Data' },
                   { id: 'business', label: 'Management & Strategy', subtitle: 'Consulting & Ops' },
@@ -257,9 +257,9 @@ export default function AkroplacementPage() {
                   <button
                     key={d.id}
                     onClick={() => setSelectedDomain(d.id)}
-                    className={`p-4 rounded-sm text-left border cursor-pointer transition-colors duration-200 ${
+                    className={`p-3.5 sm:p-4 rounded-xs text-left border cursor-pointer transition-colors duration-200 ${
                       selectedDomain === d.id
-                        ? 'border-terracotta bg-warm-cream/50 text-[#1C1816]'
+                        ? 'border-terracotta bg-warm-cream/60 text-[#1C1816] ring-1 ring-terracotta/30'
                         : 'border-[#E5E0D5] bg-[#FCFAF7] hover:border-terracotta/50'
                     }`}
                   >
@@ -272,8 +272,8 @@ export default function AkroplacementPage() {
 
             {/* Experience Level */}
             <div className="space-y-3">
-              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block">2/ Career Experience Bracket</label>
-              <div className="flex gap-2">
+              <label className="text-[10px] font-bold text-[#7D7067] uppercase tracking-widest block font-mono">2/ Career Experience Bracket</label>
+              <div className="flex flex-col sm:flex-row gap-2">
                 {[
                   { id: 'fresh', label: 'Entry Level', desc: '0 - 2 Years' },
                   { id: 'junior', label: 'Mid-Level', desc: '2 - 5 Years' },
@@ -282,7 +282,7 @@ export default function AkroplacementPage() {
                   <button
                     key={exp.id}
                     onClick={() => setExperience(exp.id)}
-                    className={`flex-1 p-3 text-left rounded-sm border cursor-pointer transition ${
+                    className={`flex-1 p-3 text-left rounded-xs border cursor-pointer transition ${
                       experience === exp.id
                         ? 'bg-warm-charcoal text-white border-warm-charcoal'
                         : 'bg-[#FCFAF7] hover:border-terracotta/40 border-[#E5E0D5]'

@@ -51,21 +51,21 @@ export default function ContactPage() {
       </header>
 
       {/* Direct Contact Cards */}
-      <div className="grid md:grid-cols-2 gap-8 items-stretch font-sans">
+      <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-stretch font-sans">
         {/* Left Column: Direct channels */}
-        <div className="bg-[#FCFAF7] p-8 md:p-10 border border-[#E5E0D5] flex flex-col justify-between rounded-sm space-y-8">
+        <div className="bg-[#FCFAF7] p-6 sm:p-10 border border-[#E5E0D5] flex flex-col justify-between rounded-xs space-y-8">
           <div>
             <span className="text-[10px] font-mono font-bold tracking-widest text-terracotta uppercase block mb-6">
               Official Headquarters & Channels
             </span>
             
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border border-[#E5E0D5] flex items-center justify-center text-terracotta bg-warm-cream/50 rounded-sm shrink-0">
+            <div className="space-y-6 sm:space-y-8">
+              <div className="flex items-start gap-3.5 sm:gap-4">
+                <div className="w-10 h-10 border border-[#E5E0D5] flex items-center justify-center text-terracotta bg-warm-cream/50 rounded-xs shrink-0">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-xs font-bold text-warm-charcoal uppercase tracking-wider">Corporate Atelier</h4>
+                  <h4 className="text-xs font-bold text-warm-charcoal uppercase tracking-wider font-mono">Corporate Atelier</h4>
                   <p className="text-stone-600 text-xs font-serif italic leading-relaxed">
                     18, Kapoor Niwas, Dugri,<br />
                     Ludhiana, Punjab, India 141001
@@ -74,27 +74,49 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border border-[#E5E0D5] flex items-center justify-center text-terracotta bg-warm-cream/50 rounded-sm shrink-0">
+              <div className="flex items-start gap-3.5 sm:gap-4">
+                <div className="w-10 h-10 border border-[#E5E0D5] flex items-center justify-center text-terracotta bg-warm-cream/50 rounded-xs shrink-0">
                   <Phone className="w-4 h-4" />
                 </div>
-                <div className="space-y-1">
-                  <h4 className="text-xs font-bold text-warm-charcoal uppercase tracking-wider">Direct Advisory Lines</h4>
-                  <p className="text-stone-800 text-xs font-mono font-bold">+91 771 978 3125</p>
-                  <p className="text-stone-800 text-xs font-mono font-bold">+91 771 079 9526</p>
-                  <p className="text-[10px] text-stone-500 font-serif italic pt-0.5">Available for WhatsApp & voice consultations</p>
+                <div className="space-y-1 flex-1">
+                  <h4 className="text-xs font-bold text-warm-charcoal uppercase tracking-wider font-mono">Direct Advisory Lines</h4>
+                  <div className="space-y-1 pt-0.5">
+                    <a 
+                      href="tel:+917719783125" 
+                      className="text-stone-800 text-xs font-mono font-bold hover:text-terracotta transition-colors block py-0.5 active:text-terracotta"
+                    >
+                      +91 771 978 3125
+                    </a>
+                    <a 
+                      href="tel:+917710799526" 
+                      className="text-stone-800 text-xs font-mono font-bold hover:text-terracotta transition-colors block py-0.5 active:text-terracotta"
+                    >
+                      +91 771 079 9526
+                    </a>
+                  </div>
+                  <div className="pt-2">
+                    <a 
+                      href="https://wa.me/917719783125?text=Hello%20New%20Akromind%2C%20I%20would%20like%20to%20inquire%20about%20your%20services"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#25D366]/10 text-[#128C7E] hover:bg-[#25D366]/20 border border-[#25D366]/30 rounded-xs text-[11px] font-mono font-bold transition-colors"
+                    >
+                      <span>Chat on WhatsApp</span>
+                    </a>
+                  </div>
+                  <p className="text-[10px] text-stone-500 font-serif italic pt-1">Direct callback within 15 minutes during office hours</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border border-[#E5E0D5] flex items-center justify-center text-terracotta bg-warm-cream/50 rounded-sm shrink-0">
+              <div className="flex items-start gap-3.5 sm:gap-4">
+                <div className="w-10 h-10 border border-[#E5E0D5] flex items-center justify-center text-terracotta bg-warm-cream/50 rounded-xs shrink-0">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-xs font-bold text-warm-charcoal uppercase tracking-wider">Electronic Inquiries</h4>
+                  <h4 className="text-xs font-bold text-warm-charcoal uppercase tracking-wider font-mono">Electronic Inquiries</h4>
                   <a 
                     href="mailto:hello.newakromind@gmail.com" 
-                    className="text-stone-800 text-xs font-mono font-bold hover:text-terracotta transition-colors block"
+                    className="text-stone-800 text-xs font-mono font-bold hover:text-terracotta transition-colors block py-0.5 break-all"
                   >
                     hello.newakromind@gmail.com
                   </a>
@@ -106,7 +128,7 @@ export default function ContactPage() {
         </div>
 
         {/* Right Column: Business Hours & Consultation Protocol */}
-        <div className="bg-[#1C1816] text-warm-cream p-8 md:p-10 border border-[#2D2623] flex flex-col justify-between rounded-sm space-y-8">
+        <div className="bg-[#1C1816] text-warm-cream p-6 sm:p-10 border border-[#2D2623] flex flex-col justify-between rounded-xs space-y-8">
           <div className="space-y-6">
             <div className="flex items-center gap-3 border-b border-stone-800 pb-4">
               <Clock className="w-4 h-4 text-terracotta" />

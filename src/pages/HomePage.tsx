@@ -85,47 +85,47 @@ export default function HomePage() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-32 py-16 font-sans bg-warm-cream"
+      className="space-y-20 md:space-y-32 py-10 md:py-16 font-sans bg-warm-cream"
     >
       {/* Hero section */}
-      <section className="max-w-6xl mx-auto px-4 text-center space-y-8">
+      <section className="max-w-6xl mx-auto px-4 text-center space-y-6 sm:space-y-8">
         <motion.div variants={itemVariants} className="inline-flex items-center gap-2">
-          <span className="text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">
+          <span className="text-[10px] sm:text-[11px] font-bold tracking-widest text-terracotta uppercase border-b border-terracotta/40 pb-1">
             One Intelligent Growth Ecosystem
           </span>
         </motion.div>
         
         <motion.h1 
           variants={itemVariants} 
-          className="text-5xl md:text-8xl font-black tracking-tight text-warm-charcoal max-w-5xl mx-auto leading-[0.95] font-sans"
+          className="text-3xl sm:text-5xl md:text-8xl font-black tracking-tight text-warm-charcoal max-w-5xl mx-auto leading-[1.05] sm:leading-[0.95] font-sans"
         >
           Empowering your <span className="font-serif italic font-normal text-terracotta tracking-normal lowercase">future</span> across every <span className="font-serif italic font-normal text-stone-700 tracking-normal leading-none">dimension.</span>
         </motion.h1>
 
         <motion.p 
           variants={itemVariants} 
-          className="text-lg md:text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed font-serif"
+          className="text-base sm:text-lg md:text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed font-serif"
         >
           New Akromind unifies academic excellence, elite corporate career transitions, restorative global travel, and empathetic mindset counseling into a single, cohesive human growth blueprint.
         </motion.p>
 
-        <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4 pt-4">
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center gap-3 pt-2 sm:pt-4 w-full max-w-md sm:max-w-none mx-auto">
           <Link
             to="/contact"
-            className="bg-warm-charcoal text-white hover:bg-terracotta text-[10px] uppercase tracking-widest font-bold px-8 py-4 transition-colors duration-300 rounded-sm inline-flex items-center gap-2 border border-warm-charcoal hover:border-terracotta"
+            className="bg-warm-charcoal text-white hover:bg-terracotta text-[10px] uppercase tracking-widest font-bold px-6 py-3.5 sm:px-8 sm:py-4 transition-colors duration-300 rounded-xs inline-flex items-center justify-center gap-2 border border-warm-charcoal hover:border-terracotta w-full sm:w-auto"
           >
             Schedule Discovery Consultation <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
           <Link
             to="/about"
-            className="border border-[#E5E0D5] text-warm-charcoal hover:bg-warm-beige/40 text-[10px] uppercase tracking-widest font-bold px-8 py-4 transition-colors duration-300 rounded-sm"
+            className="border border-[#E5E0D5] text-warm-charcoal hover:bg-warm-beige/40 text-[10px] uppercase tracking-widest font-bold px-6 py-3.5 sm:px-8 sm:py-4 transition-colors duration-300 rounded-xs inline-flex items-center justify-center w-full sm:w-auto"
           >
             Read Our Ecosystem Manifesto
           </Link>
         </motion.div>
 
         {/* Hero Architectural Visual Artwork */}
-        <motion.div variants={itemVariants} className="pt-8">
+        <motion.div variants={itemVariants} className="pt-6 sm:pt-8">
           <EditorialVisual 
             type="hero" 
             aspectRatio="16:9"
@@ -140,7 +140,7 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4">
         <motion.div 
           variants={itemVariants} 
-          className="grid grid-cols-2 md:grid-cols-4 border-y border-[#E5E0D5] divide-x divide-[#E5E0D5] py-10 bg-[#FCFAF7] border-x border-[#E5E0D5]"
+          className="grid grid-cols-2 md:grid-cols-4 border-y border-[#E5E0D5] py-6 sm:py-10 bg-[#FCFAF7] border-x border-[#E5E0D5] divide-y sm:divide-y-0 sm:divide-x divide-[#E5E0D5]"
         >
           {[ 
             { num: '10,000+', label: 'Students Mentored', phrase: 'across CBSE, ICSE, JEE & NEET boards' }, 
@@ -148,11 +148,11 @@ export default function HomePage() {
             { num: '50+', label: 'Curated Routes', phrase: 'custom domestic & international itineraries' }, 
             { num: '100+', label: 'Certified Mentors', phrase: 'IITians, psychologists & domain architects' }
           ].map((i, index) => (
-            <div key={index} className="px-6 space-y-2 text-center md:text-left">
-              <div className="text-4xl md:text-5xl font-serif italic font-medium text-terracotta tracking-tight tabular-nums">{i.num}</div>
+            <div key={index} className="p-4 sm:px-6 space-y-1 sm:space-y-2 text-center md:text-left">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-serif italic font-medium text-terracotta tracking-tight tabular-nums">{i.num}</div>
               <div>
-                <div className="text-xs font-bold text-warm-charcoal uppercase tracking-wider">{i.label}</div>
-                <div className="text-[11px] text-stone-500 font-serif italic">{i.phrase}</div>
+                <div className="text-[11px] sm:text-xs font-bold text-warm-charcoal uppercase tracking-wider">{i.label}</div>
+                <div className="text-[10px] sm:text-[11px] text-stone-500 font-serif italic">{i.phrase}</div>
               </div>
             </div>
           ))}
@@ -220,9 +220,9 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
           {/* Vertical 01: AKROMIND */}
-          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-5 sm:p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-xs space-y-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
                 <div className="flex items-center gap-3">
@@ -263,7 +263,7 @@ export default function HomePage() {
           </div>
 
           {/* Vertical 02: AKROTUTION */}
-          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-5 sm:p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-xs space-y-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
                 <div className="flex items-center gap-3">
@@ -304,7 +304,7 @@ export default function HomePage() {
           </div>
 
           {/* Vertical 03: AKROPLACEMENT */}
-          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-5 sm:p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-xs space-y-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
                 <div className="flex items-center gap-3">
@@ -345,7 +345,7 @@ export default function HomePage() {
           </div>
 
           {/* Vertical 04: AKROHOLIDAYS */}
-          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-sm space-y-6">
+          <div className="bg-[#FCFAF7] border border-[#E5E0D5] p-5 sm:p-8 flex flex-col justify-between hover:border-terracotta transition-colors duration-300 rounded-xs space-y-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start border-b border-[#E5E0D5] pb-4">
                 <div className="flex items-center gap-3">
@@ -354,7 +354,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 04</span>
-                    <h3 className="text-2xl font-bold text-warm-charcoal">AKROHOLIDAYS</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-warm-charcoal">AKROHOLIDAYS</h3>
                   </div>
                 </div>
                 <span className="text-xs font-mono text-stone-400">VOYAGES</span>
@@ -386,7 +386,7 @@ export default function HomePage() {
           </div>
 
           {/* Vertical 05: AKROBOOKS */}
-          <div className="md:col-span-2 bg-[#FCFAF7] border border-[#E5E0D5] p-8 flex flex-col md:flex-row justify-between items-start md:items-center hover:border-terracotta transition-colors duration-300 rounded-sm gap-6">
+          <div className="md:col-span-2 bg-[#FCFAF7] border border-[#E5E0D5] p-5 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center hover:border-terracotta transition-colors duration-300 rounded-xs gap-6">
             <div className="space-y-4 max-w-3xl">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 border border-[#E5E0D5] bg-warm-cream flex items-center justify-center text-terracotta rounded-xs">
@@ -394,7 +394,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider font-bold">Vertical 05 · New Vertical</span>
-                  <h3 className="text-2xl font-bold text-warm-charcoal">AKROBOOKS</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-warm-charcoal">AKROBOOKS</h3>
                 </div>
                 <span className="text-xs font-mono text-stone-400 ml-auto hidden sm:inline">PUBLISHING ATELIER</span>
               </div>
@@ -409,7 +409,7 @@ export default function HomePage() {
             </div>
             <Link 
               to="/verticals/akrobooks" 
-              className="px-6 py-3.5 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-mono uppercase tracking-wider font-bold rounded-xs transition-colors shrink-0 inline-flex items-center gap-2 shadow-xs"
+              className="w-full md:w-auto justify-center px-6 py-3.5 bg-terracotta hover:bg-terracotta/90 text-white text-xs font-mono uppercase tracking-wider font-bold rounded-xs transition-colors shrink-0 inline-flex items-center gap-2 shadow-xs text-center"
             >
               <span>Explore AKROBOOKS Catalogue &rarr;</span>
             </Link>

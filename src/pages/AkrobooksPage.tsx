@@ -422,12 +422,12 @@ export default function AkrobooksPage() {
         <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-[#FCFAF7] p-4 border border-[#E5E0D5] rounded-xs shadow-xs">
           
           {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0 no-scrollbar sm:flex-wrap">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider rounded-xs transition-all duration-200 cursor-pointer ${
+                className={`shrink-0 px-3 py-1.5 text-xs font-mono uppercase tracking-wider rounded-xs transition-all duration-200 cursor-pointer ${
                   selectedCategory === cat
                     ? 'bg-terracotta text-white font-bold shadow-xs'
                     : 'bg-white text-stone-600 border border-[#E5E0D5] hover:border-terracotta/60'
